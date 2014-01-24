@@ -1,11 +1,14 @@
 package;
 
+import kha.AnimatedImageCursor;
+import kha.Animation;
 import kha.Button;
 import kha.Color;
 import kha.Font;
 import kha.FontStyle;
 import kha.Game;
 import kha.HighscoreList;
+import kha.ImageCursor;
 import kha.Key;
 import kha.Loader;
 import kha.LoadingScreen;
@@ -117,9 +120,15 @@ class SuperMarioLand extends Game {
 			}
 		}
 		music.play();
+		Inventory.init();
+		Inventory.pick(1);
+		Inventory.pick(2);
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
 		Configuration.setScreen(this);
+		
+		//kha.Sys.mouse.pushCursor(new ImageCursor(Loader.the.getImage("gumba")));
+		kha.Sys.mouse.pushCursor(new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14)));
 	}
 	
 	public function showHighscore() {
@@ -184,21 +193,20 @@ class SuperMarioLand extends Game {
 				painter.drawString(" -           " + Std.string(score.getScore()), 200, i * 30 + 100);
 				++i;
 			}
-			//break;
 		case EnterHighscore:
 			painter.setColor(Color.fromBytes(255, 255, 255));
 			painter.fillRect(0, 0, width, height);
 			painter.setColor(Color.fromBytes(0, 0, 0));
 			painter.drawString("Enter your name", width / 2 - 100, 200);
 			painter.drawString(highscoreName, width / 2 - 50, 250);
-			//break;
 		case Game:
 			super.render(painter);
 			painter.translate(0, 0);
 			painter.setColor(Color.fromBytes(0, 0, 0));
 			painter.drawString("Score: " + Std.string(Jumpman.getInstance().getScore()), 20, 25);
 			painter.drawString("Round: " + Std.string(Jumpman.getInstance().getRound()), width - 100, 25);
-			//break;
+			
+			Inventory.paint(painter);
 		}
 	}
 
