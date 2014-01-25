@@ -42,4 +42,6 @@ interface ManipulatableSprite {
 	public var name(default, null): String;
 	
 	public function getOrder(selectedItem : UseableSprite) : OrderType;
+	
+	public function executeOrder(order : OrderType) : Void;
 }

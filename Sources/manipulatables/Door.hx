@@ -22,4 +22,12 @@ class Door extends Sprite implements ManipulatableSprite {
 	public function getOrder(selectedItem : UseableSprite) : OrderType {
 		return OrderType.Enter;
 	}
+	
+	public function executeOrder(order : OrderType) : Void {
+		Loader.the.loadRoom("level2", initLevel);
+	}
+	
+	public function initLevel() : Void {
+		
+	}
 }

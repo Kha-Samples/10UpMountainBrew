@@ -28,6 +28,12 @@ class UseableSprite extends Sprite implements ManipulatableSprite
 			return OrderType.Take;
 	}
 	
+	public function executeOrder(order : OrderType) : Void {
+		if (order == OrderType.Take) {
+			take();
+		}
+	}
+	
 	public function take() {
 		isInInventory = true;
 		Scene.the.removeHero(this);
