@@ -149,6 +149,14 @@
       "name": "handcursor",
       "scale": 1.0,
       "circle": false
+    },
+    {
+      "id": "6887093a-7d17-4f61-8e61-d2666778070c",
+      "type": "image",
+      "file": "door.png",
+      "name": "door",
+      "scale": 1.0,
+      "circle": false
     }
   ],
   "rooms": [
@@ -159,14 +167,14 @@
       "assets": [
         "8911187a-a0c4-4c49-983a-2e82c113a852",
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
-		"893ebf74-743a-4e90-bb55-17bbc2f8174e"
+        "893ebf74-743a-4e90-bb55-17bbc2f8174e"
       ]
     },
     {
       "id": "657f6c70-d7ce-11e1-9b23-0800200c9a66",
       "name": "level1",
+      "parent": "c0441aa8-5a87-4c6e-b5c3-daa802b72723",
       "neighbours": [],
-	  "parent": ["c0441aa8-5a87-4c6e-b5c3-daa802b72723"],
       "assets": [
         "9c8c0db0-d7cc-11e1-9b23-0800200c9a66",
         "a7a42c00-d7cc-11e1-9b23-0800200c9a66",
@@ -183,7 +191,8 @@
         "2348bd79-d7ce-11e1-9b23-0800200c9a66",
         "5c950390-d7ce-11e1-9b23-0800200c9a66",
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
-        "c4f67b7c-e207-42c9-9c2a-b6991825f6e0"
+        "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
+        "6887093a-7d17-4f61-8e61-d2666778070c"
       ]
     }
   ]

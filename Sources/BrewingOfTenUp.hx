@@ -124,6 +124,9 @@ class BrewingOfTenUp extends Game {
 			case 3:
 				sprite = new Fly(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
+			case 4:
+				sprite = new Door(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addOther(sprite);
 			default:
 				trace("That should never happen! We are therefore going to ignore it.");
 				continue;
