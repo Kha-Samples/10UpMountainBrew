@@ -30,19 +30,10 @@ public class SpritesPanel extends JPanel implements MouseListener, MouseMotionLi
 	}
 
 	private SpritesPanel() {
-		sprites.add(new Sprite("../Assets/Graphics/agent.png", 0, 19, 49));
-		sprites.add(new Sprite("../Assets/Graphics/professor.png", 1, 20, 52));
-		sprites.add(new Sprite("../Assets/Graphics/rowdy.png", 2, 25, 52));
-		sprites.add(new Sprite("../Assets/Graphics/mechanic.png", 3, 21, 52));
-		sprites.add(new Sprite("../Assets/Graphics/door.png", 4, 16, 64));
-		sprites.add(new Sprite("../Assets/Graphics/soldier.png", 5, 22, 41));
-		sprites.add(new Sprite("../Assets/Graphics/window.png", 6, 16, 80));
-		sprites.add(new Sprite("../Assets/Graphics/gate.png", 7, 16, 96));
-		sprites.add(new Sprite("../Assets/Graphics/gatter.png", 8, 32, 6));
-		sprites.add(new Sprite("../Assets/Graphics/computer.png", 9, 46, 60));
-		sprites.add(new Sprite("../Assets/Graphics/machinegun.png", 10, 42, 41));
-		sprites.add(new Sprite("../Assets/Graphics/boss.png", 11, 26, 35));
-		sprites.add(new Sprite("../Assets/Graphics/car.png", 12, 100, 41));
+		sprites.add(new Sprite("../Assets/Graphics/coin.png", 0, 28, 32));
+		sprites.add(new Sprite("../Assets/Graphics/gumba.png", 1, 32, 32));
+		sprites.add(new Sprite("../Assets/Graphics/koopa.png", 2, 64, 48));
+		sprites.add(new Sprite("../Assets/Graphics/fly.png", 3, 64, 56));
 		addMouseMotionListener(this);
 		addMouseListener(this);
 	}
