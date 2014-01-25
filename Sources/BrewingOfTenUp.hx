@@ -1,9 +1,9 @@
 package;
 
-import kha.AnimatedImageCursor;
-import kha.Animation;
+import AdventureCursor;
 import kha.Button;
 import kha.Color;
+import kha.Cursor;
 import kha.Font;
 import kha.FontStyle;
 import kha.Game;
@@ -135,8 +135,9 @@ class BrewingOfTenUp extends Game {
 		Inventory.pick(new UseableSprite(Loader.the.getImage("pizza_pixel"), "pizza"));
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
-		kha.Sys.mouse.pushCursor(new AdventureCursor());
 		Configuration.setScreen(this);
+		adventureCursor = new AdventureCursor();
+		kha.Sys.mouse.pushCursor(adventureCursor);
 		mode = Mode.Game;
 	}
 	
@@ -244,44 +245,16 @@ class BrewingOfTenUp extends Game {
 		if (key != null && key == Key.SHIFT) shiftPressed = false;
 	}
 	
+	public var adventureCursor(default, null) : AdventureCursor;
 	public var currentOrder(default, null) : MouseOrder = new MouseOrder();
-	public var hoveringType(default, null) : OrderType = OrderType.Nothing;
-	public var hoveringUseable(default, null) : UseableSprite = null; 
 	
-	override public function mouseMove(x:Int, y:Int) : Void  {
-		switch (mode) {
-		case Mode.Game:
-			hoveringUseable = Inventory.getItemBelowPoint(x, y);
-			if (hoveringUseable != null) {
-				hoveringType = InventoryItem;
-			} else {
-				var worldX = x + scene.screenOffsetX;
-				var worldY = y + scene.screenOffsetY;
-				var jmpMan = Jumpman.getInstance();
-				if (jmpMan != null) {
-					hoveringType = Nothing;
-					if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
-						hoveringType = MoveTo;
-					}
-					for (hero in scene.getHeroesBelowPoint(worldX, worldY)) {
-						if (Std.is(hero, UseableSprite)) {
-							hoveringUseable = cast hero;
-							hoveringType = Take;
-							break;
-						}
-					}
-				}
-			}
-		default:
-		}
-	}
 	override public function mouseUp(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
-			currentOrder.type = hoveringType;
+			currentOrder.type = adventureCursor.hoveredType;
 			currentOrder.x = x + scene.screenOffsetX;
 			currentOrder.y = y + scene.screenOffsetY;
-			currentOrder.object = hoveringUseable;
+			currentOrder.object = adventureCursor.hoveredObject;
 		default:
 		}
 	}
@@ -302,12 +275,6 @@ class BrewingOfTenUp extends Game {
 	}
 }
 
-enum OrderType {
-	Nothing;
-	MoveTo;
-	Take;
-	InventoryItem;
-}
 class MouseOrder {
 	public function new() { }
 	public var type : OrderType = Nothing;
