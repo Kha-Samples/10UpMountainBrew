@@ -21,21 +21,31 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	private var jumpLeft: Animation;
 	private var jumpRight: Animation;
 
-	public function new(px : Int, py : Int) 
+	public function new(px : Int, py : Int, name : String = null, image : Image = null) 
 	{
-		super(Loader.the.getImage("mechanic"), Std.int(410 / 10) * 2, Std.int(455 / 7) * 2);
+		if (image == null) {
+			image = Loader.the.getImage("mechanic");
+		}
+		super(image, Std.int(410 / 10) * 2, Std.int(455 / 7) * 2);
 		x = px;
 		y = py - 40;
 		
-		collider = new Rectangle(20, 30, 41 * 2 - 40, (65 - 1) * 2 - 30);
-		walkLeft = Animation.createRange(11, 18, 4);
-		walkRight = Animation.createRange(1, 8, 4);
-		standLeft = Animation.create(10);
-		standRight = Animation.create(0);
-		jumpLeft = Animation.create(12);
-		jumpRight = Animation.create(2);
+		if (name == null) {
+			this.name = "Ms. M";
+		} else {
+			this.name = name;
+		}
 		
-		danceAnimation = new Animation([40,40,40,40,40,40,40,40,40,40,
+		if (this.image == image) {
+			collider = new Rectangle(20, 30, 41 * 2 - 40, (65 - 1) * 2 - 30);
+			walkLeft = Animation.createRange(11, 18, 4);
+			walkRight = Animation.createRange(1, 8, 4);
+			standLeft = Animation.create(10);
+			standRight = Animation.create(0);
+			jumpLeft = Animation.create(12);
+			jumpRight = Animation.create(2);
+			
+			danceAnimation = new Animation([40,40,40,40,40,40,40,40,40,40,
 41,41,41,41,41,41,41,41,41,41,
 40,40,40,40,40,40,40,40,40,40,
 41,41,41,41,41,41,41,41,41,41,
@@ -73,13 +83,14 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,51,
 
 40, 40, 40, 40, 40, 40, 40, 40, 40, 40], 2);
+		}
 	}
 	
 	/* INTERFACE manipulatables.ManipulatableSprite */
 	
 	function get_name():String 
 	{
-		return "Ms. M";
+		return name;
 	}
 	
 	public var name(get_name, null):String;
