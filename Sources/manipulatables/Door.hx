@@ -8,6 +8,7 @@ import kha.Scene;
 import kha.Sprite;
 import manipulatables.ManipulatableSprite;
 
+// Tür
 class Door extends Sprite implements ManipulatableSprite {	
 	public function new(x: Int, y: Int) {
 		super(Loader.the.getImage("door"));
@@ -17,7 +18,10 @@ class Door extends Sprite implements ManipulatableSprite {
 		z = 0;
 	}
 	
-	public var name(default, null) : String = "Door";
+	function get_name() : String {
+		return "Dorr";
+	}
+	public var name(get, null) : String;
 	
 	public function getOrder(selectedItem : UseableSprite) : OrderType {
 		return OrderType.Enter;

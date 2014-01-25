@@ -45,6 +45,9 @@ class AdventureCursor implements Cursor {
 		cursors[MoveTo] = new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14), 16, 16);
 		cursors[Take] = new ImageCursor(Loader.the.getImage("handcursor"), 6, 9);
 		cursors[InventoryItem] = new ImageCursor(Loader.the.getImage("handcursor"), 6, 9);
+		cursors[WontWork] = new ImageCursor(Loader.the.getImage("pizza_pixel"), 5, 5); // TODO: cursor
+		cursors[Eat] = new ImageCursor(Loader.the.getImage("pizza_pixel"), 15, 15); // TODO: cursor
+		cursors[Enter] = new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14), 16, 16); // TODO: cursor
 		currentCursor = null;
 		kha.Sys.mouse.forceSystemCursor(true);
 		font = Loader.the.loadFont("Arial", new FontStyle(false, false, false), 12);

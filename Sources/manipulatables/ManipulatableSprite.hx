@@ -1,8 +1,6 @@
 package manipulatables;
 
 enum ObjectType {
-	// (mytischer) Drache
-	Drake;
 	// Feuer
 	Fire;
 	// Direktor
@@ -17,8 +15,6 @@ enum ObjectType {
 	Sword;
 	// Typ mit Feuerlöscher
 	GuyWithExtinguisher;
-	// Pizza
-	Pizza;
 	// Feuerlöscher
 	Extinguisher;
 	// Arztkittel
@@ -36,10 +32,11 @@ enum OrderType {
 	InventoryItem;
 	Enter;
 	WontWork;
+	Eat;
 }
 
 interface ManipulatableSprite {
-	public var name(default, null): String;
+	public var name(get, null): String;
 	
 	public function getOrder(selectedItem : UseableSprite) : OrderType;
 	

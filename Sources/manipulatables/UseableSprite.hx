@@ -12,10 +12,15 @@ class UseableSprite extends Sprite implements ManipulatableSprite
 	
 	public function new(name: String, image: Image, width: Int = 0, height: Int = 0, z: Int = 1) {
 		super(image, width, height, z);
+		accy = 0;
 		this.name = name;
 	}
 	
-	public var name(default, null) : String;
+	private function get_name() : String {
+		return name;
+	}
+	
+	public var name(get, null) : String;
 	
 	public function canBeManipulatedWith(item : UseableSprite) : Bool {
 		throw "Not implemented.";

@@ -7,8 +7,11 @@ import kha.Music;
 import kha.Rectangle;
 import kha.Sound;
 import kha.Sprite;
+import manipulatables.ManipulatableSprite;
+import manipulatables.Pizza;
+import manipulatables.UseableSprite;
 
-class Jumpman extends Sprite {
+class Jumpman extends Sprite implements ManipulatableSprite {
 	static var instance : Jumpman;
 	public var left : Bool;
 	public var right : Bool;
@@ -155,5 +158,29 @@ class Jumpman extends Sprite {
 			score += 100;
 		}
 		else die();
+	}
+	
+	/* INTERFACE manipulatables.ManipulatableSprite */
+	
+	function get_name():String 
+	{
+		return "Mr. S";
+	}
+	
+	public var name(get, null):String;
+	
+	public function getOrder(selectedItem:UseableSprite) : OrderType 
+	{
+		if (Std.is(selectedItem, Pizza)) {
+			return Eat;
+		}
+		return OrderType.WontWork;
+	}
+	
+	public function executeOrder(order:OrderType):Void 
+	{
+		if (order == Eat) {
+			Inventory.loose(Inventory.getSelectedItem());
+		}
 	}
 }

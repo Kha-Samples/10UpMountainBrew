@@ -8,6 +8,8 @@ import kha.Scene;
 import kha.Tile;
 import kha.Tilemap;
 import manipulatables.Door;
+import manipulatables.Drake;
+import manipulatables.Pizza;
 
 class Level {
 	private static var levelName: String;
@@ -75,13 +77,13 @@ class Level {
 				sprite = new Coin(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 1:
-				sprite = new Gumba(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 2:
-				sprite = new Koopa(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 3:
-				sprite = new Fly(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new Drake(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 4:
 				sprite = new Door(sprites[i * 3 + 1], sprites[i * 3 + 2]);

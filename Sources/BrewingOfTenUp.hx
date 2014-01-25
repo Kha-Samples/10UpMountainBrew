@@ -62,7 +62,7 @@ class BrewingOfTenUp extends Game {
 		//getHighscores().load(Storage.defaultFile());
 		
 		Inventory.init();
-		Inventory.pick(new Pizza());
+		Inventory.pick(new Pizza(0,0));
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
 		
@@ -199,16 +199,12 @@ class MouseOrder {
 			return;
 		case WontWork:
 			// TODO: say something
-		case Enter:
-			if (moveTo()) {
-				return;
-			}
 		case MoveTo:
 			if (!moveTo()) {
 				type = Nothing;
 			}
 			return;
-		case Take:
+		case Take, Eat, Enter:
 			if (moveTo()) {
 				return;
 			}
