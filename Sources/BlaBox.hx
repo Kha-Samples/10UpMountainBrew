@@ -13,14 +13,18 @@ class BlaBox {
 	private static var left: Bool;
 	private static var pointed: Sprite;
 	private static var font: Font;
-	private static var text: String = "An initial state of the project code was submitted to the military for review, and they ran the program through some sort of security analyzer tool. It returned a report of known security issues in the code and required changes that needed to be implemented before delivery of the final product.";
+	private static var text: String = null;
 	
 	public static function pointAt(sprite: Sprite): Void {
 		pointed = sprite;
 	}
 	
+	public static function setText(text: String): Void {
+		BlaBox.text = text;
+	}
+	
 	public static function render(painter: Painter): Void {
-		if (pointed == null) pointed = Jumpman.getInstance();
+		if (pointed == null || text == null) return;
 		if (font == null) font = Loader.the.loadFont("Arial", new FontStyle(false, false, false), 12);
 		
 		var sx = pointed.x + pointed.width / 2 - Scene.the.screenOffsetX;
