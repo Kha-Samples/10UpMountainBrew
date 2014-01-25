@@ -30,6 +30,7 @@ class Level {
 			tileColissions.push(new Tile(i, isCollidable(i)));
 		}
 		var blob = Loader.the.getBlob(levelName + ".map");
+		blob.reset();
 		var levelWidth: Int = blob.readS32BE();
 		var levelHeight: Int = blob.readS32BE();
 		var originalmap = new Array<Array<Int>>();

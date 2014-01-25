@@ -9,7 +9,9 @@ import kha.Sprite;
 import manipulatables.ManipulatableSprite;
 
 // Tür
-class Door extends Sprite implements ManipulatableSprite {	
+class Door extends Sprite implements ManipulatableSprite {
+	private static var currentLevel: String = null;
+	
 	public function new(x: Int, y: Int) {
 		super(Loader.the.getImage("door"));
 		this.x = x;
@@ -19,8 +21,9 @@ class Door extends Sprite implements ManipulatableSprite {
 	}
 	
 	function get_name() : String {
-		return "Dorr";
+		return "Door";
 	}
+	
 	public var name(get, null) : String;
 	
 	public function getOrder(selectedItem : UseableSprite) : OrderType {
@@ -28,7 +31,13 @@ class Door extends Sprite implements ManipulatableSprite {
 	}
 	
 	public function executeOrder(order : OrderType) : Void {
-		Level.load("level2", initLevel);
+		if (currentLevel == null || currentLevel == "level1") {
+			currentLevel = "level2";
+		}
+		else {
+			currentLevel = "level1";
+		}
+		Level.load(currentLevel, initLevel);
 	}
 	
 	public function initLevel() : Void {
