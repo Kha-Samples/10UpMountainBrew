@@ -57,10 +57,14 @@ class AdventureCursor implements Cursor {
 		if (currentCursor != null) {
 			currentCursor.render(painter, x, y);
 			if (hoveredObject != null) {
+				var toolTip = hoveredType + " " + hoveredObject.name;
+				if (Inventory.getSelectedItem() != null) {
+					toolTip = Inventory.getSelectedItem().name + " " + toolTip;
+				}
 				if (hoveredType == InventoryItem) {
-					drawTooltip(painter, hoveredObject.name, x, y - clickY - 16);
+					drawTooltip(painter, toolTip, x, y - clickY - 16);
 				} else {
-					drawTooltip(painter, hoveredObject.name, x, y - clickY + height);
+					drawTooltip(painter, toolTip, x, y - clickY + height);
 				}
 			}
 		}
