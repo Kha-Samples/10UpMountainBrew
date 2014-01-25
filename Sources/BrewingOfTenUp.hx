@@ -1,6 +1,10 @@
 package;
 
 import AdventureCursor;
+import manipulatables.Door;
+import manipulatables.ManipulatableSprite;
+import manipulatables.Pizza;
+import manipulatables.UseableSprite;
 import kha.Button;
 import kha.Color;
 import kha.Cursor;
@@ -135,7 +139,7 @@ class BrewingOfTenUp extends Game {
 		
 		music.play();
 		Inventory.init();
-		Inventory.pick(new UseableSprite(Loader.the.getImage("pizza_pixel"), "pizza"));
+		Inventory.pick(new Pizza());
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
 		Configuration.setScreen(this);
@@ -283,40 +287,44 @@ class MouseOrder {
 	public var type : OrderType = Nothing;
 	public var x : Int = 0;
 	public var y : Int = 0;
-	public var object : UseableSprite = null;
+	public var object : ManipulatableSprite = null;
 	
-	public function update() {
+	private function moveTo() : Bool {
 		var jmpMan = Jumpman.getInstance();
+		if (x < jmpMan.x + 0.3 * jmpMan.width) {
+			jmpMan.left = true;
+			jmpMan.right = false;
+		} else if (jmpMan.x + 0.7 * jmpMan.width < x) {
+			jmpMan.left = false;
+			jmpMan.right = true;
+		} else {
+			jmpMan.left = false;
+			jmpMan.right = false;
+			return true;
+		}
+		return false;
+	}
+	public function update() {
 		switch(type) {
 		case Nothing:
 			// Nothing to do
+		case WontWork:
+			// TODO: say something
+		case Enter:
+			if (moveTo()) {
+				// TODO: switch level
+			}
 		case MoveTo:
-			if (x < jmpMan.x + 0.3 * jmpMan.width) {
-				jmpMan.left = true;
-				jmpMan.right = false;
-			} else if (jmpMan.x + 0.7 * jmpMan.width < x) {
-				jmpMan.left = false;
-				jmpMan.right = true;
-			} else {
-				type = Nothing;
-				jmpMan.left = false;
-				jmpMan.right = false;
+			if (moveTo()) {
+				type = OrderType.Nothing;
 			}
 		case Take:
-			if (x < jmpMan.x + 0.3 * jmpMan.width) {
-				jmpMan.left = true;
-				jmpMan.right = false;
-			} else if (jmpMan.x + 0.7 * jmpMan.width < x) {
-				jmpMan.left = false;
-				jmpMan.right = true;
-			} else {
+			if (moveTo()) {
 				type = Nothing;
-				jmpMan.left = false;
-				jmpMan.right = false;
-				// TODO: take
+				cast(object, UseableSprite).take();
 			}
 		case InventoryItem:
-			Inventory.select(object);
+			Inventory.select(cast object);
 			type = Nothing;
 		}
 	}

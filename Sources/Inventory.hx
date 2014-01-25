@@ -6,6 +6,7 @@ import kha.Game;
 import kha.Loader;
 import kha.math.Vector2;
 import kha.Painter;
+import manipulatables.UseableSprite;
 
 class Inventory {
 	public static var y;
@@ -41,6 +42,10 @@ class Inventory {
 		} else {
 			selected = s;
 		}
+	}
+	
+	public static function getSelectedItem() : UseableSprite {
+		return (selected >= 0 && selected < items.length) ? items[selected] : null;
 	}
 	
 	public static function getItemBelowPoint(px : Int, py : Int) : UseableSprite {

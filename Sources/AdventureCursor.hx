@@ -11,13 +11,8 @@ import kha.Loader;
 import kha.Painter;
 import kha.Scene;
 import kha.Sprite;
-
-enum OrderType {
-	Nothing;
-	MoveTo;
-	Take;
-	InventoryItem;
-}
+import manipulatables.ManipulatableSprite;
+import manipulatables.UseableSprite;
 
 class AdventureCursor implements Cursor {
 	private var font: Font;
@@ -44,7 +39,7 @@ class AdventureCursor implements Cursor {
 	var cursors : Map<OrderType, Cursor> = new Map();
 	
 	public var hoveredType : OrderType = Nothing;
-	public var hoveredObject : UseableSprite = null;
+	public var hoveredObject : ManipulatableSprite = null;
 	
 	public function new() {
 		cursors[MoveTo] = new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14), 16, 16);
@@ -87,10 +82,10 @@ class AdventureCursor implements Cursor {
 			if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
 				hoveredType = OrderType.MoveTo;
 			}
-			for (hero in Scene.the.getHeroesBelowPoint(worldX, worldY)) {
-				if (Std.is(hero, UseableSprite)) {
-					hoveredObject = cast hero;
-					hoveredType = OrderType.Take;
+			for (obj in Scene.the.getSpritesBelowPoint(worldX, worldY)) {
+				if (Std.is(obj, ManipulatableSprite)) {
+					hoveredObject = cast obj;
+					hoveredType = hoveredObject.getOrder(Inventory.getSelectedItem());
 					break;
 				}
 			}
