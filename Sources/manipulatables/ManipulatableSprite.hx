@@ -5,8 +5,6 @@ enum ObjectType {
 	Knight;
 	// Ritterrüstung
 	KnightsArmour;
-	// Typ mit Feuerlöscher
-	GuyWithExtinguisher;
 	// Arztkittel
 	LabCoat;
 	// Knochensäge
