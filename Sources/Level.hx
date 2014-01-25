@@ -101,6 +101,9 @@ class Level {
 			case 7: // fire
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
+			case 8: // saw
+				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
 			default:
 				trace("That should never happen! We are therefore going to ignore it.");
 				continue;
