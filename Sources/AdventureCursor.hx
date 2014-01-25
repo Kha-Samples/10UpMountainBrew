@@ -86,14 +86,18 @@ class AdventureCursor implements Cursor {
 		} else if (y < Inventory.y) {
 			var worldX = x + Scene.the.screenOffsetX;
 			var worldY = y + Scene.the.screenOffsetY;
-			if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
-				hoveredType = OrderType.MoveTo;
-			}
 			for (obj in Scene.the.getSpritesBelowPoint(worldX, worldY)) {
 				if (Std.is(obj, ManipulatableSprite)) {
 					hoveredObject = cast obj;
 					hoveredType = hoveredObject.getOrder(Inventory.getSelectedItem());
+					if (hoveredType == OrderType.Nothing)
+						hoveredObject = null;
 					break;
+				}
+			}
+			if (hoveredObject == null) {
+				if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
+					hoveredType = OrderType.MoveTo;
 				}
 			}
 		}

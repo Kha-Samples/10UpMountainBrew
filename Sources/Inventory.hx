@@ -54,7 +54,7 @@ class Inventory {
 			px -= spacing;
 			while (px >= 0) {
 				pos += 1;
-				px -= itemHeight;
+				px -= itemWidth;
 				if (px < 0) {
 					if (pos >= 0 && pos < items.length) {
 						return items[pos];
@@ -62,7 +62,7 @@ class Inventory {
 						return null;
 					}
 				}
-				px -= spacing;
+				px -= 2 * spacing;
 			}
 			pos = -1;
 		}
