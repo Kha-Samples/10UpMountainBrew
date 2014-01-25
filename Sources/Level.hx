@@ -8,16 +8,20 @@ import kha.Scene;
 import kha.Tile;
 import kha.Tilemap;
 import manipulatables.BoneSaw;
+import manipulatables.Director;
 import manipulatables.Door;
 import manipulatables.Drake;
 import manipulatables.Fire;
 import manipulatables.GuyWithExtinguisher;
 import manipulatables.Helmet;
+import manipulatables.Knight;
 import manipulatables.Pizza;
 import manipulatables.SurgicalMaskAndInjection;
 import manipulatables.WinterCoat;
+import manipulatables.WoundedPerson;
 
 class Level {
+	public static var solution : Bool = false;
 	private static var levelName: String;
 	private static var done: Void -> Void;
 	
@@ -76,7 +80,7 @@ class Level {
 				}
 			}
 		}
-		
+		var jmpMan = Jumpman.getInstance();
 		for (i in 0...spriteCount) {
 			var sprite: kha.Sprite;
 			switch (sprites[i * 3]) {
@@ -90,16 +94,30 @@ class Level {
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 3: // director
-				// TODO: Select Director class
-				sprite = new Drake(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				if (solution) {
+					sprite = new Director(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				} else if (jmpMan.hasHelmet) {
+					sprite = new Drake(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				} else if (jmpMan.hasSurgicalMask) {
+					sprite = new WoundedPerson(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				} else {
+					throw "This should not happen. Therefore you shall not pass\n\n\n\\n\n\nthis line of code";
+				}
 				Scene.the.addHero(sprite);
 			case 4: // door
 				sprite = new Door(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addOther(sprite);
 			case 5: // assistant
-				// TODO: Select Ms. M class
-				sprite = new GuyWithExtinguisher(sprites[i * 3 + 1], sprites[i * 3 + 2]);
-				Scene.the.addHero(sprite);
+				var guy : GuyWithExtinguisher;
+				if (solution || jmpMan.hasSurgicalMask) {
+					guy = new GuyWithExtinguisher(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				} else if (jmpMan.hasHelmet) {
+					guy = new Knight(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				} else {
+					throw "This should not happen. Therefore you shall not pass\n\n\n\\n\n\nthis line of code";
+				}
+				guy.spawnItem();
+				Scene.the.addHero(guy);
 			case 6: // coat
 				sprite = new WinterCoat(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);

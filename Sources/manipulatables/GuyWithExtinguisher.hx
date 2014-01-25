@@ -2,6 +2,7 @@ package manipulatables;
 import kha.Animation;
 import kha.Loader;
 import kha.Rectangle;
+import kha.Scene;
 import manipulatables.UseableSprite;
 
 import kha.Image;
@@ -109,4 +110,13 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 		
 	}
 	
+	public function spawnItem() : Void {
+		var sprite : UseableSprite;
+		if (name == "Knight") {
+			sprite = new Sword(Std.int(x), Std.int(y)); // TODO: set position and orientation and animation?
+		} else {
+			sprite = new Extinguisher(Std.int(x), Std.int(y)); // TODO: set position and orientation and animation?
+		}
+		Scene.the.addHero(sprite);
+	}
 }
