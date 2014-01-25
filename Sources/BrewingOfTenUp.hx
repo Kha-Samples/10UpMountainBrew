@@ -122,10 +122,10 @@ class BrewingOfTenUp extends Game {
 		}
 		music.play();
 		Inventory.init();
-		Inventory.pick(new UseableSprite(Loader.the.getImage("pizza_pixel")));
+		Inventory.pick(new UseableSprite(Loader.the.getImage("pizza_pixel"), "pizza"));
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
-		kha.Sys.mouse.pushCursor(new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14), 16, 16));
+		kha.Sys.mouse.pushCursor(new AdventureCursor());
 		Configuration.setScreen(this);
 		mode = Mode.Game;
 	}

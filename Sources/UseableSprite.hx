@@ -7,9 +7,12 @@ import kha.Sprite;
 
 class UseableSprite extends Sprite
 {
-	public function new(image:Image, width:Int=0, height:Int=0, z:Int=1) {
+	public function new(image: Image, name: String, width: Int = 0, height: Int = 0, z: Int = 1) {
 		super(image, width, height, z);
+		this.name = name;
 	}
+	
+	public var name: String;
 	
 	public function take() {
 		Scene.the.removeHero(this);
