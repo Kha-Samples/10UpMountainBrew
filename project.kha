@@ -165,6 +165,14 @@
       "name": "level3.map",
       "scale": 1.0,
       "circle": false
+    },
+    {
+      "id": "8e8215a5-813b-4b48-871f-ef0139f19cfd",
+      "type": "image",
+      "file": "mechanic.png",
+      "name": "mechanic",
+      "scale": 1.0,
+      "circle": false
     }
   ],
   "rooms": [
@@ -177,7 +185,8 @@
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
         "893ebf74-743a-4e90-bb55-17bbc2f8174e",
         "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
-        "2348bd72-d7ce-11e1-9b23-0800200c9a66"
+        "2348bd72-d7ce-11e1-9b23-0800200c9a66",
+        "8e8215a5-813b-4b48-871f-ef0139f19cfd"
       ]
     },
     {
