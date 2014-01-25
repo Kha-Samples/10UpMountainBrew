@@ -24,10 +24,11 @@ class Door extends Sprite implements ManipulatableSprite {
 	}
 	
 	public function executeOrder(order : OrderType) : Void {
-		Loader.the.loadRoom("level2", initLevel);
+		Level.load("level2", initLevel);
 	}
 	
 	public function initLevel() : Void {
-		
+		Jumpman.getInstance().reset();
+		Scene.the.addHero(Jumpman.getInstance());
 	}
 }

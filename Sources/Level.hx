@@ -1,6 +1,7 @@
 package;
 import kha.Color;
 import kha.Configuration;
+import kha.Game;
 import kha.Loader;
 import kha.LoadingScreen;
 import kha.Scene;
@@ -90,7 +91,7 @@ class Level {
 				continue;
 			}
 		}
-		
+		Configuration.setScreen(BrewingOfTenUp.getInstance());
 		done();
 	}
 	

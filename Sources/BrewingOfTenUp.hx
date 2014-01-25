@@ -65,7 +65,7 @@ class BrewingOfTenUp extends Game {
 		Inventory.pick(new Pizza());
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
-		Configuration.setScreen(this);
+		
 		adventureCursor = new AdventureCursor();
 		kha.Sys.mouse.pushCursor(adventureCursor);
 		mode = Mode.Game;
