@@ -204,7 +204,7 @@ class MouseOrder {
 				type = Nothing;
 			}
 			return;
-		case Take, Eat, Enter:
+		case Take, Eat, Enter, Slay, Extinguish:
 			if (moveTo()) {
 				return;
 			}

@@ -1,8 +1,6 @@
 package manipulatables;
 
 enum ObjectType {
-	// Feuer
-	Fire;
 	// Direktor
 	Director;
 	// Verwundeter
@@ -11,12 +9,8 @@ enum ObjectType {
 	Knight;
 	// Ritterrüstung
 	KnightsArmour;
-	// Schwert
-	Sword;
 	// Typ mit Feuerlöscher
 	GuyWithExtinguisher;
-	// Feuerlöscher
-	Extinguisher;
 	// Arztkittel
 	LabCoat;
 	// Spritze
@@ -33,6 +27,8 @@ enum OrderType {
 	Enter;
 	WontWork;
 	Eat;
+	Slay;
+	Extinguish;
 }
 
 interface ManipulatableSprite {

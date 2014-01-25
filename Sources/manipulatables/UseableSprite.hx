@@ -10,8 +10,10 @@ class UseableSprite extends Sprite implements ManipulatableSprite
 {
 	public var isInInventory(default, null) : Bool = false;
 	
-	public function new(name: String, image: Image, width: Int = 0, height: Int = 0, z: Int = 1) {
+	public function new(name: String, image: Image, px : Int, py : Int, width: Int = 0, height: Int = 0, z: Int = 1) {
 		super(image, width, height, z);
+		x = px;
+		y = py;
 		accy = 0;
 		this.name = name;
 	}
