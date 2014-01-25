@@ -27,8 +27,8 @@ enum Mode {
 	EnterHighscore;
 }
 
-class SuperMarioLand extends Game {
-	static var instance : SuperMarioLand;
+class BrewingOfTenUp extends Game {
+	static var instance : BrewingOfTenUp;
 	var music : Music;
 	var tileColissions : Array<Tile>;
 	var map : Array<Array<Int>>;
@@ -47,7 +47,7 @@ class SuperMarioLand extends Game {
 		mode = Mode.Game;
 	}
 	
-	public static function getInstance() : SuperMarioLand {
+	public static function getInstance() : BrewingOfTenUp {
 		return instance;
 	}
 	
@@ -120,15 +120,9 @@ class SuperMarioLand extends Game {
 			}
 		}
 		music.play();
-		Inventory.init();
-		Inventory.pick(1);
-		Inventory.pick(2);
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
 		Configuration.setScreen(this);
-		
-		//kha.Sys.mouse.pushCursor(new ImageCursor(Loader.the.getImage("gumba")));
-		kha.Sys.mouse.pushCursor(new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14)));
 	}
 	
 	public function showHighscore() {
@@ -173,6 +167,7 @@ class SuperMarioLand extends Game {
 	}
 	
 	public override function update() {
+		currentOrder.update();
 		super.update();
 		if (Jumpman.getInstance() == null) return;
 		Scene.the.camx = Std.int(Jumpman.getInstance().x) + Std.int(Jumpman.getInstance().width / 2);
@@ -193,20 +188,21 @@ class SuperMarioLand extends Game {
 				painter.drawString(" -           " + Std.string(score.getScore()), 200, i * 30 + 100);
 				++i;
 			}
+			//break;
 		case EnterHighscore:
 			painter.setColor(Color.fromBytes(255, 255, 255));
 			painter.fillRect(0, 0, width, height);
 			painter.setColor(Color.fromBytes(0, 0, 0));
 			painter.drawString("Enter your name", width / 2 - 100, 200);
 			painter.drawString(highscoreName, width / 2 - 50, 250);
+			//break;
 		case Game:
 			super.render(painter);
 			painter.translate(0, 0);
 			painter.setColor(Color.fromBytes(0, 0, 0));
 			painter.drawString("Score: " + Std.string(Jumpman.getInstance().getScore()), 20, 25);
 			painter.drawString("Round: " + Std.string(Jumpman.getInstance().getRound()), width - 100, 25);
-			
-			Inventory.paint(painter);
+			//break;
 		}
 	}
 
@@ -266,5 +262,89 @@ class SuperMarioLand extends Game {
 	
 	override public function keyUp(key : Key, char : String) : Void {
 		if (key != null && key == Key.SHIFT) shiftPressed = false;
+	}
+	
+	public var currentOrder(default, null) : MouseOrder = new MouseOrder();
+	public var hoveringType(default, null) : OrderType = OrderType.Nothing;
+	public var hoveringUseable(default, null) : UseableSprite = null; 
+	
+	override public function mouseMove(x:Int, y:Int) : Void  {
+		var worldX = x + scene.screenOffsetX;
+		var worldY = y + scene.screenOffsetY;
+		var jmpMan = Jumpman.getInstance();
+		if (jmpMan != null) {
+			hoveringType = Nothing;
+			if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
+				hoveringType = MoveTo;
+			}
+			for (hero in scene.getHeroesBelowPoint(worldX, worldY)) {
+				if (Std.is(hero, UseableSprite)) {
+					hoveringUseable = cast hero;
+					hoveringType = Take;
+					break;
+				}
+			}
+		}
+	}
+	override public function mouseUp(x:Int, y:Int) : Void {
+		currentOrder.type = hoveringType;
+		currentOrder.x = x + scene.screenOffsetX;
+		currentOrder.y = y + scene.screenOffsetY;
+		currentOrder.object = hoveringUseable;
+	}
+	
+	override public function rightMouseDown(x:Int, y:Int) : Void {
+		Jumpman.getInstance().setUp();
+	}
+	override public function rightMouseUp(x:Int, y:Int) : Void {
+		Jumpman.getInstance().up = false;
+	}
+}
+
+enum OrderType {
+	Nothing;
+	MoveTo;
+	Take;
+}
+class MouseOrder {
+	public function new() { }
+	public var type : OrderType = Nothing;
+	public var x : Int = 0;
+	public var y : Int = 0;
+	public var object : UseableSprite = null;
+	
+	public function update() {
+		var jmpMan = Jumpman.getInstance();
+		switch(type) {
+		case Nothing:
+			jmpMan.left = false;
+			jmpMan.right = false;
+			jmpMan.up = false;
+		case MoveTo:
+			if (x < jmpMan.x + 0.3 * jmpMan.width) {
+				jmpMan.left = true;
+				jmpMan.right = false;
+			} else if (jmpMan.x + 0.7 * jmpMan.width < x) {
+				jmpMan.left = false;
+				jmpMan.right = true;
+			} else {
+				type = Nothing;
+				jmpMan.left = false;
+				jmpMan.right = false;
+			}
+		case Take:
+			if (x < jmpMan.x + 0.3 * jmpMan.width) {
+				jmpMan.left = true;
+				jmpMan.right = false;
+			} else if (jmpMan.x + 0.7 * jmpMan.width < x) {
+				jmpMan.left = false;
+				jmpMan.right = true;
+			} else {
+				type = Nothing;
+				jmpMan.left = false;
+				jmpMan.right = false;
+				// TODO: take
+			}
+		}
 	}
 }

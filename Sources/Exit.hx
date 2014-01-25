@@ -14,6 +14,6 @@ class Exit extends Sprite {
 	public override function hit(sprite : Sprite) {
 		Scene.the.removeEnemy(this);
 		Jumpman.getInstance().nextRound();
-		SuperMarioLand.getInstance().startGame();
+		BrewingOfTenUp.getInstance().startGame();
 	}
 }
