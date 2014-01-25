@@ -1,11 +1,14 @@
 package manipulatables;
-import kha.Loader;
+
 import kha.Sprite;
 import manipulatables.UseableSprite;
 import manipulatables.ManipulatableSprite.OrderType;
 
-// (mytischer) Drache
-class Drake extends Sprite implements ManipulatableSprite {
+
+// Feuer
+class Fire extends Sprite implements ManipulatableSprite
+{
+
 	public function new(px : Int, py : Int) {
 		super(Loader.the.getImage("pizza_pixel"));
 		x = px;
@@ -16,23 +19,24 @@ class Drake extends Sprite implements ManipulatableSprite {
 	
 	function get_name():String 
 	{
-		return "Drake";
+		return "Fire";
 	}
 	
 	public var name(get_name, null):String;
 	
-	public function getOrder(selectedItem:UseableSprite) : OrderType 
+	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
-		if (Std.is(selectedItem, Sword)) {
-			return OrderType.Slay;
+		if (Std.is(selectedItem, Extinguisher)) {
+			return OrderType.Extinguish;
+		} else if (selectedItem != null) {
+			return OrderType.WontWork
 		}
-		return OrderType.WontWork;
+		return OrderType.Nothing;
 	}
 	
 	public function executeOrder(order:OrderType):Void 
 	{
-		if (order == OrderType.Slay) {
-			// TODO: Slay Dragon
-		}
+		
 	}
+	
 }
