@@ -87,9 +87,7 @@ class BrewingOfTenUp extends Game {
 		case Game:
 			super.render(painter);
 			painter.translate(0, 0);
-			painter.setColor(Color.fromBytes(0, 0, 0));
-			painter.drawString("Score: " + Std.string(Jumpman.getInstance().getScore()), 20, 25);
-			painter.drawString("Round: " + Std.string(Jumpman.getInstance().getRound()), width - 100, 25);
+			BlaBox.render(painter);
 			Inventory.paint(painter);
 			//break;
 		}
