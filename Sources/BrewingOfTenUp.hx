@@ -69,6 +69,8 @@ class BrewingOfTenUp extends Game {
 		adventureCursor = new AdventureCursor();
 		kha.Sys.mouse.pushCursor(adventureCursor);
 		mode = Mode.Game;
+		
+		//Dialogue.set(["Hallo", "Holla"], [Jumpman.getInstance(), Jumpman.getInstance()]);
 	}
 	
 	public override function update() {
@@ -144,10 +146,15 @@ class BrewingOfTenUp extends Game {
 	override public function mouseUp(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
-			currentOrder.type = adventureCursor.hoveredType;
-			currentOrder.x = x + scene.screenOffsetX;
-			currentOrder.y = y + scene.screenOffsetY;
-			currentOrder.object = adventureCursor.hoveredObject;
+			if (Dialogue.active) {
+				Dialogue.next();
+			}
+			else {
+				currentOrder.type = adventureCursor.hoveredType;
+				currentOrder.x = x + scene.screenOffsetX;
+				currentOrder.y = y + scene.screenOffsetY;
+				currentOrder.object = adventureCursor.hoveredObject;
+			}
 		default:
 		}
 	}

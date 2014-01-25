@@ -16,6 +16,8 @@ import manipulatables.UseableSprite;
 
 class AdventureCursor implements Cursor {
 	private var font: Font;
+	private var toolTip : String;
+	private var toolTipY : Int;
 	
 	public var width(get,never): Int;
 	public var height(get, never): Int;
@@ -23,16 +25,28 @@ class AdventureCursor implements Cursor {
 	public var clickY(get, never): Int;
 	
 	private function get_clickX() : Int {
-		return currentCursor.clickX;
+		if (currentCursor != null)
+			return currentCursor.clickX;
+		else
+			return 3;
 	}
 	private function get_clickY() : Int {
-		return currentCursor.clickY;
+		if (currentCursor != null)
+			return currentCursor.clickY;
+		else
+			return 3;
 	}
 	private function get_width() : Int {
-		return currentCursor.width;
+		if (currentCursor != null)
+			return currentCursor.width;
+		else
+			return 16;
 	}
 	private function get_height() : Int {
-		return currentCursor.height;
+		if (currentCursor != null)
+			return currentCursor.height;
+		else
+			return 16;
 	}
 	
 	var currentCursor : Cursor;
@@ -40,6 +54,8 @@ class AdventureCursor implements Cursor {
 	
 	public var hoveredType : OrderType = Nothing;
 	public var hoveredObject : ManipulatableSprite = null;
+	
+	public var forcedTooltip : String = null;
 	
 	public function new() {
 		cursors[MoveTo] = new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14), 16, 16);
@@ -56,16 +72,11 @@ class AdventureCursor implements Cursor {
 	public function render(painter: Painter, x: Int, y: Int): Void {
 		if (currentCursor != null) {
 			currentCursor.render(painter, x, y);
-			if (hoveredObject != null) {
-				var toolTip = hoveredType + " " + hoveredObject.name;
-				if (Inventory.getSelectedItem() != null) {
-					toolTip = Inventory.getSelectedItem().name + " " + toolTip;
-				}
-				if (hoveredType == InventoryItem) {
-					drawTooltip(painter, toolTip, x, y - clickY - 16);
-				} else {
-					drawTooltip(painter, toolTip, x, y - clickY + height);
-				}
+			
+			if (forcedTooltip != null) {
+				drawTooltip(painter, forcedTooltip, x, toolTipY);
+			} else if (toolTip != null) {
+				drawTooltip(painter, toolTip, x, toolTipY);
 			}
 		}
 	}
@@ -78,20 +89,32 @@ class AdventureCursor implements Cursor {
 	}
 	
 	public function update(x : Int, y : Int) {
+		var toolTipTop : Bool = false;
 		hoveredType = OrderType.Nothing;
 		hoveredObject = Inventory.getItemBelowPoint(x, y);
 		var jmpMan = Jumpman.getInstance();
 		if (hoveredObject != null) {
+			toolTipTop = true;
+			toolTip = hoveredObject.name;
 			hoveredType = OrderType.InventoryItem;
-		} else if (y < Inventory.y) {
+		} else if (y >= Inventory.y) {
+			toolTipTop = true;
+		} else {
 			var worldX = x + Scene.the.screenOffsetX;
 			var worldY = y + Scene.the.screenOffsetY;
 			for (obj in Scene.the.getSpritesBelowPoint(worldX, worldY)) {
 				if (Std.is(obj, ManipulatableSprite)) {
 					hoveredObject = cast obj;
 					hoveredType = hoveredObject.getOrder(Inventory.getSelectedItem());
-					if (hoveredType == OrderType.Nothing)
+					if (hoveredType == OrderType.Nothing) {
 						hoveredObject = null;
+					} else {
+						if (Inventory.getSelectedItem() != null) {
+							toolTip = Inventory.getSelectedItem().name + " " + toolTip;
+						} else {
+							toolTip = hoveredType + " " + hoveredObject.name;
+						}
+					}
 					break;
 				}
 			}
@@ -101,6 +124,7 @@ class AdventureCursor implements Cursor {
 				}
 			}
 		}
+		
 		if (cursors.exists(hoveredType)) {
 			currentCursor = cursors[hoveredType];
 			kha.Sys.mouse.forceSystemCursor(false);
@@ -108,6 +132,11 @@ class AdventureCursor implements Cursor {
 		} else {
 			kha.Sys.mouse.forceSystemCursor(true);
 			currentCursor = null;
+		}
+		if (toolTipTop) {
+			toolTipY = y - clickY - 16;
+		} else {
+			toolTipY = y - clickY + height;
 		}
 	}
 }
