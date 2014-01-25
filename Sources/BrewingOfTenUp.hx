@@ -22,6 +22,7 @@ import kha.Tile;
 import kha.Tilemap;
 
 enum Mode {
+	Init;
 	Game;
 	Highscore;
 	EnterHighscore;
@@ -44,7 +45,7 @@ class BrewingOfTenUp extends Game {
 		instance = this;
 		shiftPressed = false;
 		highscoreName = "";
-		mode = Mode.Game;
+		mode = Mode.Init;
 	}
 	
 	public static function getInstance() : BrewingOfTenUp {
@@ -120,9 +121,12 @@ class BrewingOfTenUp extends Game {
 			}
 		}
 		music.play();
+		Inventory.init();
+		Inventory.pick(new UseableSprite(Loader.the.getImage("pizza_pixel")));
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
 		Configuration.setScreen(this);
+		mode = Mode.Game;
 	}
 	
 	public function showHighscore() {
@@ -177,6 +181,8 @@ class BrewingOfTenUp extends Game {
 		if (Jumpman.getInstance() == null) return;
 		painter.setFont(font);
 		switch (mode) {
+		case Init:
+				// Nothing todo yet.
 		case Highscore:
 			painter.setColor(Color.fromBytes(255, 255, 255));
 			painter.fillRect(0, 0, width, height);
@@ -202,6 +208,7 @@ class BrewingOfTenUp extends Game {
 			painter.setColor(Color.fromBytes(0, 0, 0));
 			painter.drawString("Score: " + Std.string(Jumpman.getInstance().getScore()), 20, 25);
 			painter.drawString("Round: " + Std.string(Jumpman.getInstance().getRound()), width - 100, 25);
+			Inventory.paint(painter);
 			//break;
 		}
 	}
@@ -269,35 +276,56 @@ class BrewingOfTenUp extends Game {
 	public var hoveringUseable(default, null) : UseableSprite = null; 
 	
 	override public function mouseMove(x:Int, y:Int) : Void  {
-		var worldX = x + scene.screenOffsetX;
-		var worldY = y + scene.screenOffsetY;
-		var jmpMan = Jumpman.getInstance();
-		if (jmpMan != null) {
-			hoveringType = Nothing;
-			if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
-				hoveringType = MoveTo;
-			}
-			for (hero in scene.getHeroesBelowPoint(worldX, worldY)) {
-				if (Std.is(hero, UseableSprite)) {
-					hoveringUseable = cast hero;
-					hoveringType = Take;
-					break;
+		switch (mode) {
+		case Mode.Game:
+			hoveringUseable = Inventory.getItemBelowPoint(x, y);
+			if (hoveringUseable != null) {
+				hoveringType = InventoryItem;
+			} else {
+				var worldX = x + scene.screenOffsetX;
+				var worldY = y + scene.screenOffsetY;
+				var jmpMan = Jumpman.getInstance();
+				if (jmpMan != null) {
+					hoveringType = Nothing;
+					if (worldX < jmpMan.x || jmpMan.x + jmpMan.width < worldX) {
+						hoveringType = MoveTo;
+					}
+					for (hero in scene.getHeroesBelowPoint(worldX, worldY)) {
+						if (Std.is(hero, UseableSprite)) {
+							hoveringUseable = cast hero;
+							hoveringType = Take;
+							break;
+						}
+					}
 				}
 			}
+		default:
 		}
 	}
 	override public function mouseUp(x:Int, y:Int) : Void {
-		currentOrder.type = hoveringType;
-		currentOrder.x = x + scene.screenOffsetX;
-		currentOrder.y = y + scene.screenOffsetY;
-		currentOrder.object = hoveringUseable;
+		switch (mode) {
+		case Mode.Game:
+			currentOrder.type = hoveringType;
+			currentOrder.x = x + scene.screenOffsetX;
+			currentOrder.y = y + scene.screenOffsetY;
+			currentOrder.object = hoveringUseable;
+		default:
+		}
 	}
 	
 	override public function rightMouseDown(x:Int, y:Int) : Void {
-		Jumpman.getInstance().setUp();
+		switch (mode) {
+		case Mode.Game:
+			Jumpman.getInstance().setUp();
+		default:
+		}
 	}
 	override public function rightMouseUp(x:Int, y:Int) : Void {
-		Jumpman.getInstance().up = false;
+		switch (mode) {
+		case Mode.Game:
+			Jumpman.getInstance().up = false;
+		default:
+		}
 	}
 }
 
@@ -305,6 +333,7 @@ enum OrderType {
 	Nothing;
 	MoveTo;
 	Take;
+	InventoryItem;
 }
 class MouseOrder {
 	public function new() { }
@@ -317,9 +346,7 @@ class MouseOrder {
 		var jmpMan = Jumpman.getInstance();
 		switch(type) {
 		case Nothing:
-			jmpMan.left = false;
-			jmpMan.right = false;
-			jmpMan.up = false;
+			// Nothing to do
 		case MoveTo:
 			if (x < jmpMan.x + 0.3 * jmpMan.width) {
 				jmpMan.left = true;
@@ -345,6 +372,9 @@ class MouseOrder {
 				jmpMan.right = false;
 				// TODO: take
 			}
+		case InventoryItem:
+			Inventory.select(object);
+			type = Nothing;
 		}
 	}
 }

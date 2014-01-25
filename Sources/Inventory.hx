@@ -4,113 +4,85 @@ import kha.Animation;
 import kha.Color;
 import kha.Game;
 import kha.Loader;
+import kha.math.Vector2;
 import kha.Painter;
 
 class Inventory {
-	public static var PORTEMONEIE = 1;
-	public static var KEY = 2;
-	public static var NOISEMAKER = 3;
-	public static var GUN = 4;
-	public static var TEETH = 5;
-	public static var GLASSES = 6;
-	public static var HEARINGAID = 7;
-	
-	//private static Image image;
-	static var sprite : kha.Sprite;
-	public static var max : Int = 17;
-	public static var width = 37;
-	public static var height = 32;
-	static var has : Array<Bool> = new Array<Bool>(); // [max];
-	static var activated = false;
-	static var position = 0;
-	static var count = 0;
+	public static var y;
+	public static var itemWidth = 32;
+	public static var spacing = 5;
+	public static var itemHeight = 32;
+	static var items : Array<UseableSprite> = new Array();
+	static var selected : Int = -1;
+	static var offset : Int = 0;
 	
 	public static function init() {
-		sprite = new kha.Sprite(Loader.the.getImage("Inventory"), width, height, 0);
+		items = new Array();
+		selected = -1;
+		y = Game.the.height - itemHeight - 2 * spacing;
 	}
 	
 	public static function isEmpty() : Bool {
-		return count == 0;
+		return items.length == 0;
 	}
 	
-	public static function pick(num : Int) {
-		has[num] = true;
-		++count;
-		position = 0;
+	public static function pick(item : UseableSprite) {
+		items.push(item);
 	}
 	
-	public static function loose(num : Int) {
-		has[num] = false;
-		--count;
-		position = 0;
+	public static function loose(item : UseableSprite) {
+		items.remove(item);
 	}
 	
-	public static function activate() {
-		activated = true;
-	}
-	
-	public static function deactivate() {
-		activated = false;
-	}
-	
-	public static function next() {
-		++position;
-		if (position >= count - 1) position = count - 1;
-	}
-	
-	public static function previous() {
-		--position;
-		if (position < 0) position = 0;
-	}
-	
-	public static function current() : Int {
-		var currentPosition = 0;
-		for (i in 0...max) {
-			if (has[i]) {
-				if (position == currentPosition) return i;
-				++currentPosition;
-			}
+	public static function select(item : UseableSprite) {
+		var s = items.indexOf(item);
+		if (s == selected) {
+			selected = -1;
+		} else {
+			selected = s;
 		}
-		return -1;
+	}
+	
+	public static function getItemBelowPoint(px : Int, py : Int) : UseableSprite {
+		var pos : Int = -1;
+		if ( y <= py && py <= y + spacing + itemHeight ) {
+			px -= spacing;
+			while (px >= 0) {
+				pos += 1;
+				px -= itemHeight;
+				if (px < 0) {
+					if (pos >= 0 && pos < items.length) {
+						return items[pos];
+					} else {
+						return null;
+					}
+				}
+				px -= spacing;
+			}
+			pos = -1;
+		}
+		return null;
 	}
 	
 	public static function paint(painter : Painter) {
-		var x = 0;
-		for (i in 0...max) {
-			if (has[i]) x += width;
-		}
-		var scrollx = 0;
-		while (x + scrollx > Game.the.width) scrollx -= width;
-		painter.translate(scrollx, 0);
-		x = 0;
-		for (i in 0...max) {
-			if (has[i]) {
-				sprite.setAnimation(Animation.create(i));
+		var itemX = spacing;
+		var itemY = y + spacing;
+		painter.setColor(Color.ColorBlack);
+		painter.fillRect(0, y, Game.the.width, itemHeight + 2 * spacing);
+		for (i in offset...items.length) {
+			items[i].renderForInventory(painter, itemX, itemY, itemWidth, itemHeight);
+			if (i == selected) {
+				painter.setColor(Color.fromBytes(255, 0, 255));
+				var top = itemY - 1;
+				var bottom = itemY + itemHeight + 1;
+				var left = itemX;
+				var right = itemX + itemWidth + 1;
+				painter.drawLine( left, top, right, top, 3);
+				painter.drawLine( left, top, left, bottom, 3);
+				painter.drawLine( left, bottom, right, bottom, 3);
+				painter.drawLine( right, top, right, bottom, 3);
 			}
-			else {
-				sprite.setAnimation(Animation.create(0));
-			}
-			sprite.x = x;
-			sprite.y = Game.the.height - 32 - 1;
-			sprite.render(painter);
-			x += width;
+			itemX += itemWidth + 2 * spacing;
 		}
-		while (x < Game.the.width) {
-			sprite.setAnimation(Animation.create(0));
-			sprite.x = x;
-			sprite.y = Game.the.width - 32 - 1;
-			sprite.render(painter);
-			x += width;
-		}
-		if (activated) {
-			///int top = ScrollingPanel.getInstance().getHeight() - 32 - 1;
-			///int bottom = ScrollingPanel.getInstance().getHeight() - 1;
-			painter.setColor(Color.fromBytes(255, 0, 255));
-			///painter.drawLine(position * width, top, (position + 1) * width - 1, top);
-			///painter.drawLine((position + 1) * width - 1, top, (position + 1) * width - 1, bottom);
-			///painter.drawLine((position + 1) * width - 1, bottom, position * width, bottom);
-			///painter.drawLine(position * width, bottom, position * width, top);
-		}
-		//g.drawImage(image, 0, 155, 0);
 	}
 }
