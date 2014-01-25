@@ -34,6 +34,10 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	var round : Int;
 	private var spawnX: Float = 50;
 	
+	public var hasHelmet : Bool = false;
+	public var hasSurgicalMask : Bool = false;
+	public var hasWinterCoat : Bool = false;
+	
 	public function new() {
 		super(Loader.the.getImage("jumpman"), 16 * 4, 16 * 4, 2);
 		instance = this;

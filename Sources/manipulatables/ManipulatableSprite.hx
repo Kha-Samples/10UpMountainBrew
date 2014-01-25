@@ -1,16 +1,5 @@
 package manipulatables;
 
-enum ObjectType {
-	// Ritter
-	Knight;
-	// Ritterrüstung
-	KnightsArmour;
-	// Arztkittel
-	LabCoat;
-	// Knochensäge
-	BoneSaw;
-}
-
 enum OrderType {
 	Nothing;
 	MoveTo;

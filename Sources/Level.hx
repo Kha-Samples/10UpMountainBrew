@@ -7,10 +7,15 @@ import kha.LoadingScreen;
 import kha.Scene;
 import kha.Tile;
 import kha.Tilemap;
+import manipulatables.BoneSaw;
 import manipulatables.Door;
 import manipulatables.Drake;
+import manipulatables.Fire;
 import manipulatables.GuyWithExtinguisher;
+import manipulatables.Helmet;
 import manipulatables.Pizza;
+import manipulatables.SurgicalMaskAndInjection;
+import manipulatables.WinterCoat;
 
 class Level {
 	private static var levelName: String;
@@ -76,10 +81,10 @@ class Level {
 			var sprite: kha.Sprite;
 			switch (sprites[i * 3]) {
 			case 0: // helmet
-				sprite = new Coin(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new Helmet(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 1: // mask
-				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new SurgicalMaskAndInjection(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 2: // Pizza
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
@@ -96,13 +101,13 @@ class Level {
 				sprite = new GuyWithExtinguisher(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 6: // coat
-				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new WinterCoat(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 7: // fire
-				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new Fire(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 8: // saw
-				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				sprite = new BoneSaw(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			default:
 				trace("That should never happen! We are therefore going to ignore it.");

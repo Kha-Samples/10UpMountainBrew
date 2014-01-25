@@ -1,5 +1,6 @@
 package manipulatables;
 
+import kha.Loader;
 import kha.Sprite;
 import manipulatables.UseableSprite;
 import manipulatables.ManipulatableSprite.OrderType;
@@ -29,7 +30,7 @@ class Fire extends Sprite implements ManipulatableSprite
 		if (Std.is(selectedItem, Extinguisher)) {
 			return OrderType.Extinguish;
 		} else if (selectedItem != null) {
-			return OrderType.WontWork
+			return OrderType.WontWork;
 		}
 		return OrderType.Nothing;
 	}
