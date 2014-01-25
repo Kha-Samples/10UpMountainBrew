@@ -74,21 +74,30 @@ class Level {
 		for (i in 0...spriteCount) {
 			var sprite: kha.Sprite;
 			switch (sprites[i * 3]) {
-			case 0:
+			case 0: // helmet
 				sprite = new Coin(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
-			case 1:
+			case 1: // mask
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
-			case 2:
+			case 2: // dressing room
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
-			case 3:
+			case 3: // director
 				sprite = new Drake(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
-			case 4:
+			case 4: // door
 				sprite = new Door(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addOther(sprite);
+			case 5: // assistant
+				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
+			case 6: // coat
+				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
+			case 7: // fire
+				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
 			default:
 				trace("That should never happen! We are therefore going to ignore it.");
 				continue;
