@@ -1,6 +1,10 @@
 package;
 
+import kha.AnimatedImageCursor;
 import kha.Color;
+import kha.Font;
+import kha.FontStyle;
+import kha.Loader;
 import kha.Painter;
 import kha.Scene;
 import kha.Sprite;
@@ -8,6 +12,8 @@ import kha.Sprite;
 class BlaBox {
 	private static var left: Bool;
 	private static var pointed: Sprite;
+	private static var font: Font;
+	private static var text: String = "An initial state of the project code was submitted to the military for review, and they ran the program through some sort of security analyzer tool. It returned a report of known security issues in the code and required changes that needed to be implemented before delivery of the final product.";
 	
 	public static function pointAt(sprite: Sprite): Void {
 		pointed = sprite;
@@ -15,15 +21,18 @@ class BlaBox {
 	
 	public static function render(painter: Painter): Void {
 		if (pointed == null) pointed = Jumpman.getInstance();
+		if (font == null) font = Loader.the.loadFont("Arial", new FontStyle(false, false, false), 12);
 		
-		if (pointed.x - Scene.the.screenOffsetX < 400) {
+		var sx = pointed.x + pointed.width / 2 - Scene.the.screenOffsetX;
+		
+		if (sx < 400) {
 			left = true;
 		}
 		else {
 			left = false;
 		}
 		
-		var x = 380;
+		var x: Float = 380;
 		if (left) {
 			x = 20;
 		}
@@ -33,10 +42,38 @@ class BlaBox {
 		painter.setColor(Color.fromBytes(0, 0, 0));
 		painter.drawRect(x, 300, 400, 100, 4);
 		painter.setColor(Color.fromBytes(255, 255, 255));
-		var sx = pointed.x + pointed.width / 2 - Scene.the.screenOffsetX;
 		painter.fillTriangle(sx - 5, 400 - 5, sx + 5, 400 - 5, sx, 420);
 		painter.setColor(Color.fromBytes(0, 0, 0));
 		painter.drawLine(sx - 5, 400 - 5, sx, 420, 4);
 		painter.drawLine(sx + 5, 400 - 5, sx, 420, 4);
+		
+		var tx: Float = x + 10;
+		var ty: Float = 300 + 10;
+		var t = 0;
+		var word = "";
+		var first = true;
+		while (t < text.length + 1) {
+			if (text.length == t || text.charAt(t) == " ") {
+				var txnext: Float = 0;
+				if (first) txnext = tx + font.stringWidth(word);
+				txnext = tx + font.stringWidth(" ") + font.stringWidth(word);
+				if (txnext > x + 380) {
+					tx = x + 10;
+					ty += font.getHeight();
+					painter.drawString(word, tx, ty);
+					tx = tx + font.stringWidth(word);
+				}
+				else {
+					if (first) painter.drawString(word, tx, ty);
+					else painter.drawString(" " + word, tx, ty);
+					tx = txnext;
+				}
+				word = "";
+			}
+			else {
+				word += text.charAt(t);
+			}
+			++t;
+		}
 	}
 }
