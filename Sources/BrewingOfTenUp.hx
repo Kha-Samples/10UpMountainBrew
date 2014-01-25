@@ -24,8 +24,6 @@ import kha.Tilemap;
 enum Mode {
 	Init;
 	Game;
-	Highscore;
-	EnterHighscore;
 }
 
 class BrewingOfTenUp extends Game {
@@ -37,11 +35,12 @@ class BrewingOfTenUp extends Game {
 	var highscoreName : String;
 	var shiftPressed : Bool;
 	private var font: Font;
-	
+	private var sprites: Array<Int>;
+	private var spriteCount: Int;
 	var mode : Mode;
 	
 	public function new() {
-		super("SML", true);
+		super("Brewing", false);
 		instance = this;
 		shiftPressed = false;
 		highscoreName = "";
@@ -80,12 +79,19 @@ class BrewingOfTenUp extends Game {
 				map[x].push(0);
 			}
 		}
+		spriteCount = blob.readS32BE();
+		sprites = new Array<Int>();
+		for (i in 0...spriteCount) {
+			sprites.push(blob.readS32BE());
+			sprites.push(blob.readS32BE());
+			sprites.push(blob.readS32BE());
+		}
 		music = Loader.the.getMusic("level1");
 		startGame();
 	}
 	
 	public function startGame() {
-		getHighscores().load(Storage.defaultFile());
+		//getHighscores().load(Storage.defaultFile());
 		if (Jumpman.getInstance() == null) new Jumpman(music);
 		Scene.the.clear();
 		Scene.the.setBackgroundColor(Color.fromBytes(255, 255, 255));
@@ -97,29 +103,33 @@ class BrewingOfTenUp extends Game {
 		for (x in 0...originalmap.length) {
 			for (y in 0...originalmap[0].length) {
 				switch (originalmap[x][y]) {
-				case 15:
-					map[x][y] = 0;
-					Scene.the.addEnemy(new Gumba(x * TILE_WIDTH, y * TILE_HEIGHT));
-				case 16:
-					map[x][y] = 0;
-					Scene.the.addEnemy(new Koopa(x * TILE_WIDTH, y * TILE_HEIGHT - 16));
-				case 17:
-					map[x][y] = 0;
-					Scene.the.addEnemy(new Fly(x * TILE_WIDTH - 32, y * TILE_HEIGHT - 8));
-				case 46:
-					map[x][y] = 0;
-					Scene.the.addEnemy(new Coin(x * TILE_WIDTH, y * TILE_HEIGHT));
-				case 52:
-					map[x][y] = 52;
-					Scene.the.addEnemy(new Exit(x * TILE_WIDTH, y * TILE_HEIGHT));
-				case 56:
-					map[x][y] = 1;
-					Scene.the.addEnemy((new BonusBlock(x * TILE_WIDTH, y * TILE_HEIGHT)));
 				default:
 					map[x][y] = originalmap[x][y];
 				}
 			}
 		}
+		
+		for (i in 0...spriteCount) {
+			var sprite: kha.Sprite;
+			switch (sprites[i * 3]) {
+			case 0:
+				sprite = new Coin(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
+			case 1:
+				sprite = new Gumba(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
+			case 2:
+				sprite = new Koopa(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
+			case 3:
+				sprite = new Fly(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				Scene.the.addHero(sprite);
+			default:
+				trace("That should never happen! We are therefore going to ignore it.");
+				continue;
+			}
+		}
+		
 		music.play();
 		Inventory.init();
 		Inventory.pick(new UseableSprite(Loader.the.getImage("pizza_pixel"), "pizza"));
@@ -128,12 +138,6 @@ class BrewingOfTenUp extends Game {
 		kha.Sys.mouse.pushCursor(new AdventureCursor());
 		Configuration.setScreen(this);
 		mode = Mode.Game;
-	}
-	
-	public function showHighscore() {
-		Scene.the.clear();
-		mode = Mode.EnterHighscore;
-		music.stop();
 	}
 	
 	private static function isCollidable(tilenumber : Int) : Bool {
@@ -184,25 +188,6 @@ class BrewingOfTenUp extends Game {
 		switch (mode) {
 		case Init:
 				// Nothing todo yet.
-		case Highscore:
-			painter.setColor(Color.fromBytes(255, 255, 255));
-			painter.fillRect(0, 0, width, height);
-			painter.setColor(Color.fromBytes(0, 0, 0));
-			var i : Int = 0;
-			while (i < 10 && i < getHighscores().getScores().length) {
-				var score : Score = getHighscores().getScores()[i];
-				painter.drawString(Std.string(i + 1) + ": " + score.getName(), 100, i * 30 + 100);
-				painter.drawString(" -           " + Std.string(score.getScore()), 200, i * 30 + 100);
-				++i;
-			}
-			//break;
-		case EnterHighscore:
-			painter.setColor(Color.fromBytes(255, 255, 255));
-			painter.fillRect(0, 0, width, height);
-			painter.setColor(Color.fromBytes(0, 0, 0));
-			painter.drawString("Enter your name", width / 2 - 100, 200);
-			painter.drawString(highscoreName, width / 2 - 50, 250);
-			//break;
 		case Game:
 			super.render(painter);
 			painter.translate(0, 0);
@@ -248,22 +233,9 @@ class BrewingOfTenUp extends Game {
 	
 	override public function keyDown(key: Key, char: String) : Void {
 		if (key == Key.CHAR) {
-			if (mode == Mode.EnterHighscore) {
-				if (highscoreName.length < 20) highscoreName += shiftPressed ? char.toUpperCase() : char.toLowerCase();
-			}
+
 		}
 		else {
-			if (highscoreName.length > 0) {
-				switch (key) {
-				case ENTER:
-					getHighscores().addScore(highscoreName, Jumpman.getInstance().getScore());
-					getHighscores().save(Storage.defaultFile());
-					mode = Mode.Highscore;
-				case BACKSPACE:
-					highscoreName = highscoreName.substr(0, highscoreName.length - 1);
-				default:
-				}
-			}
 			if (key == SHIFT) shiftPressed = true;
 		}
 	}
