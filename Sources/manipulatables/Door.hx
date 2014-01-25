@@ -33,9 +33,11 @@ class Door extends Sprite implements ManipulatableSprite {
 	public function executeOrder(order : OrderType) : Void {
 		if (currentLevel == null || currentLevel == "level1") {
 			currentLevel = "level2";
+			Jumpman.getInstance().setSpawn(50);
 		}
 		else {
 			currentLevel = "level1";
+			Jumpman.getInstance().setSpawn(700);
 		}
 		Level.load(currentLevel, initLevel);
 	}

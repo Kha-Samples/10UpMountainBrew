@@ -32,6 +32,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	var diesound : Sound;
 	var score : Int;
 	var round : Int;
+	private var spawnX: Float = 50;
 	
 	public function new() {
 		super(Loader.the.getImage("jumpman"), 16 * 4, 16 * 4, 2);
@@ -63,8 +64,13 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		return instance;
 	}
 	
+	public function setSpawn(x: Float): Void {
+		spawnX = x;
+	}
+	
 	public function reset() {
-		x = y = 50;
+		x = spawnX;
+		y = 400;
 		standing = false;
 		setAnimation(jumpRight);
 	}
