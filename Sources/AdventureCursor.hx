@@ -99,6 +99,7 @@ class AdventureCursor implements Cursor {
 			hoveredType = OrderType.InventoryItem;
 		} else if (y >= Inventory.y) {
 			toolTipTop = true;
+			toolTip = null;
 		} else {
 			var worldX = x + Scene.the.screenOffsetX;
 			var worldY = y + Scene.the.screenOffsetY;
@@ -108,9 +109,10 @@ class AdventureCursor implements Cursor {
 					hoveredType = hoveredObject.getOrder(Inventory.getSelectedItem());
 					if (hoveredType == OrderType.Nothing) {
 						hoveredObject = null;
+						toolTip = null;
 					} else {
 						if (Inventory.getSelectedItem() != null) {
-							toolTip = Inventory.getSelectedItem().name + " " + toolTip;
+							toolTip = Inventory.getSelectedItem().name + " " + hoveredType + " " + hoveredObject.name;
 						} else {
 							toolTip = hoveredType + " " + hoveredObject.name;
 						}
