@@ -25,7 +25,7 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	{
 		super(Loader.the.getImage("mechanic"), Std.int(410 / 10) * 2, Std.int(455 / 7) * 2);
 		x = px;
-		y = py - 7;
+		y = py - 40;
 		
 		collider = new Rectangle(20, 30, 41 * 2 - 40, (65 - 1) * 2 - 30);
 		walkLeft = Animation.createRange(11, 18, 4);
