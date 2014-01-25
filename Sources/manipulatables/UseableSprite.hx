@@ -31,6 +31,8 @@ class UseableSprite extends Sprite implements ManipulatableSprite
 	public function executeOrder(order : OrderType) : Void {
 		if (order == OrderType.Take) {
 			take();
+		} else if (order == OrderType.InventoryItem) {
+			Inventory.select(this);
 		}
 	}
 	
