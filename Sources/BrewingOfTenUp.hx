@@ -188,32 +188,33 @@ class MouseOrder {
 		} else {
 			jmpMan.left = false;
 			jmpMan.right = false;
-			return true;
+			return false;
 		}
-		return false;
+		return true;
 	}
 	public function update() {
 		switch(type) {
 		case Nothing:
 			// Nothing to do
+			return;
 		case WontWork:
 			// TODO: say something
 		case Enter:
 			if (moveTo()) {
-				object.executeOrder(Enter);
+				return;
 			}
 		case MoveTo:
-			if (moveTo()) {
-				type = OrderType.Nothing;
+			if (!moveTo()) {
+				type = Nothing;
 			}
+			return;
 		case Take:
 			if (moveTo()) {
-				type = Nothing;
-				object.executeOrder(Take);
+				return;
 			}
 		case InventoryItem:
-			Inventory.select(cast object);
-			type = Nothing;
 		}
+		object.executeOrder(type);
+		type = Nothing;
 	}
 }
