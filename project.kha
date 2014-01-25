@@ -113,8 +113,8 @@
     {
       "id": "5c950390-d7ce-11e1-9b23-0800200c9a66",
       "type": "blob",
-      "file": "level.map",
-      "name": "level.map",
+      "file": "level1.map",
+      "name": "level1.map",
       "scale": 1.0,
       "circle": false
     },
@@ -157,6 +157,22 @@
       "name": "door",
       "scale": 1.0,
       "circle": false
+    },
+    {
+      "id": "10f98af2-85d3-11e3-baa7-0800200c9a66",
+      "type": "blob",
+      "file": "level2.map",
+      "name": "level2.map",
+      "scale": 1.0,
+      "circle": false
+    },
+    {
+      "id": "10f9b200-85d3-11e3-baa7-0800200c9a66",
+      "type": "blob",
+      "file": "level2.map",
+      "name": "level2.map",
+      "scale": 1.0,
+      "circle": false
     }
   ],
   "rooms": [
@@ -192,6 +208,32 @@
         "5c950390-d7ce-11e1-9b23-0800200c9a66",
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
         "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
+        "6887093a-7d17-4f61-8e61-d2666778070c"
+      ]
+    },
+    {
+      "id": "10f98af0-85d3-11e3-baa7-0800200c9a66",
+      "name": "level2",
+      "parent": "",
+      "neighbours": [],
+      "assets": [
+        "10f98af2-85d3-11e3-baa7-0800200c9a66",
+        "2348bd71-d7ce-11e1-9b23-0800200c9a66",
+        "2348bd73-d7ce-11e1-9b23-0800200c9a66",
+        "2348bd70-d7ce-11e1-9b23-0800200c9a66",
+        "6887093a-7d17-4f61-8e61-d2666778070c"
+      ]
+    },
+    {
+      "id": "10f98af1-85d3-11e3-baa7-0800200c9a66",
+      "name": "level3",
+      "parent": "",
+      "neighbours": [],
+      "assets": [
+        "10f9b200-85d3-11e3-baa7-0800200c9a66",
+        "2348bd71-d7ce-11e1-9b23-0800200c9a66",
+        "2348bd73-d7ce-11e1-9b23-0800200c9a66",
+        "2348bd70-d7ce-11e1-9b23-0800200c9a66",
         "6887093a-7d17-4f61-8e61-d2666778070c"
       ]
     }

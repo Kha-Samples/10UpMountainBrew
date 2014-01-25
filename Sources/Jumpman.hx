@@ -27,11 +27,10 @@ class Jumpman extends Sprite {
 	var stompsound : Sound;
 	var jumpsound : Sound;
 	var diesound : Sound;
-	var music : Music;
 	var score : Int;
 	var round : Int;
 	
-	public function new(music : Music) {
+	public function new() {
 		super(Loader.the.getImage("jumpman"), 16 * 4, 16 * 4, 0);
 		instance = this;
 		x = y = 50;
@@ -44,7 +43,6 @@ class Jumpman extends Sprite {
 		jumpRight = Animation.create(10);
 		setAnimation(jumpRight);
 		collider = new Rectangle(16, 32, 32, 32);
-		this.music = music;
 		score = 0;
 		round = 1;
 		up = false;
@@ -137,7 +135,6 @@ class Jumpman extends Sprite {
 	}
 	
 	public function die() {
-		music.stop();
 		diesound.play();
 		setAnimation(Animation.create(0));
 		speedy = -8;
