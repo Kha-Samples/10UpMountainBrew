@@ -9,6 +9,7 @@ import kha.Tile;
 import kha.Tilemap;
 import manipulatables.Door;
 import manipulatables.Drake;
+import manipulatables.GuyWithExtinguisher;
 import manipulatables.Pizza;
 
 class Level {
@@ -80,17 +81,19 @@ class Level {
 			case 1: // mask
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
-			case 2: // dressing room
+			case 2: // Pizza
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 3: // director
+				// TODO: Select Director class
 				sprite = new Drake(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 4: // door
 				sprite = new Door(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addOther(sprite);
 			case 5: // assistant
-				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+				// TODO: Select Ms. M class
+				sprite = new GuyWithExtinguisher(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				Scene.the.addHero(sprite);
 			case 6: // coat
 				sprite = new Pizza(sprites[i * 3 + 1], sprites[i * 3 + 2]);
