@@ -141,13 +141,32 @@
       "name": "pizza_pixel",
       "scale": 1.0,
       "circle": false
+    },
+    {
+      "id": "8911187a-a0c4-4c49-983a-2e82c113a852",
+      "type": "image",
+      "file": "handcursor.png",
+      "name": "handcursor",
+      "scale": 1.0,
+      "circle": false
     }
   ],
   "rooms": [
     {
+      "id": "c0441aa8-5a87-4c6e-b5c3-daa802b72723",
+      "name": "global",
+      "neighbours": [],
+      "assets": [
+        "8911187a-a0c4-4c49-983a-2e82c113a852",
+        "15b1ea20-4032-11e2-a25f-0800200c9a66",
+		"893ebf74-743a-4e90-bb55-17bbc2f8174e"
+      ]
+    },
+    {
       "id": "657f6c70-d7ce-11e1-9b23-0800200c9a66",
       "name": "level1",
       "neighbours": [],
+	  "parent": ["c0441aa8-5a87-4c6e-b5c3-daa802b72723"],
       "assets": [
         "9c8c0db0-d7cc-11e1-9b23-0800200c9a66",
         "a7a42c00-d7cc-11e1-9b23-0800200c9a66",
@@ -164,8 +183,7 @@
         "2348bd79-d7ce-11e1-9b23-0800200c9a66",
         "5c950390-d7ce-11e1-9b23-0800200c9a66",
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
-        "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
-        "893ebf74-743a-4e90-bb55-17bbc2f8174e"
+        "c4f67b7c-e207-42c9-9c2a-b6991825f6e0"
       ]
     }
   ]
