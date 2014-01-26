@@ -29,3 +29,11 @@ Mr. S:	*Nimmt Wintermantel* Wohl an denn! Dem Gewürm entgegen.
 Mr. S geht durch die Tür.
 
 Level 2 b)
+Ein Feuer brennt. Jemand versucht es zu Löschen. Ein Mann schreit laut. Sein Arm steht in Flammen.
+Mr. S:	*schaut zum Feuerwehrmann* Ich sollte mich besser um den Verwundeten kümmern.
+Mr. S:	*schaut zum Verwundeten* Ich sollte ihn erstmal berühigen.
+Mr. S:	*Benuzt Spritze* So jetzt kann ich ihn behandelt.
+Mr. S:  *Schaut zu Betäuptem* Sein Arm brennt immer noch.
+Mr. S:  *Benuzt Knochensäge* Wenn ich den Arm amputiere, dann kann sich das Feuer nicht weiter Ausbreiten...
+Feuerwehrmann hat feuer gelöscht.
+Feuerwehrmann schlägt Mr. S mit Feuerlöscher nieder...
