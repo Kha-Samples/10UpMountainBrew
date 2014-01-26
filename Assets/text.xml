@@ -13,9 +13,6 @@
 <TakeMask_Helmet>
 	<de>Mit dem Helm wird mich niemand Erkennen. Kein Grund mit seltsamen Verkleidugen unnötig aufzufallen.</de>
 </TakeMask_Helmet>
-<TakeBoneSaw_Helmet>
-	<de>Ritterhelm und Knochensäge? Ich will doch nicht auffallen ...</de>
-</TakeBoneSaw_Helmet>
 <TakeMask>
 	<de>Damit sollte ich unerkannt nach draußen gelangen können.</de>
 </TakeMask>
@@ -25,3 +22,9 @@
 <TakeBoneSaw>
 	<de>Man weiß nie wofür man sowas gebrauchen kann...</de>
 </TakeBoneSaw>
+<TakeBoneSaw_Helmet>
+	<de>Ritterhelm und Knochensäge? Ich will doch nicht auffallen ...</de>
+</TakeBoneSaw_Helmet>
+<TakeBoneSaw_NoMask>
+	<de>Eine Knochensäge wird mir jetzt nicht helfen.</de>
+</TakeBoneSaw_NoMask>
