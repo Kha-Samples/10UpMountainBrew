@@ -314,6 +314,32 @@
         "blue": 201
       },
       "circle": false
+    },
+    {
+      "id": "da5b358f-f84a-4f43-976c-56141097bec9",
+      "type": "image",
+      "file": "boss.png",
+      "name": "boss",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
+    },
+    {
+      "id": "76023d31-c7a0-4934-ab4f-2bee28a611c6",
+      "type": "image",
+      "file": "boss_hurt.png",
+      "name": "boss_hurt",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
     }
   ],
   "rooms": [
@@ -376,7 +402,9 @@
         "a7a42c00-d7cc-11e1-9b23-0800200c9a66",
         "12116430-d7ce-11e1-9b23-0800200c9a66",
         "ba0d85d2-d2c9-4b47-86b7-24ed2afcd55e",
-        "b0a341a2-eb19-4f1a-955a-8812695d418a"
+        "b0a341a2-eb19-4f1a-955a-8812695d418a",
+        "da5b358f-f84a-4f43-976c-56141097bec9",
+        "76023d31-c7a0-4934-ab4f-2bee28a611c6"
       ]
     },
     {
