@@ -73,40 +73,52 @@
 </L2A_Drake_Groah>
 <L2A_Drake_NoSword_a>
 	<de>Stirb elendes Gewürm!</de>
+	<en>Die!</en>
 </L2A_Drake_NoSword_a>
 <L2A_Drake_NoSword_b>
 	<de>Doch ich brauche zuerst mein Schwert.</de>
+	<en>But first I need my sword.</en>
 </L2A_Drake_NoSword_b>
 <L2A_Squire_1a>
 	<de>Wohl an denn, mein tapferer Knappe.</de>
+	<en>Let us go, brave soldier.</en>
 </L2A_Squire_1a>
 <L2A_Squire_1b>
 	<de>Uns dünkt wir schulden ihm Dank, dass er die Bestie so Tapfer in Schach hält, bis sein Herr kommt, den Wurm zu erlegen.</de>
+	<en>We would like to to thank the brave soldier for holding back the beast until his master arrives to slay th beast.</en>
 </L2A_Squire_1b>
 <L2A_Squire_1c>
 	<de>Doch nun eile er herbei und reiche uns unser Schwert und Schild.</de>
+	<en>Hurry and hand us over the sword and the shield.</en>
 </L2A_Squire_1c>
 <L2A_Squire_1d>
-	<de>Vegebung mein Herr. Ich bin soweit. Ich kann den Drachen alleine erlegen.</de>
+	<de>Vergebung mein Herr. Ich bin soweit. Ich kann den Drachen alleine erlegen.</de>
+	<en>I am sorry my lord. I am ready. I can slay the beast myself.</en>
 </L2A_Squire_1d>
 <L2A_Squire_2>
 	<de>Törichter Junge! Reicht uns unser Schwert!</de>
+	<en>Pityful fool! Give us our sword!</en>
 </L2A_Squire_2>
 <L2A_Drake_a>
 	<de>Wohl an denn, elender Wurm. Nehmt dies!</de>
+	<en>Takt this, beast!</en>
 </L2A_Drake_a>
 <L2A_Drake_b>
 	<de>Beeilt euch mein Herr, da vorne sind noch mehr!</de>
+	<en>Hurry, my lord, there are more up ahead!</en>
 </L2A_Drake_b>
 <L2A_Drake_Sleeping_a>
 	<de>Früher ward das Gewürm würdigere Gegner!</de>
+	<en>Dragons are not what they used to be!</en>
 </L2A_Drake_Sleeping_a>
 <L2A_Drake_Sleeping_b>
 	<de>Früher war mehr Lametta.</de>
 </L2A_Drake_Sleeping_b>
 <L2A_Door_NoCloak>
 	<de>Ich sollte mir erst etwas überwerfen.</de>
+	<en>It might be cold outside, I shouldn't go out naked.</en>
 </L2A_Door_NoCloak>
 <L2A_TakeCloak>
 	<de>Wohl an denn! Dem Gewürm entgegen.</de>
+	<en>Let us slay the beasts!</en>
 </L2A_TakeCloak>

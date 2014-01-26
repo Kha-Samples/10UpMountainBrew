@@ -56,7 +56,7 @@ class Door extends Sprite implements ManipulatableSprite {
 					Jumpman.getInstance().setSpawn(70);
 				}
 				else {
-					Dialogue.set([new Bla("Door2", jmpMan)]);
+					Dialogue.set([new Bla("L2A_Door_NoCloak", jmpMan)]);
 				}
 			}
 		}
