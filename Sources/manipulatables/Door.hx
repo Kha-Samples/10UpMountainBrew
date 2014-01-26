@@ -1,5 +1,6 @@
 package manipulatables;
 
+import dialogue.Bla;
 import kha.Animation;
 import kha.Direction;
 import kha.Image;
@@ -33,14 +34,15 @@ class Door extends Sprite implements ManipulatableSprite {
 	
 	public function executeOrder(order : OrderType) : Void {
 		var lastLevel = currentLevel;
+		var jmpMan = Jumpman.getInstance();
 		// Hackathon
 		if (currentLevel == null || currentLevel == "level1") {
-			if (Jumpman.getInstance().hasHelmet || Jumpman.getInstance().hasSurgicalMask) {
+			if (jmpMan.hasHelmet || jmpMan.hasSurgicalMask) {
 				currentLevel = "level2";
 				Jumpman.getInstance().setSpawn(70);
 			}
 			else {
-				Dialogue.set(["I won't go out naked! I have to get dressed. Or maybe disguise myself."], [Jumpman.getInstance()]);
+				Dialogue.set([new Bla("I won't go out naked! I have to get dressed. Or maybe disguise myself.", jmpMan)]);
 			}
 		}
 		else if (currentLevel == "level2") {

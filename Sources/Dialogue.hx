@@ -1,28 +1,39 @@
 package;
 
 import kha.Scene;
-import kha.Sprite;
+
+interface DialogueItem {
+	public function execute() : Void;
+	public var finished(default, null) : Bool;
+}
 
 class Dialogue {
-	private static var texts: Array<String>;
-	private static var sprites: Array<Sprite>;
+	private static var items: Array<DialogueItem>;
 	private static var index: Int;
 	public static var active: Bool = false;
+	public static var isActionActive(default,null): Bool = false;
 	
-	public static function set(texts: Array<String>, sprites: Array<Sprite>): Void {
-		Dialogue.texts = texts;
-		Dialogue.sprites = sprites;
-		index = 0;
+	public static function set(items: Array<DialogueItem>): Void {
+		Dialogue.items = items;
+		index = -1;
 		active = true;
 		next();
 	}
 	
 	public static function next(): Void {
-		if (index >= texts.length) {
-			active = false;
+		if (index >= 0 && !items[index].finished) {
+			return;
 		}
-		BlaBox.pointAt(sprites[index]);
-		BlaBox.setText(texts[index]);
+		
 		++index;
+		BlaBox.pointAt(null);
+		BlaBox.setText(null);
+		
+		if (index >= items.length) {
+			active = false;
+			return;
+		}
+		
+		items[index].execute();
 	}
 }

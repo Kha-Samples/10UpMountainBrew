@@ -1,4 +1,6 @@
 package;
+import dialogue.ActionWithBla;
+import dialogue.Bla;
 import kha.Color;
 import kha.Configuration;
 import kha.Game;
@@ -33,7 +35,8 @@ class Level {
 	}
 	
 	private static function initLevel(): Void {
-		if (Jumpman.getInstance() == null) new Jumpman();
+		var jmpMan = Jumpman.getInstance();
+		if (jmpMan == null) jmpMan = new Jumpman();
 
 		var tileColissions = new Array<Tile>();
 		for (i in 0...140) {
@@ -84,7 +87,6 @@ class Level {
 				}
 			}
 		}
-		var jmpMan = Jumpman.getInstance();
 		for (i in 0...spriteCount) {
 			var sprite: kha.Sprite;
 			if (levelName != "level3") {
@@ -140,6 +142,14 @@ class Level {
 				continue;
 			}
 		}
+		
+		switch (levelName) {
+		case "level1":
+			Dialogue.set([new ActionWithBla(new Bla("Ouch! My head...", jmpMan), [jmpMan], WakeUp, null), new Bla("Where am I? And where are my clothes?", jmpMan)]);
+		default:
+			
+		}
+		
 		Configuration.setScreen(BrewingOfTenUp.getInstance());
 		done();
 	}
