@@ -73,10 +73,18 @@ class BrewingOfTenUp extends Game {
 	}
 	
 	public override function update() {
-		currentOrder.update();
-		super.update();
-		if (Jumpman.getInstance() == null) return;
-		Scene.the.camx = Std.int(Jumpman.getInstance().x) + Std.int(Jumpman.getInstance().width / 2);
+		switch (mode) {
+			case Mode.Game:
+				currentOrder.update();
+				super.update();
+				Scene.the.camx = Std.int(Jumpman.getInstance().x) + Std.int(Jumpman.getInstance().width / 2);
+			case Mode.BlaBlaBla:
+				super.update();
+				Dialogue.update();
+				Scene.the.camx = Std.int(Jumpman.getInstance().x) + Std.int(Jumpman.getInstance().width / 2);
+			case Mode.Init:
+				super.update();
+		}
 	}
 	
 	public override function render(painter : Painter) {

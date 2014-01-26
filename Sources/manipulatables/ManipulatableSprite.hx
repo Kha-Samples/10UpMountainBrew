@@ -1,4 +1,5 @@
 package manipulatables;
+import dialogue.Action.ActionType;
 
 enum OrderType {
 	Nothing;

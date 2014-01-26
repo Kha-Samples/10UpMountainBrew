@@ -225,6 +225,19 @@
       "circle": false
     },
     {
+      "id": "f2c2272e-fc96-47c4-a329-04c926a50c0e",
+      "type": "image",
+      "file": "zzzzz.png",
+      "name": "zzzzz",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
+    },
+    {
       "id": "ba0d85d2-d2c9-4b47-86b7-24ed2afcd55e",
       "type": "image",
       "file": "tileset4.png",
@@ -248,7 +261,8 @@
         "1a6eaed6-dc6e-4a97-b1c9-d6a344df5944",
         "bffb8495-b842-4f67-adb0-367aa965f6cd",
         "9200dbf7-7130-42ed-92a7-669228c87646",
-        "2e137328-a746-435c-b8dc-0983291ab5f3"
+        "2e137328-a746-435c-b8dc-0983291ab5f3",
+        "f2c2272e-fc96-47c4-a329-04c926a50c0e"
       ]
     },
     {
