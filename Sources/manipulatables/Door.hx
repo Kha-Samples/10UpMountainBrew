@@ -42,7 +42,7 @@ class Door extends Sprite implements ManipulatableSprite {
 				Jumpman.getInstance().setSpawn(70);
 			}
 			else {
-				Dialogue.set([new Bla("I won't go out naked! I have to get dressed. Or maybe disguise myself.", jmpMan)]);
+				Dialogue.set([new Bla("Door1", jmpMan)]);
 			}
 		}
 		else if (currentLevel == "level2") {
