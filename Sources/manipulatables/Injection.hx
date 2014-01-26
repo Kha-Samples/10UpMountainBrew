@@ -9,7 +9,7 @@ class Injection extends UseableSprite
 
 	public function new(px:Int, py:Int) 
 	{
-		super("Injection", Loader.the.getImage("pizza_pixel"), px, py);
+		super("Injection", Loader.the.getImage("spritze"), px, py);
 		
 	}
 	

@@ -1,25 +1,37 @@
 package manipulatables;
 import dialogue.Bla;
 import kha.Loader;
+import kha.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 import manipulatables.UseableSprite;
 
 
 
-class SurgicalMaskAndInjection extends UseableSprite
+class SurgicalMaskAndInjection extends Sprite implements ManipulatableSprite
 {
 
 	public function new(px : Int, py : Int) 
 	{
-		super("Surgical Mask and Injection", Loader.the.getImage("docstuff"), px, py + 30);
+		super(Loader.the.getImage("docstuff"));
+		x = px;
+		y = py + 30;
+		accy = 0;
+		name = "Surgical Mask and Injection";
 	}
 	
-	override public function getOrder(selectedItem:UseableSprite):OrderType 
+	function get_name():String 
+	{
+		return name;
+	}
+	
+	public var name(get_name, null):String;
+	
+	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
 		return OrderType.Take;
 	}
 	
-	override public function executeOrder(order:OrderType):Void 
+	public function executeOrder(order:OrderType):Void 
 	{
 		if (order == OrderType.Take) {
 			var jmpMan = Jumpman.getInstance();
@@ -29,8 +41,8 @@ class SurgicalMaskAndInjection extends UseableSprite
 				kha.Scene.the.removeHero(this);
 				jmpMan.hasSurgicalMask = true;
 				// TODO: change model
+				Inventory.pick(new Injection(0, 0));
 				Dialogue.set([new Bla("TakeMask", jmpMan)]);
-				super.executeOrder(order);
 			}
 		}
 	}
