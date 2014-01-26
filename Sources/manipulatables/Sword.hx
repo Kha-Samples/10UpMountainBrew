@@ -25,11 +25,10 @@ class Sword extends UseableSprite
 	
 	override public function executeOrder(order:OrderType):Void 
 	{
-		if (order == OrderType.Take) {
-			if ( GuyWithExtinguisher.the.firstTime ) {
-				GuyWithExtinguisher.the.executeOrder(order);
-				return;
-			}
+		if (order == OrderType.Bla) {
+			GuyWithExtinguisher.the.executeOrder(order);
+			return;
+		} else if (order == OrderType.Take) {
 			Dialogue.set([new Bla("L2A_Squire_2", Jumpman.getInstance())]);
 		}
 		super.executeOrder(order);

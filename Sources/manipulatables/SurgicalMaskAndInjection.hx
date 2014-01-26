@@ -21,7 +21,6 @@ class SurgicalMaskAndInjection extends UseableSprite
 	
 	override public function executeOrder(order:OrderType):Void 
 	{
-		super.executeOrder(order);
 		if (order == OrderType.Take) {
 			var jmpMan = Jumpman.getInstance();
 			if (jmpMan.hasHelmet) {
@@ -31,6 +30,7 @@ class SurgicalMaskAndInjection extends UseableSprite
 				jmpMan.hasSurgicalMask = true;
 				// TODO: change model
 				Dialogue.set([new Bla("TakeMask", jmpMan)]);
+				super.executeOrder(order);
 			}
 		}
 	}

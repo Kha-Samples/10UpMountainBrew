@@ -30,9 +30,13 @@ class Helmet extends Sprite implements ManipulatableSprite
 	
 	public var name(get_name, null):String;
 	
+	var take = true;
 	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
-		return OrderType.Take;
+		if (take) {
+			return OrderType.Take;
+		}
+		return OrderType.Nothing;
 	}
 	
 	public function executeOrder(order:OrderType):Void 
