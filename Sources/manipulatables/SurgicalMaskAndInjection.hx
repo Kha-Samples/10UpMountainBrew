@@ -28,7 +28,7 @@ class SurgicalMaskAndInjection extends UseableSprite
 			} else {
 				kha.Scene.the.removeHero(this);
 				jmpMan.hasSurgicalMask = true;
-				// TODO: change model
+				Jumpman.getInstance().doc();
 				Dialogue.set([new Bla("TakeMask", jmpMan)]);
 				super.executeOrder(order);
 			}

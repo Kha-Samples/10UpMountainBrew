@@ -48,7 +48,7 @@ class Helmet extends Sprite implements ManipulatableSprite
 			} else {
 				jmpMan.hasHelmet = true;
 				setAnimation(Animation.create(1));
-				// TODO: change model
+				Jumpman.getInstance().helmet();
 				Dialogue.set([new Bla("TakeHelmet", jmpMan)]);
 			}
 		}
