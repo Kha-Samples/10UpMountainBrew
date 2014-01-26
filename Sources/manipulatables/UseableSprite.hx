@@ -56,6 +56,7 @@ class UseableSprite extends Sprite implements ManipulatableSprite
 		Scene.the.addHero(this);
 	}
 	
+	public var guy : GuyWithExtinguisher;
 	public function renderForInventory(painter : Painter, x : Int, y : Int, drawWidth : Int, drawHeight : Int) {
 		if (image != null) {
 			painter.drawImage2(image, Std.int(animation.get() * width) % image.width, Math.floor(animation.get() * width / image.width) * height, width, height, x, y, drawWidth, drawHeight, null);

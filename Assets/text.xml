@@ -1,4 +1,31 @@
 <DefaultLanguage>de</DefaultLanguage>
+<Player>
+	<de>Mr. S</de>
+	<en>Mr. S</en>
+</Player>
+<Mechanic>
+	<de>Ms. M</de>
+	<en>Ms. M</en>
+</Mechanic>
+<Squire>
+	<de>Knappe</de>
+	<en>Squire</en>
+</Squire>
+<Drake>
+	<de>Drache</de>
+	<en>Drake</en>
+</Drake>
+<Director>
+	<de>Direktor</de>
+	<en>Director</en>
+</Director>
+<Wounded>
+	<de>Verwundeter</de>
+	<en>wounded person</en>
+</Wounded>
+
+
+
 <Start_1>
 	<de>Ah, mein Kopf ...</de>
 	<en>Ouch, my head ...</en>
@@ -13,22 +40,70 @@
 </Door1>
 <TakeHelmet>
 	<de>Ah, ein Helm. Damit kann mich keiner Erkennen.</de>
+	<en>Ah, a helmet. Nobody will recognize me, when I wear that.</en>
 </TakeHelmet>
 <TakeMask_Helmet>
 	<de>Mit dem Helm wird mich niemand Erkennen. Kein Grund mit seltsamen Verkleidugen unnötig aufzufallen.</de>
+	<en>Nobody will recognize me while I wear my helmet. I have no use for that suspicous disguise.</en>
 </TakeMask_Helmet>
 <TakeMask>
 	<de>Damit sollte ich unerkannt nach draußen gelangen können.</de>
+	<en>That should help me to get out of here unrecognized.</en>
 </TakeMask>
 <TakeHelmet_Mask>
 	<de>Niemand wird an mich denken, wenn er einen Arzt sieht. Kein Grund mit seltsamen Verkleidungen unnötig aufzufallen.</de>
+	<en>Nobody will suspect it's me, seeing a doctor. I have no use for that suspicous disguise.</en>
 </TakeHelmet_Mask>
 <TakeBoneSaw>
 	<de>Man weiß nie wofür man sowas gebrauchen kann...</de>
+	<en>You never know, could come in handy.</en>
 </TakeBoneSaw>
 <TakeBoneSaw_Helmet>
 	<de>Ritterhelm und Knochensäge? Ich will doch nicht auffallen ...</de>
+	<en>A knight's helmet and a bone saw. That would be too suspicous.</en>
 </TakeBoneSaw_Helmet>
 <TakeBoneSaw_NoMask>
 	<de>Eine Knochensäge wird mir jetzt nicht helfen.</de>
+	<en>A bone saw is not going to help me now.</en>
 </TakeBoneSaw_NoMask>
+
+
+<L2A_Drake_Groah>
+	<de>Grooaaah!!!</de>
+</L2A_Drake_Groah>
+<L2A_Drake_NoSword>
+	<de>Stirb elendes Gewürm! - Doch ich brauche zuerst mein Schwert.</de>
+</L2A_Drake_NoSword>
+<L2A_Squire_1a>
+	<de>Wohl an denn, mein tapferer Knappe.</de>
+</L2A_Squire_1a>
+<L2A_Squire_1b>
+	<de>Uns dünkt wir schulden ihm Dank, dass er die Bestie so Tapfer in Schach hält, bis sein Herr kommt, den Wurm zu erlegen.</de>
+</L2A_Squire_1b>
+<L2A_Squire_1c>
+	<de>Doch nun eile er herbei und reiche uns unser Schwert und Schild.</de>
+</L2A_Squire_1c>
+<L2A_Squire_1d>
+	<de>Vegebung mein Herr. Ich bin soweit. Ich kann den Drachen alleine erlegen.</de>
+</L2A_Squire_1d>
+<L2A_Squire_2>
+	<de>Törichter Junge! Reicht uns unser Schwert!</de>
+</L2A_Squire_2>
+<L2A_Drake_a>
+	<de>Wohl an denn, elender Wurm. Nehmt dies!</de>
+</L2A_Drake_a>
+<L2A_Drake_b>
+	<de>Beeilt euch mein Herr, da vorne sind noch mehr!</de>
+</L2A_Drake_b>
+<L2A_Drake_Sleeping_a>
+	<de>Früher ward das Gewürm würdigere Gegner!</de>
+</L2A_Drake_Sleeping_a>
+<L2A_Drake_Sleeping_b>
+	<de>Früher war mehr Lametta.</de>
+</L2A_Drake_Sleeping_b>
+<L2A_Door_NoCloak>
+	<de>Ich sollte mir erst etwas überwerfen.</de>
+</L2A_Door_NoCloak>
+<L2A_TakeCloak>
+	<de>Wohl an denn! Dem Gewürm entgegen.</de>
+</L2A_TakeCloak>

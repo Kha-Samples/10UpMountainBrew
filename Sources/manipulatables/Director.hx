@@ -1,4 +1,5 @@
 package manipulatables;
+import dialogue.Bla;
 import kha.Loader;
 import manipulatables.UseableSprite;
 
@@ -10,10 +11,15 @@ import manipulatables.ManipulatableSprite.OrderType;
 class Director extends Sprite implements ManipulatableSprite
 {
 
-	public function new(px : Int, py : Int, name : String = null, image:Image = null) 
+	public function new(px : Int, py : Int, name : String = null, image:Image = null, w: Int = 0, h: Int = 0) 
 	{
-		if (image == null) image = Loader.the.getImage("pizza_pixel");
-		super(image);
+		py -= 40;
+		if (image == null) {
+			image = Loader.the.getImage("boss");
+			w = Std.int(192 * 2 / 6);
+			h = 64 * 2;
+		}
+		super(image, w, h);
 		x = px;
 		y = py;
 		if (name == null) {
@@ -35,7 +41,7 @@ class Director extends Sprite implements ManipulatableSprite
 	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
 		if (selectedItem == null) {
-			return OrderType.Nothing;
+			return OrderType.ToolTip;
 		} else if (Std.is(selectedItem, Injection)) {
 			return OrderType.Apply;
 		} else if (Std.is(selectedItem, Sword)) {
@@ -52,6 +58,7 @@ class Director extends Sprite implements ManipulatableSprite
 		switch (order) {
 			case Eat:
 				Inventory.loose(Inventory.getSelectedItem());
+				Dialogue.set([new Bla("L2A_Drake_Groah",this)]);
 			case Slay:
 				// TODO: Slay Dragon
 			default:

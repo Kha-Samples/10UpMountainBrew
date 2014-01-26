@@ -7,7 +7,7 @@ import kha.Loader;
 class Extinguisher extends UseableSprite
 {
 	public function new(px : Int, py : Int) {
-		super("Extinguisher", Loader.the.getImage("pizza_pixel"), px, py);
+		super("Extinguisher", Loader.the.getImage("extinguisher"), px, py);
 		z = 3;
 	}
 	

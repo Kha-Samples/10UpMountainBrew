@@ -12,6 +12,8 @@ enum OrderType {
 	Slay;
 	Extinguish;
 	Apply;
+	ToolTip;
+	Bla;
 }
 
 interface ManipulatableSprite {

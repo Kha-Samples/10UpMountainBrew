@@ -95,7 +95,7 @@ class AdventureCursor implements Cursor {
 		var jmpMan = Jumpman.getInstance();
 		if (hoveredObject != null) {
 			toolTipTop = true;
-			toolTip = hoveredObject.name;
+			toolTip = Localization.getText(hoveredObject.name);
 			hoveredType = OrderType.InventoryItem;
 		} else if (y >= Inventory.y) {
 			toolTipTop = true;
@@ -111,10 +111,14 @@ class AdventureCursor implements Cursor {
 						hoveredObject = null;
 						toolTip = null;
 					} else {
-						if (Inventory.getSelectedItem() != null) {
-							toolTip = Inventory.getSelectedItem().name + " " + hoveredType + " " + hoveredObject.name;
+						if (hoveredType == OrderType.ToolTip) {
+							toolTip = Localization.getText(hoveredObject.name);
+						} else if (hoveredType == OrderType.MoveTo) {
+							toolTip = null;
+						} else if (Inventory.getSelectedItem() != null) {
+							toolTip = Localization.getText(Inventory.getSelectedItem().name + "_" + hoveredType + "_" + hoveredObject.name);
 						} else {
-							toolTip = hoveredType + " " + hoveredObject.name;
+							toolTip = Localization.getText(hoveredType + "_" + hoveredObject.name);
 						}
 					}
 					break;

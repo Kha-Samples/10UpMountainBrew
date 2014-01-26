@@ -9,6 +9,7 @@ import kha.Music;
 import kha.Painter;
 import kha.Rectangle;
 import kha.Rotation;
+import kha.Scene;
 import kha.Sound;
 import kha.Sprite;
 import manipulatables.ManipulatableSprite;
@@ -65,6 +66,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		killed = false;
 		jumpcount = 0;
 		zzzzz = Loader.the.getImage("zzzzz");
+		name = "Player";
 	}
 	
 	public static function getInstance() : Jumpman {
@@ -99,9 +101,30 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	}
 	
 	private var baseSpeed = 4.0;
+	
+	public static var isWinter: Bool = true;
+	
+	private function initLevel() : Void {
+		Jumpman.getInstance().reset();
+		Scene.the.addHero(Jumpman.getInstance());
+	}
+	
 	public override function update(): Void {
 		walking = false;
 		if (lastupcount > 0) --lastupcount;
+		
+		if (y > 470) {
+			isWinter = false;
+			Jumpman.getInstance().setSpawn(500);
+			Level.load("level3", initLevel);
+		}
+		
+		if (Level.levelName == "level3") {
+			if (!isWinter && x > 550) {
+				x = 550;
+			}
+		}
+		
 		if (killed) {
 			++zzzzzIndex;
 		} else {
@@ -219,7 +242,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	
 	function get_name():String 
 	{
-		return "Mr. S";
+		return name;
 	}
 	
 	public var name(get, null):String;
@@ -229,7 +252,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		if (Std.is(selectedItem, Pizza)) {
 			return Eat;
 		}
-		return OrderType.WontWork;
+		return OrderType.ToolTip;
 	}
 	
 	public function executeOrder(order:OrderType):Void 

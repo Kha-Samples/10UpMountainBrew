@@ -10,7 +10,7 @@ class BoneSaw extends UseableSprite
 {
 	public function new( px : Int, py : Int) 
 	{
-		super("Bone Saw", Loader.the.getImage("pizza_pixel"), px, py);
+		super("Bone Saw", Loader.the.getImage("saw"), px, py);
 	}
 	
 	override public function executeOrder(order:OrderType) : Void {
