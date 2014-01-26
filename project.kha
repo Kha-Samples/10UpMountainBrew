@@ -111,6 +111,38 @@
       "circle": false
     },
     {
+      "id": "1a6eaed6-dc6e-4a97-b1c9-d6a344df5944",
+      "type": "blob",
+      "file": "Liberation Sans-Regular14.kravur",
+      "name": "Liberation Sans14.kravur",
+      "scale": 1.0,
+      "circle": false
+    },
+    {
+      "id": "bffb8495-b842-4f67-adb0-367aa965f6cd",
+      "type": "blob",
+      "file": "Liberation Sans-Regular20.kravur",
+      "name": "Liberation Sans20.kravur",
+      "scale": 1.0,
+      "circle": false
+    },
+    {
+      "id": "9200dbf7-7130-42ed-92a7-669228c87646",
+      "type": "blob",
+      "file": "Liberation Sans-Regular30.kravur",
+      "name": "Liberation Sans30.kravur",
+      "scale": 1.0,
+      "circle": false
+    },
+    {
+      "id": "2e137328-a746-435c-b8dc-0983291ab5f3",
+      "type": "blob",
+      "file": "Liberation Sans-Bold16.kravur",
+      "name": "Liberation Sans#Bold16.kravur",
+      "scale": 1.0,
+      "circle": false
+    },
+    {
       "id": "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
       "type": "image",
       "file": "Inventory.png",
@@ -212,7 +244,11 @@
         "893ebf74-743a-4e90-bb55-17bbc2f8174e",
         "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
         "8e8215a5-813b-4b48-871f-ef0139f19cfd",
-        "15984ea8-ef6c-40cd-a4c9-e70772612158"
+        "15984ea8-ef6c-40cd-a4c9-e70772612158",
+        "1a6eaed6-dc6e-4a97-b1c9-d6a344df5944",
+        "bffb8495-b842-4f67-adb0-367aa965f6cd",
+        "9200dbf7-7130-42ed-92a7-669228c87646",
+        "2e137328-a746-435c-b8dc-0983291ab5f3"
       ]
     },
     {

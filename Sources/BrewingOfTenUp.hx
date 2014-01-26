@@ -55,7 +55,7 @@ class BrewingOfTenUp extends Game {
 	}
 
 	public function initLevel(): Void {
-		font = Loader.the.loadFont("Arial", new FontStyle(false, false, false), 12);
+		font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 14);
 		startGame();
 	}
 	
