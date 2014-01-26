@@ -297,6 +297,19 @@
         "blue": 201
       },
       "circle": false
+    },
+    {
+      "id": "e8742f67-144a-4c96-bebc-156a779b7604",
+      "type": "image",
+      "file": "spritze.png",
+      "name": "spritze",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
     }
   ],
   "rooms": [
@@ -321,7 +334,8 @@
         "eec23efd-08f9-4273-bafe-0b48a7ce106f",
         "2cfcbf91-50b5-4410-b6f7-eeff3b08c4f9",
         "458ba703-13c2-4ccc-b384-ad3e442e4ff2",
-        "55dbc923-e30d-4181-9aee-bcc5a8d976c8"
+        "55dbc923-e30d-4181-9aee-bcc5a8d976c8",
+        "e8742f67-144a-4c96-bebc-156a779b7604"
       ]
     },
     {
