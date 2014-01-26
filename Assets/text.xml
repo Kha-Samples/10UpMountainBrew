@@ -7,6 +7,10 @@
 	<de>Wo bin ich? Und wo ist meine Kleidung?</de>
 	<en>Where am I? And where are my clothes?</en>
 </Start_2>
+<Door1>
+	<de>Nackt geh ich da nicht raus! Ich muss mir was anziehen. Oder sollte ich mich vieleicht verkleiden?</de>
+	<en>I won't go out naked! I have to get dressed. Or maybe disguise myself.</en>
+</Door1>
 <TakeHelmet>
 	<de>Ah, ein Helm. Damit kann mich keiner Erkennen.</de>
 </TakeHelmet>
