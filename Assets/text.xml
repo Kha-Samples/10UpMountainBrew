@@ -13,22 +13,29 @@
 </Door1>
 <TakeHelmet>
 	<de>Ah, ein Helm. Damit kann mich keiner Erkennen.</de>
+	<en>Ah, a helmet. Nobody will recognize me, when I wear that.</en>
 </TakeHelmet>
 <TakeMask_Helmet>
 	<de>Mit dem Helm wird mich niemand Erkennen. Kein Grund mit seltsamen Verkleidugen unnötig aufzufallen.</de>
+	<en>Nobody will recognize me while I wear my helmet. I have no use for that suspicous disguise.</en>
 </TakeMask_Helmet>
 <TakeMask>
 	<de>Damit sollte ich unerkannt nach draußen gelangen können.</de>
+	<en>That should help me to get out of here unrecognized.</en>
 </TakeMask>
 <TakeHelmet_Mask>
 	<de>Niemand wird an mich denken, wenn er einen Arzt sieht. Kein Grund mit seltsamen Verkleidungen unnötig aufzufallen.</de>
+	<en>Nobody will suspect it's me, seeing a doctor. I have no use for that suspicous disguise.</en>
 </TakeHelmet_Mask>
 <TakeBoneSaw>
 	<de>Man weiß nie wofür man sowas gebrauchen kann...</de>
+	<en>You never know, could come in handy.</en>
 </TakeBoneSaw>
 <TakeBoneSaw_Helmet>
 	<de>Ritterhelm und Knochensäge? Ich will doch nicht auffallen ...</de>
+	<en>A knight's helmet and a bone saw. That would be too suspicous.</en>
 </TakeBoneSaw_Helmet>
 <TakeBoneSaw_NoMask>
 	<de>Eine Knochensäge wird mir jetzt nicht helfen.</de>
+	<en>A bone saw is not going to help me now.</en>
 </TakeBoneSaw_NoMask>
