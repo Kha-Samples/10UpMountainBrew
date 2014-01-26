@@ -11,7 +11,7 @@ class Sword extends UseableSprite
 {
 	public function new( px : Int, py : Int) 
 	{
-		super("Sword", Loader.the.getImage("pizza_pixel"), px, py);
+		super("Sword", Loader.the.getImage("sword"), px, py);
 		z = 3;
 	}
 	

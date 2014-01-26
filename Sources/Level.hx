@@ -27,7 +27,7 @@ import manipulatables.WoundedPerson;
 
 class Level {
 	public static var solution : Bool = false;
-	private static var levelName: String;
+	public static var levelName: String;
 	private static var done: Void -> Void;
 	
 	public static function load(levelName: String, done: Void -> Void): Void {
@@ -44,7 +44,7 @@ class Level {
 		if (jmpMan == null) jmpMan = new Jumpman();
 
 		var tileColissions = new Array<Tile>();
-		for (i in 0...300) {
+		for (i in 0...400) {
 			tileColissions.push(new Tile(i, isCollidable(i)));
 		}
 		var blob = Loader.the.getBlob(levelName + ".map");
@@ -80,7 +80,8 @@ class Level {
 		if (levelName == "level1") tileset = "tileset1";
 		if (levelName == "level2") tileset = "tileset4";
 		if (levelName == "level3") {
-			tileset = "tileset2";
+			if (Jumpman.isWinter) tileset = "tileset3";
+			else tileset = "tileset2";
 		}
 		
 		var tilemap : Tilemap = new Tilemap(tileset, 32, 32, map, tileColissions);
