@@ -15,7 +15,12 @@ class Director extends Sprite implements ManipulatableSprite
 	static public var the;
 	public function new(px : Int, py : Int, name : String = null, image:Image = null, w: Int = 0, h: Int = 0) 
 	{
-		if (image == null) image = Loader.the.getImage("pizza_pixel");
+		py -= 40;
+		if (image == null) {
+			image = Loader.the.getImage("boss");
+			w = Std.int(192 * 2 / 6);
+			h = 64 * 2;
+		}
 		super(image, w, h);
 		x = px;
 		y = py;
