@@ -75,7 +75,8 @@ class Level {
 		Scene.the.setBackgroundColor(Color.fromBytes(255, 255, 255));
 		
 		var tileset = "sml_tiles";
-		if (levelName != "level3") tileset = "tileset1";
+		if (levelName == "level1") tileset = "tileset1";
+		if (levelName == "level2") tileset = "tileset4";
 		
 		var tilemap : Tilemap = new Tilemap(tileset, 32, 32, map, tileColissions);
 		Scene.the.setColissionMap(tilemap);
