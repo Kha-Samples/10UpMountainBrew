@@ -17,6 +17,7 @@ class Dialogue {
 		Dialogue.items = items;
 		index = -1;
 		BrewingOfTenUp.getInstance().mode = Mode.BlaBlaBla;
+		kha.Sys.mouse.hide();
 		next();
 	}
 	
@@ -38,6 +39,7 @@ class Dialogue {
 		
 		if (index >= items.length) {
 			BrewingOfTenUp.getInstance().mode = Mode.Game;
+			kha.Sys.mouse.show();
 			return;
 		}
 		

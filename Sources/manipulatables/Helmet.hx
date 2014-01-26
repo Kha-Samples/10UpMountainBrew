@@ -1,4 +1,5 @@
 package manipulatables;
+import dialogue.Bla;
 import kha.Animation;
 import kha.Loader;
 import kha.Scene;
@@ -31,19 +32,21 @@ class Helmet extends Sprite implements ManipulatableSprite
 	
 	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
-		if (!Jumpman.getInstance().hasSurgicalMask) {
-			return OrderType.Take;
-		} else {
-			return OrderType.Nothing;
-		}
+		return OrderType.Take;
 	}
 	
 	public function executeOrder(order:OrderType):Void 
 	{
 		if (order == OrderType.Take) {
-			setAnimation(Animation.create(1));
-			Jumpman.getInstance().hasHelmet = true; 
-			// TODO: change model
+			var jmpMan = Jumpman.getInstance();
+			if (jmpMan.hasSurgicalMask) {
+				Dialogue.set([new Bla("TakeHelmet_Mask", jmpMan)]);
+			} else {
+				jmpMan.hasHelmet = true;
+				setAnimation(Animation.create(1));
+				// TODO: change model
+				Dialogue.set([new Bla("TakeHelmet", jmpMan)]);
+			}
 		}
 	}
 	

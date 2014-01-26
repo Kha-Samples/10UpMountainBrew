@@ -20,7 +20,11 @@ class BlaBox {
 	}
 	
 	public static function setText(text: String): Void {
-		BlaBox.text = text;
+		if (text != null) {
+			BlaBox.text = Localization.getText(text);
+		} else {
+			BlaBox.text = null;
+		}
 	}
 	
 	public static function render(painter: Painter): Void {

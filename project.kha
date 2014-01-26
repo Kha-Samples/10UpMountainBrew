@@ -214,6 +214,14 @@
       "circle": false
     },
     {
+      "id": "83023eaf-8b7e-4261-b137-5efa5a66ea4c",
+      "type": "blob",
+      "file": "text.xml",
+      "name": "text.xml",
+      "scale": 1.0,
+      "circle": false
+    },
+    {
       "id": "52813df4-2ccf-4353-a29f-e534285f9f68",
       "type": "image",
       "file": "tileset2.png",
@@ -259,7 +267,8 @@
         "bffb8495-b842-4f67-adb0-367aa965f6cd",
         "9200dbf7-7130-42ed-92a7-669228c87646",
         "2e137328-a746-435c-b8dc-0983291ab5f3",
-        "f2c2272e-fc96-47c4-a329-04c926a50c0e"
+        "f2c2272e-fc96-47c4-a329-04c926a50c0e",
+        "83023eaf-8b7e-4261-b137-5efa5a66ea4c"
       ]
     },
     {

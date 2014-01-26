@@ -38,6 +38,7 @@ class Level {
 	}
 	
 	private static function initLevel(): Void {
+		Localization.init("text.xml");
 		var jmpMan = Jumpman.getInstance();
 		if (jmpMan == null) jmpMan = new Jumpman();
 
@@ -152,8 +153,8 @@ class Level {
 		switch (levelName) {
 		case "level1":
 			Dialogue.set([new Action([jmpMan], Sleep),
-						  new ActionWithBla(new Bla("Ouch! My head...", jmpMan), [jmpMan], WakeUp),
-						  new Bla("Where am I? And where are my clothes?", jmpMan)]);
+						  new ActionWithBla(new Bla("Start_1", jmpMan), [jmpMan], WakeUp),
+						  new Bla("Start_2", jmpMan)]);
 		default:
 			
 		}

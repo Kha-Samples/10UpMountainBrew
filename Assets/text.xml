@@ -1,0 +1,27 @@
+<DefaultLanguage>de</DefaultLanguage>
+<Start_1>
+	<de>Ah, mein Kopf ...</de>
+	<en>Ouch, my head ...</en>
+</Start_1>
+<Start_2>
+	<de>Wo bin ich? Und wo ist meine Kleidung?</de>
+	<en>Where am I? And where are my clothes?</en>
+</Start_2>
+<TakeHelmet>
+	<de>Ah, ein Helm. Damit kann mich keiner Erkennen.</de>
+</TakeHelmet>
+<TakeMask_Helmet>
+	<de>Mit dem Helm wird mich niemand Erkennen. Kein Grund mit seltsamen Verkleidugen unnötig aufzufallen.</de>
+</TakeMask_Helmet>
+<TakeBoneSaw_Helmet>
+	<de>Ritterhelm und Knochensäge? Ich will doch nicht auffallen ...</de>
+</TakeBoneSaw_Helmet>
+<TakeMask>
+	<de>Damit sollte ich unerkannt nach draußen gelangen können.</de>
+</TakeMask>
+<TakeHelmet_Mask>
+	<de>Niemand wird an mich denken, wenn er einen Arzt sieht. Kein Grund mit seltsamen Verkleidungen unnötig aufzufallen.</de>
+</TakeHelmet_Mask>
+<TakeBoneSaw>
+	<de>Man weiß nie wofür man sowas gebrauchen kann...</de>
+</TakeBoneSaw>
