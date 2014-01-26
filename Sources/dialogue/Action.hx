@@ -1,6 +1,7 @@
 package dialogue;
 
 import Dialogue.DialogueItem;
+import manipulatables.GuyWithExtinguisher;
 import manipulatables.ManipulatableSprite;
 
 enum ActionType {
@@ -43,7 +44,7 @@ class Action implements DialogueItem {
 				case ActionType.Slay:
 					// TODO:
 				case ActionType.Run:
-					// TODO:
+					GuyWithExtinguisher.the.right = true;
 			}
 			return;
 		} else {

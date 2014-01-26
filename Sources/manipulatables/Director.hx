@@ -32,6 +32,8 @@ class Director extends Sprite implements ManipulatableSprite
 		the = this;
 	}
 	
+	public var slayed = false;
+	
 	/* INTERFACE manipulatables.ManipulatableSprite */
 	
 	function get_name():String 
@@ -43,7 +45,7 @@ class Director extends Sprite implements ManipulatableSprite
 	
 	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
-		if (selectedItem == null) {
+		if (selectedItem == null || slayed) {
 			return OrderType.Bla;
 		} else if (Std.is(selectedItem, Injection)) {
 			return OrderType.Apply;
@@ -64,13 +66,20 @@ class Director extends Sprite implements ManipulatableSprite
 				Inventory.loose(Inventory.getSelectedItem());
 				Dialogue.set([new Bla("L2A_Drake_Groah",this)]);
 			case Slay:
-				Dialogue.set([new ActionWithBla(new Bla("L2A_Drake_a", jmpMan),[this], ActionType.Slay),
-							  new ActionWithBla(new Bla("L2A_Drake_b", GuyWithExtinguisher.the), [GuyWithExtinguisher.the], ActionType.Run)]);
+				Dialogue.set([new ActionWithBla(new Bla("L2A_Drake_a", jmpMan), [this], ActionType.Slay),
+							  new Bla("L2A_Drake_b", GuyWithExtinguisher.the),
+							  new Action([GuyWithExtinguisher.the], ActionType.Run)]);
 				// TODO: Slay Dragon
 			case Bla:
-				Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
-							  new Bla("L2A_Drake_Groah", this),
-							  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+				if (slayed) {
+					Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
+								  new Bla("L2A_Drake_Groah", this),
+								  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+				} else {
+					Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
+								  new Bla("L2A_Drake_Groah", this),
+								  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+				}
 			default:
 				// Nothing todo yet.
 		}
