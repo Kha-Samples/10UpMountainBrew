@@ -1,4 +1,5 @@
 package manipulatables;
+import kha.Animation;
 import kha.Loader;
 import kha.Scene;
 import manipulatables.UseableSprite;
@@ -13,7 +14,7 @@ class Helmet extends Sprite implements ManipulatableSprite
 
 	public function new(px : Int, py : Int) 
 	{
-		super(Loader.the.getImage("armor"));
+		super(Loader.the.getImage("armor"), 72, 70);
 		x = px;
 		y = py;
 		accy = 0;
@@ -40,7 +41,7 @@ class Helmet extends Sprite implements ManipulatableSprite
 	public function executeOrder(order:OrderType):Void 
 	{
 		if (order == OrderType.Take) {
-			Scene.the.removeHero(this);
+			setAnimation(Animation.create(1));
 			Jumpman.getInstance().hasHelmet = true; 
 			// TODO: change model
 		}
