@@ -1,4 +1,5 @@
 package manipulatables;
+import dialogue.Bla;
 import kha.Loader;
 import manipulatables.ManipulatableSprite.OrderType;
 import manipulatables.UseableSprite;
@@ -15,20 +16,22 @@ class SurgicalMaskAndInjection extends UseableSprite
 	
 	override public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
-		if (!Jumpman.getInstance().hasHelmet) {
-			return OrderType.Take;
-		} else {
-			return OrderType.Nothing;
-		}
+		return OrderType.Take;
 	}
 	
 	override public function executeOrder(order:OrderType):Void 
 	{
 		super.executeOrder(order);
 		if (order == OrderType.Take) {
-			Jumpman.getInstance().hasSurgicalMask = true;
-			name = "Injection";
-			// TODO: change image to only injection
+			var jmpMan = Jumpman.getInstance();
+			if (jmpMan.hasHelmet) {
+				Dialogue.set([new Bla("TakeMask_Helmet", jmpMan)]);
+			} else {
+				kha.Scene.the.removeHero(this);
+				jmpMan.hasSurgicalMask = true;
+				// TODO: change model
+				Dialogue.set([new Bla("TakeMask", jmpMan)]);
+			}
 		}
 	}
 }
