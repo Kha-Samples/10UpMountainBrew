@@ -62,7 +62,6 @@ class BrewingOfTenUp extends Game {
 		//getHighscores().load(Storage.defaultFile());
 		
 		Inventory.init();
-		Inventory.pick(new Pizza(0,0));
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
 		
