@@ -66,6 +66,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		killed = false;
 		jumpcount = 0;
 		zzzzz = Loader.the.getImage("zzzzz");
+		name = "Player";
 	}
 	
 	public static function getInstance() : Jumpman {
@@ -241,7 +242,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	
 	function get_name():String 
 	{
-		return "Mr. S";
+		return name;
 	}
 	
 	public var name(get, null):String;
@@ -251,7 +252,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		if (Std.is(selectedItem, Pizza)) {
 			return Eat;
 		}
-		return OrderType.WontWork;
+		return OrderType.ToolTip;
 	}
 	
 	public function executeOrder(order:OrderType):Void 

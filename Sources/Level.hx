@@ -38,6 +38,7 @@ class Level {
 	}
 	
 	private static function initLevel(): Void {
+		BrewingOfTenUp.getInstance().mode = Mode.Game;
 		Localization.init("text.xml");
 		var jmpMan = Jumpman.getInstance();
 		if (jmpMan == null) jmpMan = new Jumpman();
@@ -115,6 +116,7 @@ class Level {
 					sprite = new Director(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				} else if (jmpMan.hasHelmet) {
 					sprite = new Drake(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+					Dialogue.set([new Bla("L2A_Drake_Groah", sprite)]);
 				} else if (jmpMan.hasSurgicalMask) {
 					sprite = new WoundedPerson(sprites[i * 3 + 1], sprites[i * 3 + 2]);
 				} else {
@@ -149,7 +151,6 @@ class Level {
 				continue;
 			}
 		}
-		BrewingOfTenUp.getInstance().mode = Mode.Game;
 		
 		switch (levelName) {
 		case "level1":

@@ -153,6 +153,7 @@ class BrewingOfTenUp extends Game {
 	override public function mouseUp(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
+			currentOrder.cancel();
 			currentOrder.type = adventureCursor.hoveredType;
 			currentOrder.x = x + scene.screenOffsetX;
 			currentOrder.y = y + scene.screenOffsetY;
@@ -186,6 +187,11 @@ class MouseOrder {
 	public var y : Int = 0;
 	public var object : ManipulatableSprite = null;
 	
+	public function cancel() : Void {
+		var jmpMan = Jumpman.getInstance();
+		jmpMan.left = false;
+		jmpMan.right = false;
+	}
 	private function moveTo() : Bool {
 		var jmpMan = Jumpman.getInstance();
 		if (x < jmpMan.x + 0.3 * jmpMan.width) {
@@ -203,7 +209,7 @@ class MouseOrder {
 	}
 	public function update() {
 		switch(type) {
-		case Nothing:
+		case Nothing, ToolTip:
 			// Nothing to do
 			return;
 		case WontWork:
@@ -217,7 +223,7 @@ class MouseOrder {
 			if (moveTo()) {
 				return;
 			}
-		case InventoryItem:
+		case InventoryItem, Bla:
 		}
 		object.executeOrder(type);
 		type = Nothing;
