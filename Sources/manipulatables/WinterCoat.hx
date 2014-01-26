@@ -23,7 +23,7 @@ class WinterCoat extends Sprite implements ManipulatableSprite
 	
 	function get_name():String 
 	{
-		return "Helmet";
+		return "Winter Coat";
 	}
 	
 	public var name(get_name, null):String;
