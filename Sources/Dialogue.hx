@@ -20,8 +20,15 @@ class Dialogue {
 		next();
 	}
 	
+	public static function update() : Void {
+		if (index >= 0 && !items[index].finished) {
+			items[index].execute();
+		}
+	}
+	
 	public static function next(): Void {
 		if (index >= 0 && !items[index].finished) {
+			items[index].execute();
 			return;
 		}
 		

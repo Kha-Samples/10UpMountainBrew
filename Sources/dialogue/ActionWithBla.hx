@@ -7,15 +7,17 @@ import manipulatables.ManipulatableSprite;
 class ActionWithBla extends Action {
 	var bla : Bla;
 	
-	public function new(bla : Bla, sprites: Array<ManipulatableSprite>, type: ActionType, func: ActionFunc) {
-		super(sprites, type, func);
+	public function new(bla : Bla, sprites: Array<ManipulatableSprite>, type: ActionType) {
+		super(sprites, type);
 		this.bla = bla;
 		autoAdvance = false;
 	}
 	
 	override public function execute():Void 
 	{
+		if (!started) {
+			bla.execute();
+		}
 		super.execute();
-		bla.execute();
 	}
 }

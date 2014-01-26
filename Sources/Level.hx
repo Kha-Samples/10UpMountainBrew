@@ -150,8 +150,8 @@ class Level {
 		
 		switch (levelName) {
 		case "level1":
-			Dialogue.set([new Action([jmpMan], Sleep, null /* TODO: sleep */),
-						  new ActionWithBla(new Bla("Ouch! My head...", jmpMan), [jmpMan], WakeUp, null /* TODO: wake up */),
+			Dialogue.set([new Action([jmpMan], Sleep),
+						  new ActionWithBla(new Bla("Ouch! My head...", jmpMan), [jmpMan], WakeUp),
 						  new Bla("Where am I? And where are my clothes?", jmpMan)]);
 		default:
 			
