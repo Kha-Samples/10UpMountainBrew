@@ -42,7 +42,7 @@ class Level {
 		if (jmpMan == null) jmpMan = new Jumpman();
 
 		var tileColissions = new Array<Tile>();
-		for (i in 0...140) {
+		for (i in 0...300) {
 			tileColissions.push(new Tile(i, isCollidable(i)));
 		}
 		var blob = Loader.the.getBlob(levelName + ".map");
@@ -162,11 +162,14 @@ class Level {
 	}
 	
 	private static function isCollidable(tilenumber : Int) : Bool {
-		if (levelName != "level3") {
+		if (levelName == "level1") {
 			switch (tilenumber) {
 				case 33, 34, 35, 36, 48, 49, 50, 96, 97, 98, 99, 100, 101: return true;
 				default: return false;
 			}
+		}
+		else if (levelName == "level2") {
+			return tilenumber < 96;
 		}
 		else {
 			switch (tilenumber) {
