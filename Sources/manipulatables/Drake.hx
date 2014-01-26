@@ -7,6 +7,6 @@ import manipulatables.ManipulatableSprite.OrderType;
 // (mytischer) Drache
 class Drake extends Director {
 	public function new(px : Int, py : Int) {
-		super(px, py, "Drake", Loader.the.getImage("dragon"), 240 * 2 / 3, 64 * 2);
+		super(px, py, "Drake", Loader.the.getImage("dragon"), Std.int(240 * 2 / 3), 64 * 2);
 	}
 }

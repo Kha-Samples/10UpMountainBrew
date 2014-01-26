@@ -10,10 +10,10 @@ import manipulatables.ManipulatableSprite.OrderType;
 class Director extends Sprite implements ManipulatableSprite
 {
 
-	public function new(px : Int, py : Int, name : String = null, image:Image = null) 
+	public function new(px : Int, py : Int, name : String = null, image:Image = null, w: Int = 0, h: Int = 0) 
 	{
 		if (image == null) image = Loader.the.getImage("pizza_pixel");
-		super(image);
+		super(image, w, h);
 		x = px;
 		y = py;
 		if (name == null) {
