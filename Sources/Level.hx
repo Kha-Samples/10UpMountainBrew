@@ -74,9 +74,12 @@ class Level {
 		Scene.the.clear();
 		Scene.the.setBackgroundColor(Color.fromBytes(255, 255, 255));
 		
-		var tileset = "sml_tiles";
+		var tileset: String = "";
 		if (levelName == "level1") tileset = "tileset1";
 		if (levelName == "level2") tileset = "tileset4";
+		if (levelName == "level3") {
+			tileset = "tileset2";
+		}
 		
 		var tilemap : Tilemap = new Tilemap(tileset, 32, 32, map, tileColissions);
 		Scene.the.setColissionMap(tilemap);
@@ -93,10 +96,8 @@ class Level {
 		}
 		for (i in 0...spriteCount) {
 			var sprite: kha.Sprite;
-			if (levelName != "level3") {
-				sprites[i * 3 + 1] *= 2;
-				sprites[i * 3 + 2] *= 2;
-			}
+			sprites[i * 3 + 1] *= 2;
+			sprites[i * 3 + 2] *= 2;
 			switch (sprites[i * 3]) {
 			case 0: // helmet
 				sprite = new Helmet(sprites[i * 3 + 1], sprites[i * 3 + 2]);
@@ -173,36 +174,8 @@ class Level {
 		}
 		else {
 			switch (tilenumber) {
-			case 1: return true;
-			case 6: return true;
-			case 7: return true;
-			case 8: return true;
-			case 26: return true;
-			case 33: return true;
-			case 39: return true;
-			case 48: return true;
-			case 49: return true;
-			case 50: return true;
-			case 53: return true;
-			case 56: return true;
-			case 60: return true;
-			case 61: return true;
-			case 62: return true;
-			case 63: return true;
-			case 64: return true;
-			case 65: return true;
-			case 67: return true;
-			case 68: return true;
-			case 70: return true;
-			case 74: return true;
-			case 75: return true;
-			case 76: return true;
-			case 77: return true;
-			case 84: return true;
-			case 86: return true;
-			case 87: return true;
-			default:
-				return false;
+			case 125, 126, 127, 128, 129, 130, 131, 132, 133: return true;
+			default: return false;
 			}
 		}
 	}

@@ -212,6 +212,22 @@
       "name": "tileset4",
       "scale": 2.0,
       "circle": false
+    },
+    {
+      "id": "52813df4-2ccf-4353-a29f-e534285f9f68",
+      "type": "image",
+      "file": "tileset2.png",
+      "name": "tileset2",
+      "scale": 2.0,
+      "circle": false
+    },
+    {
+      "id": "592d7d32-b71e-442a-9340-6d52e70f18c8",
+      "type": "image",
+      "file": "tileset3.png",
+      "name": "tileset3",
+      "scale": 2.0,
+      "circle": false
     }
   ],
   "rooms": [
@@ -277,11 +293,12 @@
       "neighbours": [],
       "assets": [
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
-        "2348bd74-d7ce-11e1-9b23-0800200c9a66",
         "6887093a-7d17-4f61-8e61-d2666778070c",
         "10f9b200-85d3-11e3-baa7-0800200c9a66",
         "2348bd71-d7ce-11e1-9b23-0800200c9a66",
-        "893ebf74-743a-4e90-bb55-17bbc2f8174e"
+        "893ebf74-743a-4e90-bb55-17bbc2f8174e",
+        "52813df4-2ccf-4353-a29f-e534285f9f68",
+        "592d7d32-b71e-442a-9340-6d52e70f18c8"
       ]
     }
   ]

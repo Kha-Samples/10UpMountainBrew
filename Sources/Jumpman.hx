@@ -77,7 +77,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	
 	public function reset() {
 		x = spawnX;
-		y = 400;
+		y = 350;
 		standing = false;
 		setAnimation(jumpRight);
 	}
