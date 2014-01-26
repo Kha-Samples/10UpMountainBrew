@@ -40,7 +40,7 @@ class SurgicalMaskAndInjection extends Sprite implements ManipulatableSprite
 			} else {
 				kha.Scene.the.removeHero(this);
 				jmpMan.hasSurgicalMask = true;
-				// TODO: change model
+				Jumpman.getInstance().doc();
 				Inventory.pick(new Injection(0, 0));
 				Dialogue.set([new Bla("TakeMask", jmpMan)]);
 			}

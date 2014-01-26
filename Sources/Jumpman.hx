@@ -45,16 +45,11 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	public var hasWinterCoat : Bool = false;
 	
 	public function new() {
-		super(Loader.the.getImage("agent"), Std.int(410 / 10) * 2, Std.int(455 / 7) * 2, 2);
+		super(Loader.the.getImage("agent"), Std.int(360 / 9) * 2, Std.int(768 / 12) * 2, 2);
 		instance = this;
 		x = y = 50;
 		standing = false;
-		walkLeft = Animation.createRange(11, 18, 4);
-		walkRight = Animation.createRange(1, 8, 4);
-		standLeft = Animation.create(10);
-		standRight = Animation.create(0);
-		jumpLeft = Animation.create(31);
-		jumpRight = Animation.create(30);
+		naked();
 		setAnimation(jumpRight);
 		collider = new Rectangle(20, 30, 41 * 2 - 40, (65 - 1) * 2 - 30);
 		score = 0;
@@ -67,6 +62,39 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		jumpcount = 0;
 		zzzzz = Loader.the.getImage("zzzzz");
 		name = "Player";
+	}
+	
+	private function setAnim(indexStart: Int): Void {
+		walkLeft = Animation.createRange(indexStart + 10, indexStart + 17, 4);
+		walkRight = Animation.createRange(indexStart + 1, indexStart + 8, 4);
+		standLeft = Animation.create(indexStart + 9);
+		standRight = Animation.create(indexStart + 0);
+		jumpLeft = Animation.create(indexStart + 9);
+		jumpRight = Animation.create(indexStart + 0);
+	}
+	
+	public function naked(): Void {
+		setAnim(0);
+	}
+	
+	public function coat(): Void {
+		setAnim(18);
+	}
+	
+	public function helmet(): Void {
+		setAnim(36);
+	}
+	
+	public function doc(): Void {
+		setAnim(54);
+	}
+	
+	public function coatHelmet(): Void {
+		setAnim(54 + 18);
+	}
+	
+	public function coatDoc(): Void {
+		setAnim(54 + 18 + 18);
 	}
 	
 	public static function getInstance() : Jumpman {
@@ -115,6 +143,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		
 		if (y > 470) {
 			isWinter = false;
+			naked();
 			Jumpman.getInstance().setSpawn(500);
 			Level.load("level3", initLevel);
 		}

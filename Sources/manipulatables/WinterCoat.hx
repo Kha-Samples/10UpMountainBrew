@@ -38,7 +38,8 @@ class WinterCoat extends Sprite implements ManipulatableSprite
 		if (order == OrderType.Take) {
 			Scene.the.removeHero(this);
 			Jumpman.getInstance().hasWinterCoat = true; 
-			// TODO: change model
+			if (Jumpman.getInstance().hasHelmet) Jumpman.getInstance().coatHelmet();
+			else Jumpman.getInstance().coatDoc();
 		}
 	}
 	
