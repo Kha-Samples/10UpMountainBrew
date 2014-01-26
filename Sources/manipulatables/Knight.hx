@@ -9,6 +9,6 @@ class Knight extends GuyWithExtinguisher
 {
 	public function new(px:Int, py:Int) 
 	{
-		super(px, py, "Knight", Loader.the.getImage("mechanic"));
+		super(px, py, "Squire", Loader.the.getImage("mechanic"));
 	}
 }

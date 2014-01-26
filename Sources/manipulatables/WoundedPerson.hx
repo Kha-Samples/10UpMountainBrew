@@ -13,7 +13,7 @@ class WoundedPerson extends Director
 {
 	public function new(px : Int, py : Int) 
 	{
-		super(px, py, "wounded Person", Loader.the.getImage("pixel_pizza"));
+		super(px, py, "Wounded", Loader.the.getImage("pixel_pizza"));
 		x = px;
 		y = py;
 	}

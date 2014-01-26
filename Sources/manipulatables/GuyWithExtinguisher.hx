@@ -1,4 +1,5 @@
 package manipulatables;
+import dialogue.Bla;
 import kha.Animation;
 import kha.Loader;
 import kha.Rectangle;
@@ -32,7 +33,7 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 		y = py - 40;
 		
 		if (name == null) {
-			this.name = "Ms. M";
+			this.name = "Mechanic";
 		} else {
 			this.name = name;
 		}
@@ -96,27 +97,45 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	
 	public var name(get_name, null):String;
 	
+	public var firstTime = true;
 	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
 		if (selectedItem == null) {
-			return OrderType.Nothing;
+			if (firstTime) {
+				return OrderType.Bla;
+			} else {
+				return sprite.getOrder(selectedItem);
+			}
 		} else {
 			return OrderType.WontWork;
 		}
 	}
 	
+	var sprite : UseableSprite;
 	public function executeOrder(order:OrderType):Void 
 	{
-		
+		var jmpMan = Jumpman.getInstance();
+		if (order == OrderType.Bla) {
+			firstTime = false;
+			if (jmpMan.hasHelmet) {
+				firstTime = false;
+				Dialogue.set([new Bla("L2A_Squire_1a", jmpMan),
+							  new Bla("L2A_Squire_1b", jmpMan),
+							  new Bla("L2A_Squire_1c", jmpMan),
+							  new Bla("L2A_Squire_1d", this)]);
+			}
+		} else if (order == OrderType.Take) {
+			sprite.executeOrder(order);
+		}
 	}
 	
 	public function spawnItem() : Void {
-		var sprite : UseableSprite;
-		if (name == "Knight") {
+		if (name == "Squire") {
 			sprite = new Sword(Std.int(x), Std.int(y)); // TODO: set position and orientation and animation?
 		} else {
 			sprite = new Extinguisher(Std.int(x), Std.int(y)); // TODO: set position and orientation and animation?
 		}
+		sprite.guy = this;
 		Scene.the.addHero(sprite);
 	}
 }
