@@ -4,6 +4,7 @@ import kha.Animation;
 import kha.Direction;
 import kha.Image;
 import kha.Loader;
+import kha.Painter;
 import kha.Scene;
 import kha.Sprite;
 import manipulatables.ManipulatableSprite;
@@ -62,5 +63,9 @@ class Door extends Sprite implements ManipulatableSprite {
 	public function initLevel() : Void {
 		Jumpman.getInstance().reset();
 		Scene.the.addHero(Jumpman.getInstance());
+	}
+	
+	override public function render(painter: Painter): Void {
+		// doors are included in level tiles
 	}
 }

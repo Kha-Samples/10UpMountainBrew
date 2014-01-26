@@ -69,7 +69,7 @@ class Level {
 		Scene.the.setBackgroundColor(Color.fromBytes(255, 255, 255));
 		
 		var tileset = "sml_tiles";
-		if (levelName == "level1") tileset = "tileset1";
+		if (levelName != "level3") tileset = "tileset1";
 		
 		var tilemap : Tilemap = new Tilemap(tileset, 32, 32, map, tileColissions);
 		Scene.the.setColissionMap(tilemap);
@@ -87,7 +87,7 @@ class Level {
 		var jmpMan = Jumpman.getInstance();
 		for (i in 0...spriteCount) {
 			var sprite: kha.Sprite;
-			if (levelName == "level1") {
+			if (levelName != "level3") {
 				sprites[i * 3 + 1] *= 2;
 				sprites[i * 3 + 2] *= 2;
 			}
@@ -145,7 +145,7 @@ class Level {
 	}
 	
 	private static function isCollidable(tilenumber : Int) : Bool {
-		if (levelName == "level1") {
+		if (levelName != "level3") {
 			switch (tilenumber) {
 				case 33, 34, 35, 36, 48, 49, 50, 96, 97, 98, 99, 100, 101: return true;
 				default: return false;
