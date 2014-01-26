@@ -6,6 +6,8 @@ import manipulatables.ManipulatableSprite;
 enum ActionType {
 	Sleep;
 	WakeUp;
+	Slay;
+	Run;
 }
 
 class Action implements DialogueItem {
@@ -38,17 +40,25 @@ class Action implements DialogueItem {
 							untyped sprite.unsleep();
 						} catch (e : Dynamic){ }
 					}
+				case ActionType.Slay:
+					// TODO:
+				case ActionType.Run:
+					// TODO:
 			}
 			return;
 		} else {
 			switch(type) {
-				case ActionType.Sleep:
-					++counter;
-					if (counter < 100) {
-						return;
-					}
-				case ActionType.WakeUp:
-						
+			case ActionType.Sleep:
+				++counter;
+				if (counter < 100) {
+					return;
+				}
+			case ActionType.WakeUp:
+				// Nothing todo here.
+			case ActionType.Slay:
+				// TODO:
+			case ActionType.Run:
+				// TODO:
 			}
 		}
 		actionFinished();

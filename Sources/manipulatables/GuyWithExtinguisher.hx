@@ -23,8 +23,10 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	private var jumpLeft: Animation;
 	private var jumpRight: Animation;
 
+	static public var the;
 	public function new(px : Int, py : Int, name : String = null, image : Image = null) 
 	{
+		the = this;
 		if (image == null) {
 			image = Loader.the.getImage("mechanic");
 		}
@@ -135,7 +137,6 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 		} else {
 			sprite = new Extinguisher(Std.int(x), Std.int(y)); // TODO: set position and orientation and animation?
 		}
-		sprite.guy = this;
 		Scene.the.addHero(sprite);
 	}
 }
