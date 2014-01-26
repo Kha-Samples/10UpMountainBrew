@@ -25,7 +25,7 @@ class BlaBox {
 	
 	public static function render(painter: Painter): Void {
 		if (pointed == null || text == null) return;
-		if (font == null) font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 30);
+		if (font == null) font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 20);
 		
 		var sx = pointed.x + pointed.width / 2 - Scene.the.screenOffsetX;
 		
