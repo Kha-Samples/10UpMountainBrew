@@ -119,6 +119,7 @@ class Level {
 					Dialogue.set([new Bla("L2A_Drake_Groah", sprite)]);
 				} else if (jmpMan.hasSurgicalMask) {
 					sprite = new WoundedPerson(sprites[i * 3 + 1], sprites[i * 3 + 2]);
+					Dialogue.set([new Bla("L2B_Wounded_1", sprite)]);
 				} else {
 					throw "This should not happen. Therefore you shall not pass\n\n\n\\n\n\nthis line of code";
 				}

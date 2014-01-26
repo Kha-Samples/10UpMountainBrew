@@ -69,16 +69,25 @@ class Director extends Sprite implements ManipulatableSprite
 				Dialogue.set([new ActionWithBla(new Bla("L2A_Drake_a", jmpMan), [this], ActionType.Slay),
 							  new Bla("L2A_Drake_b", GuyWithExtinguisher.the),
 							  new Action([GuyWithExtinguisher.the], ActionType.Run)]);
-				// TODO: Slay Dragon
+			case OrderType.Apply:
+				Dialogue.set([new ActionWithBla(new Bla("L2B_Wounded_3", jmpMan), [this], ActionType.Slay)]);
 			case Bla:
-				if (slayed) {
-					Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
-								  new Bla("L2A_Drake_Groah", this),
-								  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+				if (jmpMan.hasHelmet) {
+					if (slayed) {
+						Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
+									  new Bla("L2A_Drake_Groah", this),
+									  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+					} else {
+						Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
+									  new Bla("L2A_Drake_Groah", this),
+									  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+					}
 				} else {
-					Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
-								  new Bla("L2A_Drake_Groah", this),
-								  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
+					if (slayed) {
+						Dialogue.set([new Bla("L2B_Wounded_4", jmpMan)]);
+					} else {
+						Dialogue.set([new Bla("L2B_Wounded_2", jmpMan)]);
+					}
 				}
 			default:
 				// Nothing todo yet.

@@ -122,3 +122,23 @@
 	<de>Wohl an denn! Dem Gewürm entgegen.</de>
 	<en>Let us slay the beasts!</en>
 </L2A_TakeCloak>
+
+
+<L2B_Mechanic>
+	<de>Ich sollte mich besser um den Verwundeten kümmern.</de>
+</L2B_Mechanic>
+<L2B_Wounded_1>
+	<de>Ahhhh, ahhhhh!</de>
+</L2B_Wounded_1>
+<L2B_Wounded_2>
+	<de>Ich sollte ihn erstmal beruhigen.</de>
+</L2B_Wounded_2>
+<L2B_Wounded_3>
+	<de>So jetzt kann ich ihn behandeln.</de>
+</L2B_Wounded_3>
+<L2B_Wounded_4>
+	<de>Sein Arm brennt immer noch.</de>
+</L2B_Wounded_4>
+<L2B_Wounded_5>
+	<de>Wenn ich den Arm amputiere, dann kann sich das Feuer nicht weiter Ausbreiten...</de>
+</L2B_Wounded_5>

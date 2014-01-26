@@ -40,7 +40,7 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	private var zzzzz: Image;
 	private var zzzzzIndex: Int = 0;
 
-	static public var the;
+	static public var the : GuyWithExtinguisher;
 	public function new(px : Int, py : Int, name : String = null, image : Image = null) 
 	{
 		the = this;

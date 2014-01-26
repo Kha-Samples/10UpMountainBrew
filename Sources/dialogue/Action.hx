@@ -1,6 +1,7 @@
 package dialogue;
 
 import Dialogue.DialogueItem;
+import manipulatables.Director;
 import manipulatables.GuyWithExtinguisher;
 import manipulatables.ManipulatableSprite;
 
@@ -42,7 +43,7 @@ class Action implements DialogueItem {
 						} catch (e : Dynamic){ }
 					}
 				case ActionType.Slay:
-					// TODO:
+					// Nothing here?
 				case ActionType.Run:
 					GuyWithExtinguisher.the.right = true;
 			}
@@ -57,7 +58,7 @@ class Action implements DialogueItem {
 			case ActionType.WakeUp:
 				// Nothing todo here.
 			case ActionType.Slay:
-				// TODO:
+				Director.the.slayed = true; // TODO
 			case ActionType.Run:
 				// TODO:
 			}
