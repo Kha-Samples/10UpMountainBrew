@@ -50,6 +50,7 @@ class BlaBox {
 		painter.setColor(Color.fromBytes(0, 0, 0));
 		painter.drawLine(sx - 5, 400 - 5, sx, 420, 4);
 		painter.drawLine(sx + 5, 400 - 5, sx, 420, 4);
+		painter.setFont(font);
 		
 		var tx: Float = x + 10;
 		var ty: Float = 300 + 10;

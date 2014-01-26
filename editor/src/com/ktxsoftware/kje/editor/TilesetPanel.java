@@ -38,7 +38,7 @@ public class TilesetPanel extends JPanel implements MouseListener, MouseMotionLi
 
 	private TilesetPanel() {
 		tileset = new Tileset(
-				"../Assets/Graphics/tileset1.png",
+				"../Assets/Graphics/tileset4.png",
 				Level.TILE_WIDTH, Level.TILE_HEIGHT);
 		setPreferredSize(new Dimension(PANEL_WIDTH, PANEL_HEIGHT));
 		addMouseMotionListener(this);
