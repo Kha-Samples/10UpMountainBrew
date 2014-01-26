@@ -1,5 +1,6 @@
 package;
 
+import BrewingOfTenUp.Mode;
 import kha.Scene;
 
 interface DialogueItem {
@@ -10,13 +11,12 @@ interface DialogueItem {
 class Dialogue {
 	private static var items: Array<DialogueItem>;
 	private static var index: Int;
-	public static var active: Bool = false;
 	public static var isActionActive(default,null): Bool = false;
 	
 	public static function set(items: Array<DialogueItem>): Void {
 		Dialogue.items = items;
 		index = -1;
-		active = true;
+		BrewingOfTenUp.getInstance().mode = Mode.BlaBlaBla;
 		next();
 	}
 	
@@ -30,7 +30,7 @@ class Dialogue {
 		BlaBox.setText(null);
 		
 		if (index >= items.length) {
-			active = false;
+			BrewingOfTenUp.getInstance().mode = Mode.Game;
 			return;
 		}
 		
