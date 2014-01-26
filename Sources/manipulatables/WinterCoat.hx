@@ -13,7 +13,7 @@ class WinterCoat extends Sprite implements ManipulatableSprite
 
 	public function new(px : Int, py : Int) 
 	{
-		super(Loader.the.getImage("coin"));
+		super(Loader.the.getImage("pizza_pixel"));
 		x = px;
 		y = py;
 		accy = 0;
