@@ -71,9 +71,12 @@
 <L2A_Drake_Groah>
 	<de>Grooaaah!!!</de>
 </L2A_Drake_Groah>
-<L2A_Drake_NoSword>
-	<de>Stirb elendes Gewürm! - Doch ich brauche zuerst mein Schwert.</de>
-</L2A_Drake_NoSword>
+<L2A_Drake_NoSword_a>
+	<de>Stirb elendes Gewürm!</de>
+</L2A_Drake_NoSword_a>
+<L2A_Drake_NoSword_b>
+	<de>Doch ich brauche zuerst mein Schwert.</de>
+</L2A_Drake_NoSword_b>
 <L2A_Squire_1a>
 	<de>Wohl an denn, mein tapferer Knappe.</de>
 </L2A_Squire_1a>

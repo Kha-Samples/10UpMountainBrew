@@ -17,19 +17,21 @@ class Sword extends UseableSprite
 	
 	override public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
-		if ( guy.firstTime ) {
-			return guy.getOrder(selectedItem);
+		if ( GuyWithExtinguisher.the.firstTime ) {
+			return GuyWithExtinguisher.the.getOrder(selectedItem);
 		}
 		return super.getOrder(selectedItem);
 	}
 	
 	override public function executeOrder(order:OrderType):Void 
 	{
-		if ( guy.firstTime ) {
-			guy.executeOrder(order);
-			return;
+		if (order == OrderType.Take) {
+			if ( GuyWithExtinguisher.the.firstTime ) {
+				GuyWithExtinguisher.the.executeOrder(order);
+				return;
+			}
+			Dialogue.set([new Bla("L2A_Squire_2", Jumpman.getInstance())]);
 		}
-		Dialogue.set([new Bla("L2A_Squire_2", Jumpman.getInstance())]);
 		super.executeOrder(order);
 	}
 }

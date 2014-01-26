@@ -1,4 +1,6 @@
 package manipulatables;
+import dialogue.Action;
+import dialogue.ActionWithBla;
 import dialogue.Bla;
 import kha.Loader;
 import manipulatables.UseableSprite;
@@ -10,7 +12,7 @@ import manipulatables.ManipulatableSprite.OrderType;
 // Direktor
 class Director extends Sprite implements ManipulatableSprite
 {
-
+	static public var the;
 	public function new(px : Int, py : Int, name : String = null, image:Image = null, w: Int = 0, h: Int = 0) 
 	{
 		py -= 40;
@@ -27,6 +29,7 @@ class Director extends Sprite implements ManipulatableSprite
 		} else {
 			this.name = name;
 		}
+		the = this;
 	}
 	
 	/* INTERFACE manipulatables.ManipulatableSprite */
@@ -41,7 +44,7 @@ class Director extends Sprite implements ManipulatableSprite
 	public function getOrder(selectedItem:UseableSprite):OrderType 
 	{
 		if (selectedItem == null) {
-			return OrderType.ToolTip;
+			return OrderType.Bla;
 		} else if (Std.is(selectedItem, Injection)) {
 			return OrderType.Apply;
 		} else if (Std.is(selectedItem, Sword)) {
@@ -55,12 +58,19 @@ class Director extends Sprite implements ManipulatableSprite
 	
 	public function executeOrder(order:OrderType):Void 
 	{
+		var jmpMan = Jumpman.getInstance();
 		switch (order) {
 			case Eat:
 				Inventory.loose(Inventory.getSelectedItem());
 				Dialogue.set([new Bla("L2A_Drake_Groah",this)]);
 			case Slay:
+				Dialogue.set([new ActionWithBla(new Bla("L2A_Drake_a", jmpMan),[this], ActionType.Slay),
+							  new ActionWithBla(new Bla("L2A_Drake_b", GuyWithExtinguisher.the), [GuyWithExtinguisher.the], ActionType.Run)]);
 				// TODO: Slay Dragon
+			case Bla:
+				Dialogue.set([new Bla("L2A_Drake_NoSword_a", jmpMan),
+							  new Bla("L2A_Drake_Groah", this),
+							  new Bla("L2A_Drake_NoSword_b", jmpMan)]);
 			default:
 				// Nothing todo yet.
 		}
