@@ -28,6 +28,7 @@ import kha.Tilemap;
 enum Mode {
 	Init;
 	Game;
+	BlaBlaBla;
 }
 
 class BrewingOfTenUp extends Game {
@@ -35,7 +36,7 @@ class BrewingOfTenUp extends Game {
 	var highscoreName : String;
 	var shiftPressed : Bool;
 	private var font: Font;
-	var mode : Mode;
+	public var mode : Mode;
 	
 	public function new() {
 		super("Brewing", false);
@@ -67,7 +68,6 @@ class BrewingOfTenUp extends Game {
 		
 		adventureCursor = new AdventureCursor();
 		kha.Sys.mouse.pushCursor(adventureCursor);
-		mode = Mode.Game;
 		
 		//Dialogue.set(["Hallo", "Holla"], [Jumpman.getInstance(), Jumpman.getInstance()]);
 	}
@@ -85,7 +85,7 @@ class BrewingOfTenUp extends Game {
 		switch (mode) {
 		case Init:
 				// Nothing todo yet.
-		case Game:
+		case Game, BlaBlaBla:
 			super.render(painter);
 			painter.translate(0, 0);
 			BlaBox.render(painter);
@@ -145,15 +145,12 @@ class BrewingOfTenUp extends Game {
 	override public function mouseUp(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
-			if (Dialogue.active) {
-				Dialogue.next();
-			}
-			else {
-				currentOrder.type = adventureCursor.hoveredType;
-				currentOrder.x = x + scene.screenOffsetX;
-				currentOrder.y = y + scene.screenOffsetY;
-				currentOrder.object = adventureCursor.hoveredObject;
-			}
+			currentOrder.type = adventureCursor.hoveredType;
+			currentOrder.x = x + scene.screenOffsetX;
+			currentOrder.y = y + scene.screenOffsetY;
+			currentOrder.object = adventureCursor.hoveredObject;
+		case Mode.BlaBlaBla:
+			Dialogue.next();
 		default:
 		}
 	}

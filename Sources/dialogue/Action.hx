@@ -12,6 +12,7 @@ typedef ActionFinished = Void -> Void;
 typedef ActionFunc = Array<ManipulatableSprite> -> ActionType -> ActionFinished -> Void;
 
 class Action implements DialogueItem {
+	var autoAdvance : Bool = true;
 	var sprites : Array<ManipulatableSprite>;
 	var type : ActionType;
 	var func : ActionFunc;
@@ -34,5 +35,8 @@ class Action implements DialogueItem {
 	@:access(Dialogue.isActionActive) 
 	function actionFinished() {
 		finished = true;
+		if (autoAdvance) {
+			Dialogue.next();
+		}
 	}
 }

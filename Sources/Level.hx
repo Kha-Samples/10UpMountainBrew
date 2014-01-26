@@ -1,4 +1,7 @@
 package;
+
+import BrewingOfTenUp;
+import dialogue.Action;
 import dialogue.ActionWithBla;
 import dialogue.Bla;
 import kha.Color;
@@ -142,10 +145,13 @@ class Level {
 				continue;
 			}
 		}
+		BrewingOfTenUp.getInstance().mode = Mode.Game;
 		
 		switch (levelName) {
 		case "level1":
-			Dialogue.set([new ActionWithBla(new Bla("Ouch! My head...", jmpMan), [jmpMan], WakeUp, null), new Bla("Where am I? And where are my clothes?", jmpMan)]);
+			Dialogue.set([new Action([jmpMan], Sleep, null /* TODO: sleep */),
+						  new ActionWithBla(new Bla("Ouch! My head...", jmpMan), [jmpMan], WakeUp, null /* TODO: wake up */),
+						  new Bla("Where am I? And where are my clothes?", jmpMan)]);
 		default:
 			
 		}
