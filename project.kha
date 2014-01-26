@@ -301,6 +301,19 @@
         "blue": 201
       },
       "circle": false
+    },
+    {
+      "id": "b0a341a2-eb19-4f1a-955a-8812695d418a",
+      "type": "image",
+      "file": "dragon.png",
+      "name": "dragon",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
     }
   ],
   "rooms": [
@@ -362,7 +375,8 @@
         "9c8c0db0-d7cc-11e1-9b23-0800200c9a66",
         "a7a42c00-d7cc-11e1-9b23-0800200c9a66",
         "12116430-d7ce-11e1-9b23-0800200c9a66",
-        "ba0d85d2-d2c9-4b47-86b7-24ed2afcd55e"
+        "ba0d85d2-d2c9-4b47-86b7-24ed2afcd55e",
+        "b0a341a2-eb19-4f1a-955a-8812695d418a"
       ]
     },
     {
