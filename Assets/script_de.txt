@@ -1,0 +1,39 @@
+Level 1:
+Mr. S:	Ah, mein Kopf...
+Mr. S:	Wo bin ich? Und wo ist meine Kleidung?
+Mr. S:	*schaut zur Tür* Ohne Kleidung gehe ich da nicht raus.
+a)
+Mr. S:	*nimmt Helm* Ah, ein Helm. Damit kann mich keiner Erkennen.
+Mr. S:	*schaut zum Mundschutz* Mit dem Helm wird mich niemand Erkennen. Kein Grund mit seltsamen Verkleidugen unnötig aufzufallen.
+Mr. S:	*schaut zur Knochensäge* Ritterhelm und Knochensäge? Ich will draußen doch nicht auffallen...
+b)
+Mr. S:	*nimmt Mundschutz* Damit sollte ich unerkannt nach draußen gelangen können.
+Mr. S:	*schaut zum Helm* Niemand wird an mich denken, wenn er einen Arzt sieht. Kein Grund mit seltsamen Verkleidungen unnötig aufzufallen.
+Mr. S:	*nimmt Knochensäge* Man weiß nie wofür man sowas gebrauchen kann...
+
+Level 2 a)
+Drache faucht und speit Feuer.
+Mr S's Knappe wehrt die Flammen mit Schwert und Schild ab.
+Mr. S:	*schaut zum Drachen* Ich brauche zuerst mein Schwert.
+Mr. S:	*Ruft zum Knappen* Wohl an denn, mein tapferer Knappe. Uns dünkt wir schulden ihm Dank, dass er die Bestie so Tapfer in Schach hält, bis sein Herr kommt, den Wurm zu erlegen. Nun eilt und reicht uns unser Schwert und Schild.
+Knappe:	*Ruft zum Ritter* Nein mein Herr, Ich bin soweit, ich kann den Drachen alleine erlegen.
+Mr. S:	*Geht zum Knappen* Törichter Junge! Reicht uns unser Schwert!
+Mr. S:	*Schlägt Knappen und entreißt ihm Schwert und Schild*
+Mr. S:	*Erschlägt Drachen* Wohl an denn, elender Wurm. Nehmt dies!
+Knappe: *Läuft davon* Beeilt euch mein Herr, da vorne sind noch mehr!
+Mr. S:	*Schaut zum Drachen* Früher ward das Gewürm würdigere Gegner.
+Ein Opa erscheint (mit Weihnachtsbaum):	Früher war mehr Lammeta.
+Ein Opa verschwindet.
+Mr. S:	*Schaut zur Tür durch die der Knappe eilte* Ich sollte mir erst etwas überwerfen.
+Mr. S:	*Nimmt Wintermantel* Wohl an denn! Dem Gewürm entgegen.
+Mr. S geht durch die Tür.
+
+Level 2 b)
+Ein Feuer brennt. Jemand versucht es zu Löschen. Ein Mann schreit laut. Sein Arm steht in Flammen.
+Mr. S:	*schaut zum Feuerwehrmann* Ich sollte mich besser um den Verwundeten kümmern.
+Mr. S:	*schaut zum Verwundeten* Ich sollte ihn erstmal berühigen.
+Mr. S:	*Benuzt Spritze* So jetzt kann ich ihn behandelt.
+Mr. S:  *Schaut zu Betäuptem* Sein Arm brennt immer noch.
+Mr. S:  *Benuzt Knochensäge* Wenn ich den Arm amputiere, dann kann sich das Feuer nicht weiter Ausbreiten...
+Feuerwehrmann hat feuer gelöscht.
+Feuerwehrmann schlägt Mr. S mit Feuerlöscher nieder...
