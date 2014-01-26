@@ -45,7 +45,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	public var hasWinterCoat : Bool = false;
 	
 	public function new() {
-		super(Loader.the.getImage("agent"), Std.int(360 / 9) * 2, Std.int(512 / 8) * 2, 2);
+		super(Loader.the.getImage("agent"), Std.int(360 / 9) * 2, Std.int(768 / 12) * 2, 2);
 		instance = this;
 		x = y = 50;
 		standing = false;
@@ -87,6 +87,14 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	
 	public function doc(): Void {
 		setAnim(54);
+	}
+	
+	public function coatHelmet(): Void {
+		setAnim(54 + 18);
+	}
+	
+	public function coatDoc(): Void {
+		setAnim(54 + 18 + 18);
 	}
 	
 	public static function getInstance() : Jumpman {
@@ -135,6 +143,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		
 		if (y > 470) {
 			isWinter = false;
+			naked();
 			Jumpman.getInstance().setSpawn(500);
 			Level.load("level3", initLevel);
 		}
