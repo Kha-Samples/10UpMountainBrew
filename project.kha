@@ -63,38 +63,6 @@
       "circle": false
     },
     {
-      "id": "2348bd75-d7ce-11e1-9b23-0800200c9a66",
-      "type": "sound",
-      "file": "coin",
-      "name": "coin",
-      "scale": 1.0,
-      "circle": false
-    },
-    {
-      "id": "2348bd76-d7ce-11e1-9b23-0800200c9a66",
-      "type": "sound",
-      "file": "die",
-      "name": "die",
-      "scale": 1.0,
-      "circle": false
-    },
-    {
-      "id": "2348bd77-d7ce-11e1-9b23-0800200c9a66",
-      "type": "sound",
-      "file": "jump",
-      "name": "jump",
-      "scale": 1.0,
-      "circle": false
-    },
-    {
-      "id": "2348bd78-d7ce-11e1-9b23-0800200c9a66",
-      "type": "sound",
-      "file": "stomp",
-      "name": "stomp",
-      "scale": 1.0,
-      "circle": false
-    },
-    {
       "id": "5c950390-d7ce-11e1-9b23-0800200c9a66",
       "type": "blob",
       "file": "level1.map",
@@ -277,10 +245,6 @@
         "2348bd70-d7ce-11e1-9b23-0800200c9a66",
         "2348bd71-d7ce-11e1-9b23-0800200c9a66",
         "2348bd73-d7ce-11e1-9b23-0800200c9a66",
-        "2348bd75-d7ce-11e1-9b23-0800200c9a66",
-        "2348bd76-d7ce-11e1-9b23-0800200c9a66",
-        "2348bd77-d7ce-11e1-9b23-0800200c9a66",
-        "2348bd78-d7ce-11e1-9b23-0800200c9a66",
         "5c950390-d7ce-11e1-9b23-0800200c9a66",
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
         "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",

@@ -8,13 +8,11 @@ import kha.Sprite;
 
 class Coin extends Sprite {
 	private static var theimage : Image;
-	private static var sound : Sound;
 	static var initialized = false;
 	
 	static function init() {
 		if (!initialized) {
 			theimage = Loader.the.getImage("coin");
-			sound = Loader.the.getSound("coin");
 			initialized = true;
 		}
 	}
@@ -28,7 +26,6 @@ class Coin extends Sprite {
 	}
 	
 	public override function hit(sprite : Sprite) {
-		sound.play();
 		Scene.the.removeEnemy(this);
 		Jumpman.getInstance().selectCoin();
 	}

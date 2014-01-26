@@ -35,9 +35,6 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	var standRight : Animation;
 	var jumpLeft : Animation;
 	var jumpRight : Animation;
-	var stompsound : Sound;
-	var jumpsound : Sound;
-	var diesound : Sound;
 	var score : Int;
 	var round : Int;
 	private var spawnX: Float = 50;
@@ -67,9 +64,6 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		lookRight = true;
 		killed = false;
 		jumpcount = 0;
-		stompsound = Loader.the.getSound("stomp");
-		jumpsound = Loader.the.getSound("jump");
-		diesound = Loader.the.getSound("die");
 		zzzzz = Loader.the.getImage("zzzzz");
 	}
 	
@@ -159,7 +153,6 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	}
 	
 	public function die() {
-		diesound.play();
 		setAnimation(Animation.create(0));
 		speedy = -8;
 		speedx = 0;
@@ -171,7 +164,6 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		if (killed) return;
 		if (enemy.isKilled()) return;
 		if (enemy.collisionRect().y + enemy.collisionRect().height > collisionRect().y + collisionRect().height + 4) {
-			stompsound.play();
 			enemy.kill();
 			speedy = -8;
 			jumpcount = 10;
