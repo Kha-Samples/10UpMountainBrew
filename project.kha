@@ -47,14 +47,6 @@
       "circle": false
     },
     {
-      "id": "2348bd72-d7ce-11e1-9b23-0800200c9a66",
-      "type": "image",
-      "file": "jumpman.png",
-      "name": "jumpman",
-      "scale": 1.0,
-      "circle": false
-    },
-    {
       "id": "2348bd73-d7ce-11e1-9b23-0800200c9a66",
       "type": "image",
       "file": "koopa.png",
@@ -186,6 +178,19 @@
       "name": "tileset1",
       "scale": 2.0,
       "circle": false
+    },
+    {
+      "id": "15984ea8-ef6c-40cd-a4c9-e70772612158",
+      "type": "image",
+      "file": "agent.png",
+      "name": "agent",
+      "scale": 2.0,
+      "circle": false,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      }
     }
   ],
   "rooms": [
@@ -198,8 +203,8 @@
         "15b1ea20-4032-11e2-a25f-0800200c9a66",
         "893ebf74-743a-4e90-bb55-17bbc2f8174e",
         "c4f67b7c-e207-42c9-9c2a-b6991825f6e0",
-        "2348bd72-d7ce-11e1-9b23-0800200c9a66",
-        "8e8215a5-813b-4b48-871f-ef0139f19cfd"
+        "8e8215a5-813b-4b48-871f-ef0139f19cfd",
+        "15984ea8-ef6c-40cd-a4c9-e70772612158"
       ]
     },
     {
