@@ -243,12 +243,64 @@
       "file": "armor.png",
       "name": "armor",
       "scale": 2.0,
-      "circle": false,
       "background": {
         "red": 255,
         "green": 174,
         "blue": 201
-      }
+      },
+      "circle": false
+    },
+    {
+      "id": "8d3fa622-c195-469f-bc53-5d1a91191a0b",
+      "type": "image",
+      "file": "extinguisher.png",
+      "name": "extinguisher",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
+    },
+    {
+      "id": "eec23efd-08f9-4273-bafe-0b48a7ce106f",
+      "type": "image",
+      "file": "saw.png",
+      "name": "saw",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
+    },
+    {
+      "id": "2cfcbf91-50b5-4410-b6f7-eeff3b08c4f9",
+      "type": "image",
+      "file": "docstuff.png",
+      "name": "docstuff",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
+    },
+    {
+      "id": "458ba703-13c2-4ccc-b384-ad3e442e4ff2",
+      "type": "image",
+      "file": "sword.png",
+      "name": "sword",
+      "scale": 2.0,
+      "background": {
+        "red": 255,
+        "green": 174,
+        "blue": 201
+      },
+      "circle": false
     }
   ],
   "rooms": [
@@ -268,7 +320,11 @@
         "9200dbf7-7130-42ed-92a7-669228c87646",
         "2e137328-a746-435c-b8dc-0983291ab5f3",
         "f2c2272e-fc96-47c4-a329-04c926a50c0e",
-        "83023eaf-8b7e-4261-b137-5efa5a66ea4c"
+        "83023eaf-8b7e-4261-b137-5efa5a66ea4c",
+        "8d3fa622-c195-469f-bc53-5d1a91191a0b",
+        "eec23efd-08f9-4273-bafe-0b48a7ce106f",
+        "2cfcbf91-50b5-4410-b6f7-eeff3b08c4f9",
+        "458ba703-13c2-4ccc-b384-ad3e442e4ff2"
       ]
     },
     {

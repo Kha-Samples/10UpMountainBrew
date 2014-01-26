@@ -11,7 +11,7 @@ class SurgicalMaskAndInjection extends UseableSprite
 
 	public function new(px : Int, py : Int) 
 	{
-		super("Surgical Mask and Injection", Loader.the.getImage("pizza_pixel"), px, py);
+		super("Surgical Mask and Injection", Loader.the.getImage("docstuff"), px, py + 30);
 	}
 	
 	override public function getOrder(selectedItem:UseableSprite):OrderType 
