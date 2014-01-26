@@ -51,8 +51,13 @@ class Door extends Sprite implements ManipulatableSprite {
 				Jumpman.getInstance().setSpawn(700);
 			}
 			else {
-				currentLevel = "level3";
-				Jumpman.getInstance().setSpawn(70);
+				if (jmpMan.hasWinterCoat) {
+					currentLevel = "level3";
+					Jumpman.getInstance().setSpawn(70);
+				}
+				else {
+					Dialogue.set([new Bla("Door2", jmpMan)]);
+				}
 			}
 		}
 		else {
