@@ -43,7 +43,7 @@ class Level {
 		if (jmpMan == null) jmpMan = new Jumpman();
 
 		var tileColissions = new Array<Tile>();
-		for (i in 0...300) {
+		for (i in 0...400) {
 			tileColissions.push(new Tile(i, isCollidable(i)));
 		}
 		var blob = Loader.the.getBlob(levelName + ".map");
