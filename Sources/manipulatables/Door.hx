@@ -31,10 +31,16 @@ class Door extends Sprite implements ManipulatableSprite {
 	}
 	
 	public function executeOrder(order : OrderType) : Void {
+		var lastLevel = currentLevel;
 		// Hackathon
 		if (currentLevel == null || currentLevel == "level1") {
-			currentLevel = "level2";
-			Jumpman.getInstance().setSpawn(70);
+			if (Jumpman.getInstance().hasHelmet || Jumpman.getInstance().hasSurgicalMask) {
+				currentLevel = "level2";
+				Jumpman.getInstance().setSpawn(70);
+			}
+			else {
+				Dialogue.set(["I won't go out naked! I have to get dressed. Or maybe disguise myself."], [Jumpman.getInstance()]);
+			}
 		}
 		else if (currentLevel == "level2") {
 			if (x < 200) {
@@ -50,7 +56,7 @@ class Door extends Sprite implements ManipulatableSprite {
 			currentLevel = "level2";
 			Jumpman.getInstance().setSpawn(1170);
 		}
-		Level.load(currentLevel, initLevel);
+		if (currentLevel != lastLevel) Level.load(currentLevel, initLevel);
 	}
 	
 	public function initLevel() : Void {
