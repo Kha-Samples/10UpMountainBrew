@@ -66,7 +66,7 @@ class AdventureCursor implements Cursor {
 		cursors[Enter] = new AnimatedImageCursor(Loader.the.getImage("gumba"), Std.int(96 / 3), 32, new Animation([0, 2], 14), 16, 16); // TODO: cursor
 		currentCursor = null;
 		kha.Sys.mouse.forceSystemCursor(true);
-		font = Loader.the.loadFont("Arial", new FontStyle(false, false, false), 12);
+		font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 14);
 	}
 	
 	public function render(painter: Painter, x: Int, y: Int): Void {
