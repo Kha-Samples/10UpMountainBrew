@@ -67,7 +67,11 @@ class Level {
 		
 		Scene.the.clear();
 		Scene.the.setBackgroundColor(Color.fromBytes(255, 255, 255));
-		var tilemap : Tilemap = new Tilemap("sml_tiles", 32, 32, map, tileColissions);
+		
+		var tileset = "sml_tiles";
+		if (levelName == "level1") tileset = "tileset1";
+		
+		var tilemap : Tilemap = new Tilemap(tileset, 32, 32, map, tileColissions);
 		Scene.the.setColissionMap(tilemap);
 		Scene.the.addBackgroundTilemap(tilemap, 1);
 		var TILE_WIDTH : Int = 32;
@@ -83,6 +87,10 @@ class Level {
 		var jmpMan = Jumpman.getInstance();
 		for (i in 0...spriteCount) {
 			var sprite: kha.Sprite;
+			if (levelName == "level1") {
+				sprites[i * 3 + 1] *= 2;
+				sprites[i * 3 + 2] *= 2;
+			}
 			switch (sprites[i * 3]) {
 			case 0: // helmet
 				sprite = new Helmet(sprites[i * 3 + 1], sprites[i * 3 + 2]);
@@ -137,37 +145,45 @@ class Level {
 	}
 	
 	private static function isCollidable(tilenumber : Int) : Bool {
-		switch (tilenumber) {
-		case 1: return true;
-		case 6: return true;
-		case 7: return true;
-		case 8: return true;
-		case 26: return true;
-		case 33: return true;
-		case 39: return true;
-		case 48: return true;
-		case 49: return true;
-		case 50: return true;
-		case 53: return true;
-		case 56: return true;
-		case 60: return true;
-		case 61: return true;
-		case 62: return true;
-		case 63: return true;
-		case 64: return true;
-		case 65: return true;
-		case 67: return true;
-		case 68: return true;
-		case 70: return true;
-		case 74: return true;
-		case 75: return true;
-		case 76: return true;
-		case 77: return true;
-		case 84: return true;
-		case 86: return true;
-		case 87: return true;
-		default:
-			return false;
+		if (levelName == "level1") {
+			switch (tilenumber) {
+				case 33, 34, 35, 36, 48, 49, 50, 96, 97, 98, 99, 100, 101: return true;
+				default: return false;
+			}
+		}
+		else {
+			switch (tilenumber) {
+			case 1: return true;
+			case 6: return true;
+			case 7: return true;
+			case 8: return true;
+			case 26: return true;
+			case 33: return true;
+			case 39: return true;
+			case 48: return true;
+			case 49: return true;
+			case 50: return true;
+			case 53: return true;
+			case 56: return true;
+			case 60: return true;
+			case 61: return true;
+			case 62: return true;
+			case 63: return true;
+			case 64: return true;
+			case 65: return true;
+			case 67: return true;
+			case 68: return true;
+			case 70: return true;
+			case 74: return true;
+			case 75: return true;
+			case 76: return true;
+			case 77: return true;
+			case 84: return true;
+			case 86: return true;
+			case 87: return true;
+			default:
+				return false;
+			}
 		}
 	}
 }
