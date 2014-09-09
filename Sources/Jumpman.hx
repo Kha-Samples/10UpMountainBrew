@@ -1,12 +1,14 @@
 package;
 
 import kha.Animation;
+import kha.Color;
 import kha.Direction;
+import kha.graphics2.Graphics;
 import kha.Image;
 import kha.Loader;
+import kha.math.Matrix3;
 import kha.math.Vector2;
 import kha.Music;
-import kha.Painter;
 import kha.Rectangle;
 import kha.Rotation;
 import kha.Scene;
@@ -227,10 +229,12 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	
 	public function sleep() {
 		setAnimation(Animation.create(0));
-		rotation = new Rotation(new Vector2(width / 2, collider.height - 4), Math.PI * 1.5);
+		originX = width / 2;
+		originY = collider.height - 4;
+		angle = Math.PI * 1.5;
 		y += collider.height - collider.width;
 		x += collider.width - collider.height;
-		collider = new Rectangle(-collider.y,collider.x + collider.width,collider.height,collider.width);
+		collider = new Rectangle(-collider.y, collider.x + collider.width, collider.height, collider.width);
 		
 		speedy = 0;
 		speedx = 0;
@@ -238,7 +242,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	}
 	
 	public function unsleep() {
-		rotation = null;
+		angle = 0;
 		collider = new Rectangle(collider.y - collider.height, -collider.x, collider.height, collider.width);
 		y -= collider.height - collider.width;
 		x -= collider.width - collider.height;
@@ -255,15 +259,18 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		return 20;
 	}
 	
-	override public function render(painter:Painter):Void 
+	override public function render(g: Graphics): Void 
 	{
 		if (isSleeping()) {
+			g.color = Color.White;
 			//painter.drawImage2(image, 0, 0, width, height, x, y, width, height, rotation);
-			painter.drawImage2(image, 0, 0, width, height, x-collider.x, y-collider.y, width, height, rotation);
-			painter.drawImage2(zzzzz, (Std.int(zzzzzIndex / 8) % 3) * zzzzz.width / 3, 0, zzzzz.width / 3, zzzzz.height, x + zzzzzXDif(), y - 15 - collider.height, zzzzz.width / 3, zzzzz.height);
+			if (angle != 0) g.pushTransformation(g.transformation * Matrix3.translation(x + originX, y + originY) * Matrix3.rotation(angle) * Matrix3.translation(-x - originX, -y - originY));
+			g.drawScaledSubImage(image, 0, 0, width, height, x - collider.x, y - collider.y, width, height);
+			if (angle != 0) g.popTransformation();
+			g.drawScaledSubImage(zzzzz, (Std.int(zzzzzIndex / 8) % 3) * zzzzz.width / 3, 0, zzzzz.width / 3, zzzzz.height, x + zzzzzXDif(), y - 15 - collider.height, zzzzz.width / 3, zzzzz.height);
 		}
 		else {
-			super.render(painter);
+			super.render(g);
 		}
 	}
 	

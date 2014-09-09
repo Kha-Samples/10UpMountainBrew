@@ -3,9 +3,9 @@ package manipulatables;
 import dialogue.Bla;
 import kha.Animation;
 import kha.Direction;
+import kha.graphics2.Graphics;
 import kha.Image;
 import kha.Loader;
-import kha.Painter;
 import kha.Scene;
 import kha.Sprite;
 import manipulatables.ManipulatableSprite;
@@ -72,7 +72,7 @@ class Door extends Sprite implements ManipulatableSprite {
 		Scene.the.addHero(Jumpman.getInstance());
 	}
 	
-	override public function render(painter: Painter): Void {
+	override public function render(g: Graphics): Void {
 		// doors are included in level tiles
 	}
 }

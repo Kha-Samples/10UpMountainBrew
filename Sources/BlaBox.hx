@@ -4,8 +4,8 @@ import kha.AnimatedImageCursor;
 import kha.Color;
 import kha.Font;
 import kha.FontStyle;
+import kha.graphics2.Graphics;
 import kha.Loader;
-import kha.Painter;
 import kha.Scene;
 import kha.Sprite;
 
@@ -27,7 +27,7 @@ class BlaBox {
 		}
 	}
 	
-	public static function render(painter: Painter): Void {
+	public static function render(g: Graphics): Void {
 		if (pointed == null || text == null) return;
 		if (font == null) font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 20);
 		
@@ -45,16 +45,16 @@ class BlaBox {
 			x = 20;
 		}
 	
-		painter.setColor(Color.fromBytes(255, 255, 255));
-		painter.fillRect(x, 300, 400, 100);
-		painter.setColor(Color.fromBytes(0, 0, 0));
-		painter.drawRect(x, 300, 400, 100, 4);
-		painter.setColor(Color.fromBytes(255, 255, 255));
-		painter.fillTriangle(sx - 5, 400 - 5, sx + 5, 400 - 5, sx, 420);
-		painter.setColor(Color.fromBytes(0, 0, 0));
-		painter.drawLine(sx - 5, 400 - 5, sx, 420, 4);
-		painter.drawLine(sx + 5, 400 - 5, sx, 420, 4);
-		painter.setFont(font);
+		g.color = Color.White;
+		g.fillRect(x, 300, 400, 100);
+		g.color = Color.Black;
+		g.drawRect(x, 300, 400, 100, 4);
+		g.color = Color.White;
+		g.fillTriangle(sx - 5, 400 - 5, sx + 5, 400 - 5, sx, 420);
+		g.color = Color.Black;
+		g.drawLine(sx - 5, 400 - 5, sx, 420, 4);
+		g.drawLine(sx + 5, 400 - 5, sx, 420, 4);
+		g.font = font;
 		
 		var tx: Float = x + 10;
 		var ty: Float = 300 + 10;
@@ -69,12 +69,12 @@ class BlaBox {
 				if (txnext > x + 380) {
 					tx = x + 10;
 					ty += font.getHeight();
-					painter.drawString(word, tx, ty);
+					g.drawString(word, tx, ty);
 					tx = tx + font.stringWidth(word);
 				}
 				else {
-					if (first) painter.drawString(word, tx, ty);
-					else painter.drawString(" " + word, tx, ty);
+					if (first) g.drawString(word, tx, ty);
+					else g.drawString(" " + word, tx, ty);
 					tx = txnext;
 				}
 				word = "";

@@ -1,6 +1,11 @@
 package;
 
 import AdventureCursor;
+import kha.Framebuffer;
+import kha.graphics2.Graphics;
+import kha.Image;
+import kha.math.Matrix3;
+import kha.Scaler;
 import manipulatables.Door;
 import manipulatables.ManipulatableSprite;
 import manipulatables.Pizza;
@@ -17,7 +22,6 @@ import kha.Key;
 import kha.Loader;
 import kha.LoadingScreen;
 import kha.Music;
-import kha.Painter;
 import kha.Scene;
 import kha.Score;
 import kha.Configuration;
@@ -33,6 +37,7 @@ enum Mode {
 
 class BrewingOfTenUp extends Game {
 	static var instance : BrewingOfTenUp;
+	private var backbuffer: Image;
 	var highscoreName : String;
 	var shiftPressed : Bool;
 	private var font: Font;
@@ -51,6 +56,7 @@ class BrewingOfTenUp extends Game {
 	}
 	
 	public override function init(): Void {
+		backbuffer = Image.createRenderTarget(800, 600);
 		Level.load("level1", initLevel);
 	}
 
@@ -87,19 +93,28 @@ class BrewingOfTenUp extends Game {
 		}
 	}
 	
-	public override function render(painter : Painter) {
+	public override function render(frame: Framebuffer) {
 		if (Jumpman.getInstance() == null) return;
-		painter.setFont(font);
+		
+		var g = backbuffer.g2;
+		g.begin();
+		g.font = font;
 		switch (mode) {
 		case Init:
 				// Nothing todo yet.
 		case Game, BlaBlaBla:
-			super.render(painter);
-			painter.translate(0, 0);
-			BlaBox.render(painter);
-			Inventory.paint(painter);
+			scene.render(g);
+			g.transformation = Matrix3.identity();
+			BlaBox.render(g);
+			Inventory.paint(g);
 			//break;
 		}
+		kha.Sys.mouse.render(g);
+		g.end();
+		
+		startRender(frame);
+		Scaler.scale(backbuffer, frame, kha.Sys.screenRotation);
+		endRender(frame);
 	}
 
 	override public function buttonDown(button : Button) : Void {

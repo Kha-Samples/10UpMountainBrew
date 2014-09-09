@@ -6,9 +6,9 @@ import kha.Color;
 import kha.Cursor;
 import kha.Font;
 import kha.FontStyle;
+import kha.graphics2.Graphics;
 import kha.ImageCursor;
 import kha.Loader;
-import kha.Painter;
 import kha.Scene;
 import kha.Sprite;
 import manipulatables.ManipulatableSprite;
@@ -69,23 +69,24 @@ class AdventureCursor implements Cursor {
 		font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 14);
 	}
 	
-	public function render(painter: Painter, x: Int, y: Int): Void {
+	public function render(g: Graphics, x: Int, y: Int): Void {
 		if (currentCursor != null) {
-			currentCursor.render(painter, x, y);
+			currentCursor.render(g, x, y);
 			
 			if (forcedTooltip != null) {
-				drawTooltip(painter, forcedTooltip, x, toolTipY);
+				drawTooltip(g, forcedTooltip, x, toolTipY);
 			} else if (toolTip != null) {
-				drawTooltip(painter, toolTip, x, toolTipY);
+				drawTooltip(g, toolTip, x, toolTipY);
 			}
 		}
 	}
 	
-	private function drawTooltip(painter: Painter, tip: String, x: Int, y: Int): Void {
-		painter.setColor(Color.fromBytes(0, 0, 0));
-		painter.fillRect(x - 2, y - 2, font.stringWidth(tip) + 4, font.getHeight() + 4);
-		painter.setColor(Color.fromBytes(255, 255, 255));
-		painter.drawString(tip, x, y);
+	private function drawTooltip(g: Graphics, tip: String, x: Int, y: Int): Void {
+		g.font = font;
+		g.color = Color.Black;
+		g.fillRect(x - 2, y - 2, font.stringWidth(tip) + 4, font.getHeight() + 4);
+		g.color = Color.White;
+		g.drawString(tip, x, y);
 	}
 	
 	public function update(x : Int, y : Int) {

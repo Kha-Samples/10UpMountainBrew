@@ -3,9 +3,9 @@ package;
 import kha.Animation;
 import kha.Color;
 import kha.Game;
+import kha.graphics2.Graphics;
 import kha.Loader;
 import kha.math.Vector2;
-import kha.Painter;
 import manipulatables.UseableSprite;
 
 class Inventory {
@@ -69,23 +69,23 @@ class Inventory {
 		return null;
 	}
 	
-	public static function paint(painter : Painter) {
+	public static function paint(g: Graphics) {
 		var itemX = spacing;
 		var itemY = y + spacing;
-		painter.setColor(Color.ColorBlack);
-		painter.fillRect(0, y, Game.the.width, itemHeight + 2 * spacing);
+		g.color = Color.Black;
+		g.fillRect(0, y, Game.the.width, itemHeight + 2 * spacing);
 		for (i in offset...items.length) {
-			items[i].renderForInventory(painter, itemX, itemY, itemWidth, itemHeight);
+			items[i].renderForInventory(g, itemX, itemY, itemWidth, itemHeight);
 			if (i == selected) {
-				painter.setColor(Color.fromBytes(255, 0, 255));
+				g.color = Color.fromBytes(255, 0, 255);
 				var top = itemY - 1;
 				var bottom = itemY + itemHeight + 1;
 				var left = itemX;
 				var right = itemX + itemWidth + 1;
-				painter.drawLine( left, top, right, top, 3);
-				painter.drawLine( left, top, left, bottom, 3);
-				painter.drawLine( left, bottom, right, bottom, 3);
-				painter.drawLine( right, top, right, bottom, 3);
+				g.drawLine( left, top, right, top, 3);
+				g.drawLine( left, top, left, bottom, 3);
+				g.drawLine( left, bottom, right, bottom, 3);
+				g.drawLine( right, top, right, bottom, 3);
 			}
 			itemX += itemWidth + 2 * spacing;
 		}
