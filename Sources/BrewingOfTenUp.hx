@@ -4,6 +4,8 @@ import AdventureCursor;
 import kha.Assets;
 import kha.Framebuffer;
 import kha.graphics2.Graphics;
+import kha.input.Keyboard;
+import kha.input.KeyCode;
 import kha.Image;
 import kha.math.FastMatrix3;
 import kha.Scaler;
@@ -21,7 +23,6 @@ import kha2d.Tile;
 import kha2d.Tilemap;
 import kha.Scheduler;
 import kha.System;
-import kha.input.KeyCode;
 
 enum Mode {
 	Init;
@@ -58,8 +59,11 @@ class BrewingOfTenUp {
 		Assets.loadEverything(function () {
 			Level.load("level1", initLevel);
 			scene = Scene.the;
+			scene.setSize(width, height);
 			System.notifyOnRender(render);
 			Scheduler.addTimeTask(update, 0, 1 / 60);
+			Keyboard.get().notify(buttonDown, buttonUp, null);
+			kha.input.Mouse.get().notify(mouseDown, mouseUp, null, null);
 		});
 	}
 
@@ -155,8 +159,19 @@ class BrewingOfTenUp {
 	
 	public var adventureCursor(default, null) : AdventureCursor;
 	public var currentOrder(default, null) : MouseOrder = new MouseOrder();
+
+	function mouseDown(button: Int, x: Int, y: Int): Void {
+		if (button == 1) {
+			rightMouseDown(x, y);
+		}
+	}
 	
-	function mouseUp(x:Int, y:Int) : Void {
+	function mouseUp(button: Int, x: Int, y: Int): Void {
+		if (button == 1) {
+			rightMouseUp(x, y);
+			return;
+		}
+
 		switch (mode) {
 		case Mode.Game:
 			currentOrder.cancel();
