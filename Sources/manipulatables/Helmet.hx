@@ -1,12 +1,12 @@
 package manipulatables;
-import dialogue.Bla;
-import kha.Animation;
-import kha.Loader;
-import kha.Scene;
-import manipulatables.UseableSprite;
 
+import kha.Assets;
+import dialogue.Bla;
+import kha2d.Animation;
+import kha2d.Scene;
+import manipulatables.UseableSprite;
 import kha.Image;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 
 // Helm
@@ -15,7 +15,7 @@ class Helmet extends Sprite implements ManipulatableSprite
 
 	public function new(px : Int, py : Int) 
 	{
-		super(Loader.the.getImage("armor"), 72, 70);
+		super(Assets.images.armor, 72, 70);
 		x = px;
 		y = py;
 		accy = 0;

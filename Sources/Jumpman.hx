@@ -1,19 +1,18 @@
 package;
 
-import kha.Animation;
+import kha.Assets;
+import kha2d.Animation;
 import kha.Color;
-import kha.Direction;
+import kha2d.Direction;
 import kha.graphics2.Graphics;
 import kha.Image;
-import kha.Loader;
-import kha.math.Matrix3;
+import kha.math.FastMatrix3;
 import kha.math.Vector2;
-import kha.Music;
-import kha.Rectangle;
+import kha2d.Rectangle;
 import kha.Rotation;
-import kha.Scene;
+import kha2d.Scene;
 import kha.Sound;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite;
 import manipulatables.Pizza;
 import manipulatables.UseableSprite;
@@ -47,7 +46,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 	public var hasWinterCoat : Bool = false;
 	
 	public function new() {
-		super(Loader.the.getImage("agent"), Std.int(360 / 9) * 2, Std.int(768 / 12) * 2, 2);
+		super(Assets.images.agent, Std.int(360 / 9) * 2, Std.int(768 / 12) * 2, 2);
 		instance = this;
 		x = y = 50;
 		standing = false;
@@ -62,7 +61,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		lookRight = true;
 		killed = false;
 		jumpcount = 0;
-		zzzzz = Loader.the.getImage("zzzzz");
+		zzzzz = Assets.images.zzzzz;
 		name = "Player";
 	}
 	
@@ -264,7 +263,7 @@ class Jumpman extends Sprite implements ManipulatableSprite {
 		if (isSleeping()) {
 			g.color = Color.White;
 			//painter.drawImage2(image, 0, 0, width, height, x, y, width, height, rotation);
-			if (angle != 0) g.pushTransformation(g.transformation * Matrix3.translation(x + originX, y + originY) * Matrix3.rotation(angle) * Matrix3.translation(-x - originX, -y - originY));
+			if (angle != 0) g.pushTransformation(g.transformation.multmat(FastMatrix3.translation(x + originX, y + originY)).multmat(FastMatrix3.rotation(angle)).multmat(FastMatrix3.translation(-x - originX, -y - originY)));
 			g.drawScaledSubImage(image, 0, 0, width, height, x - collider.x, y - collider.y, width, height);
 			if (angle != 0) g.popTransformation();
 			g.drawScaledSubImage(zzzzz, (Std.int(zzzzzIndex / 8) % 3) * zzzzz.width / 3, 0, zzzzz.width / 3, zzzzz.height, x + zzzzzXDif(), y - 15 - collider.height, zzzzz.width / 3, zzzzz.height);

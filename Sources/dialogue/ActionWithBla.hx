@@ -1,7 +1,7 @@
 package dialogue;
 
 import dialogue.Action;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite;
 
 class ActionWithBla extends Action {

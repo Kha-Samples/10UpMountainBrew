@@ -1,21 +1,21 @@
 package;
 
-import kha.AnimatedImageCursor;
-import kha.Animation;
+//import kha.AnimatedImageCursor;
+import kha2d.Animation;
+import kha.Assets;
 import kha.Color;
-import kha.Cursor;
 import kha.Font;
 import kha.FontStyle;
 import kha.graphics2.Graphics;
-import kha.ImageCursor;
-import kha.Loader;
-import kha.Scene;
-import kha.Sprite;
+//import kha.ImageCursor;
+import kha2d.Scene;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite;
 import manipulatables.UseableSprite;
 
 class AdventureCursor implements Cursor {
 	private var font: Font;
+	private var fontSize: Int;
 	private var toolTip : String;
 	private var toolTipY : Int;
 	
@@ -58,15 +58,16 @@ class AdventureCursor implements Cursor {
 	public var forcedTooltip : String = null;
 	
 	public function new() {
-		cursors[MoveTo] = new ImageCursor(Loader.the.getImage("cursor"), 16, 16);
-		cursors[Take] = new ImageCursor(Loader.the.getImage("handcursor"), 6, 9);
-		cursors[InventoryItem] = new ImageCursor(Loader.the.getImage("handcursor"), 6, 9);
-		cursors[WontWork] = new ImageCursor(Loader.the.getImage("pizza_pixel"), 5, 5); // TODO: cursor
-		cursors[Eat] = new ImageCursor(Loader.the.getImage("pizza_pixel"), 15, 15); // TODO: cursor
-		cursors[Enter] = new ImageCursor(Loader.the.getImage("cursor"), 16, 16); // TODO: cursor
+		cursors[MoveTo] = new ImageCursor(Assets.images.cursor, 16, 16);
+		cursors[Take] = new ImageCursor(Assets.images.handcursor, 6, 9);
+		cursors[InventoryItem] = new ImageCursor(Assets.images.handcursor, 6, 9);
+		cursors[WontWork] = new ImageCursor(Assets.images.pizza_pixel, 5, 5); // TODO: cursor
+		cursors[Eat] = new ImageCursor(Assets.images.pizza_pixel, 15, 15); // TODO: cursor
+		cursors[Enter] = new ImageCursor(Assets.images.cursor, 16, 16); // TODO: cursor
 		currentCursor = null;
-		kha.Sys.mouse.forceSystemCursor(true);
-		font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 14);
+		Mouse.forceSystemCursor(true);
+		font = Assets.fonts.LiberationSans_Regular;
+		fontSize = 14;
 	}
 	
 	public function render(g: Graphics, x: Int, y: Int): Void {
@@ -83,8 +84,9 @@ class AdventureCursor implements Cursor {
 	
 	private function drawTooltip(g: Graphics, tip: String, x: Int, y: Int): Void {
 		g.font = font;
+		g.fontSize = fontSize;
 		g.color = Color.Black;
-		g.fillRect(x - 2, y - 2, font.stringWidth(tip) + 4, font.getHeight() + 4);
+		g.fillRect(x - 2, y - 2, font.width(fontSize, tip) + 4, font.height(fontSize) + 4);
 		g.color = Color.White;
 		g.drawString(tip, x, y);
 	}
@@ -134,10 +136,10 @@ class AdventureCursor implements Cursor {
 		
 		if (cursors.exists(hoveredType)) {
 			currentCursor = cursors[hoveredType];
-			kha.Sys.mouse.forceSystemCursor(false);
+			Mouse.forceSystemCursor(false);
 			currentCursor.update(x, y);
 		} else {
-			kha.Sys.mouse.forceSystemCursor(true);
+			Mouse.forceSystemCursor(true);
 			currentCursor = null;
 		}
 		if (toolTipTop) {

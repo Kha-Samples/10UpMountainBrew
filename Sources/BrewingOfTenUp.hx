@@ -1,33 +1,27 @@
 package;
 
 import AdventureCursor;
+import kha.Assets;
 import kha.Framebuffer;
 import kha.graphics2.Graphics;
 import kha.Image;
-import kha.math.Matrix3;
+import kha.math.FastMatrix3;
 import kha.Scaler;
 import manipulatables.Door;
 import manipulatables.ManipulatableSprite;
 import manipulatables.Pizza;
 import manipulatables.UseableSprite;
-import kha.Button;
 import kha.Color;
-import kha.Cursor;
 import kha.Font;
 import kha.FontStyle;
-import kha.Game;
-import kha.HighscoreList;
-import kha.ImageCursor;
-import kha.Key;
-import kha.Loader;
-import kha.LoadingScreen;
-import kha.Music;
-import kha.Scene;
-import kha.Score;
-import kha.Configuration;
+//import kha.ImageCursor;
+import kha2d.Scene;
 import kha.Storage;
-import kha.Tile;
-import kha.Tilemap;
+import kha2d.Tile;
+import kha2d.Tilemap;
+import kha.Scheduler;
+import kha.System;
+import kha.input.KeyCode;
 
 enum Mode {
 	Init;
@@ -35,33 +29,43 @@ enum Mode {
 	BlaBlaBla;
 }
 
-class BrewingOfTenUp extends Game {
+class BrewingOfTenUp {
+	public static inline var width = 800;
+	public static inline var height = 600;
 	static var instance : BrewingOfTenUp;
 	private var backbuffer: Image;
 	var highscoreName : String;
 	var shiftPressed : Bool;
 	private var font: Font;
+	private var fontSize: Int;
 	public var mode : Mode;
+	private var scene: Scene;
 	
 	public function new() {
-		super("Brewing", false);
 		instance = this;
 		shiftPressed = false;
 		highscoreName = "";
 		mode = Mode.Init;
+		System.init({width: 800, height: 600, title: "Mountain Brew"}, init);
 	}
 	
 	public static function getInstance() : BrewingOfTenUp {
 		return instance;
 	}
 	
-	public override function init(): Void {
+	function init(): Void {
 		backbuffer = Image.createRenderTarget(800, 600);
-		Level.load("level1", initLevel);
+		Assets.loadEverything(function () {
+			Level.load("level1", initLevel);
+			scene = Scene.the;
+			System.notifyOnRender(render);
+			Scheduler.addTimeTask(update, 0, 1 / 60);
+		});
 	}
 
 	public function initLevel(): Void {
-		font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 14);
+		font = Assets.fonts.LiberationSans_Regular;
+		fontSize = 14;
 		startGame();
 	}
 	
@@ -73,27 +77,27 @@ class BrewingOfTenUp extends Game {
 		Scene.the.addHero(Jumpman.getInstance());
 		
 		adventureCursor = new AdventureCursor();
-		kha.Sys.mouse.pushCursor(adventureCursor);
+		Mouse.pushCursor(adventureCursor);
 		
 		//Dialogue.set(["Hallo", "Holla"], [Jumpman.getInstance(), Jumpman.getInstance()]);
 	}
 	
-	public override function update() {
+	function update() {
 		switch (mode) {
 			case Mode.Game:
 				currentOrder.update();
-				super.update();
+				scene.update();
 				Scene.the.camx = Std.int(Jumpman.getInstance().x) + Std.int(Jumpman.getInstance().width / 2);
 			case Mode.BlaBlaBla:
-				super.update();
+				scene.update();
 				Dialogue.update();
 				Scene.the.camx = Std.int(Jumpman.getInstance().x) + Std.int(Jumpman.getInstance().width / 2);
 			case Mode.Init:
-				super.update();
+				scene.update();
 		}
 	}
 	
-	public override function render(frame: Framebuffer) {
+	function render(frame: Framebuffer) {
 		if (Jumpman.getInstance() == null) return;
 		
 		var g = backbuffer.g2;
@@ -104,28 +108,28 @@ class BrewingOfTenUp extends Game {
 				// Nothing todo yet.
 		case Game, BlaBlaBla:
 			scene.render(g);
-			g.transformation = Matrix3.identity();
+			g.transformation = FastMatrix3.identity();
 			BlaBox.render(g);
 			Inventory.paint(g);
 			//break;
 		}
-		kha.Sys.mouse.render(g);
+		Mouse.render(g);
 		g.end();
 		
-		startRender(frame);
-		Scaler.scale(backbuffer, frame, kha.Sys.screenRotation);
-		endRender(frame);
+		frame.g2.begin();
+		Scaler.scale(backbuffer, frame, System.screenRotation);
+		frame.g2.end();
 	}
 
-	override public function buttonDown(button : Button) : Void {
+	function buttonDown(button: KeyCode) : Void {
 		switch (mode) {
 		case Game:
 			switch (button) {
-			case UP, BUTTON_1, BUTTON_2:
+			case Up, Control:
 				Jumpman.getInstance().setUp();
-			case LEFT:
+			case Left:
 				Jumpman.getInstance().left = true;
-			case RIGHT:
+			case Right:
 				Jumpman.getInstance().right = true;
 			default:
 			}
@@ -133,15 +137,15 @@ class BrewingOfTenUp extends Game {
 		}
 	}
 	
-	override public function buttonUp(button : Button) : Void {
+	function buttonUp(button: KeyCode) : Void {
 		switch (mode) {
 		case Game:
 			switch (button) {
-			case UP, BUTTON_1, BUTTON_2:
+			case Up, Control:
 				Jumpman.getInstance().up = false;
-			case LEFT:
+			case Left:
 				Jumpman.getInstance().left = false;
-			case RIGHT:
+			case Right:
 				Jumpman.getInstance().right = false;
 			default:
 			}	
@@ -149,23 +153,10 @@ class BrewingOfTenUp extends Game {
 		}
 	}
 	
-	override public function keyDown(key: Key, char: String) : Void {
-		if (key == Key.CHAR) {
-
-		}
-		else {
-			if (key == SHIFT) shiftPressed = true;
-		}
-	}
-	
-	override public function keyUp(key : Key, char : String) : Void {
-		if (key != null && key == Key.SHIFT) shiftPressed = false;
-	}
-	
 	public var adventureCursor(default, null) : AdventureCursor;
 	public var currentOrder(default, null) : MouseOrder = new MouseOrder();
 	
-	override public function mouseUp(x:Int, y:Int) : Void {
+	function mouseUp(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
 			currentOrder.cancel();
@@ -179,14 +170,15 @@ class BrewingOfTenUp extends Game {
 		}
 	}
 	
-	override public function rightMouseDown(x:Int, y:Int) : Void {
+	function rightMouseDown(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
 			Jumpman.getInstance().setUp();
 		default:
 		}
 	}
-	override public function rightMouseUp(x:Int, y:Int) : Void {
+	
+	function rightMouseUp(x:Int, y:Int) : Void {
 		switch (mode) {
 		case Mode.Game:
 			Jumpman.getInstance().up = false;

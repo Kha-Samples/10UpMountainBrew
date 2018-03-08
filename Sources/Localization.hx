@@ -1,14 +1,14 @@
-package ;
+package;
+
 import haxe.xml.Parser;
-import kha.Loader;
+import kha.Assets;
 
 enum LanguageType {
 	en;
 	de;
 }
 
-class Localization
-{
+class Localization {
 	static var defaultLanguage : LanguageType = en;
 	static public var language : LanguageType = en;
 	static var texts : Map < String, Map < LanguageType, String >> = null;
@@ -18,7 +18,7 @@ class Localization
 			return;
 		}
 		texts = new Map();
-		var xml = Parser.parse(Loader.the.getBlob(filename).toString());
+		var xml = Parser.parse(Assets.blobs.get(filename).toString());
 		for (item in xml.elements()) {
 			var key = item.nodeName;
 			if (key == "DefaultLanguage") {

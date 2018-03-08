@@ -1,16 +1,9 @@
 package manipulatables;
 
-import kha.Image;
-import kha.Loader;
+import kha.Assets;
 
-// Spritze
-class Injection extends UseableSprite
-{
-
-	public function new(px:Int, py:Int) 
-	{
-		super("Injection", Loader.the.getImage("spritze"), px, py);
-		
+class Injection extends UseableSprite {
+	public function new(px: Int, py: Int) {
+		super("Injection", Assets.images.spritze, px, py);
 	}
-	
 }

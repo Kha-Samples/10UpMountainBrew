@@ -1,10 +1,10 @@
 package manipulatables;
-import kha.Loader;
-import kha.Scene;
-import manipulatables.UseableSprite;
 
+import kha.Assets;
+import kha2d.Scene;
+import manipulatables.UseableSprite;
 import kha.Image;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 
 // Helm
@@ -13,7 +13,7 @@ class WinterCoat extends Sprite implements ManipulatableSprite
 
 	public function new(px : Int, py : Int) 
 	{
-		super(Loader.the.getImage("pizza_pixel"));
+		super(Assets.images.pizza_pixel);
 		x = px;
 		y = py;
 		accy = 0;
@@ -42,5 +42,4 @@ class WinterCoat extends Sprite implements ManipulatableSprite
 			else Jumpman.getInstance().coatDoc();
 		}
 	}
-	
 }

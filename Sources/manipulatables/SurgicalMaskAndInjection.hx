@@ -1,18 +1,17 @@
 package manipulatables;
+
+import kha.Assets;
 import dialogue.Bla;
-import kha.Loader;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 import manipulatables.UseableSprite;
-
-
 
 class SurgicalMaskAndInjection extends Sprite implements ManipulatableSprite
 {
 
 	public function new(px : Int, py : Int) 
 	{
-		super(Loader.the.getImage("docstuff"));
+		super(Assets.images.docstuff);
 		x = px;
 		y = py + 30;
 		accy = 0;
@@ -38,7 +37,7 @@ class SurgicalMaskAndInjection extends Sprite implements ManipulatableSprite
 			if (jmpMan.hasHelmet) {
 				Dialogue.set([new Bla("TakeMask_Helmet", jmpMan)]);
 			} else {
-				kha.Scene.the.removeHero(this);
+				kha2d.Scene.the.removeHero(this);
 				jmpMan.hasSurgicalMask = true;
 				Jumpman.getInstance().doc();
 				Inventory.pick(new Injection(0, 0));

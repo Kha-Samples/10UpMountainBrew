@@ -1,7 +1,7 @@
 package;
 
 import BrewingOfTenUp.Mode;
-import kha.Scene;
+import kha2d.Scene;
 
 interface DialogueItem {
 	public function execute() : Void;
@@ -17,7 +17,7 @@ class Dialogue {
 		Dialogue.items = items;
 		index = -1;
 		BrewingOfTenUp.getInstance().mode = Mode.BlaBlaBla;
-		kha.Sys.mouse.hide();
+		Mouse.hide();
 		next();
 	}
 	
@@ -39,7 +39,7 @@ class Dialogue {
 		
 		if (index >= items.length) {
 			BrewingOfTenUp.getInstance().mode = Mode.Game;
-			kha.Sys.mouse.show();
+			Mouse.show();
 			return;
 		}
 		

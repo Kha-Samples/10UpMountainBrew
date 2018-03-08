@@ -1,12 +1,12 @@
 package manipulatables;
+
+import kha.Assets;
 import dialogue.Action;
 import dialogue.ActionWithBla;
 import dialogue.Bla;
-import kha.Loader;
 import manipulatables.UseableSprite;
-
 import kha.Image;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 
 // Direktor
@@ -17,7 +17,7 @@ class Director extends Sprite implements ManipulatableSprite
 	{
 		py -= 40;
 		if (image == null) {
-			image = Loader.the.getImage("boss");
+			image = Assets.images.boss;
 			w = Std.int(192 * 2 / 6);
 			h = 64 * 2;
 		}
@@ -93,5 +93,4 @@ class Director extends Sprite implements ManipulatableSprite
 				// Nothing todo yet.
 		}
 	}
-	
 }

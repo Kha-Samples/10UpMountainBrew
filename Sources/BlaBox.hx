@@ -1,18 +1,18 @@
 package;
 
-import kha.AnimatedImageCursor;
+import kha.Assets;
 import kha.Color;
 import kha.Font;
 import kha.FontStyle;
 import kha.graphics2.Graphics;
-import kha.Loader;
-import kha.Scene;
-import kha.Sprite;
+import kha2d.Scene;
+import kha2d.Sprite;
 
 class BlaBox {
 	private static var left: Bool;
 	private static var pointed: Sprite;
 	private static var font: Font;
+	private static var fontSize: Int;
 	private static var text: String = null;
 	
 	public static function pointAt(sprite: Sprite): Void {
@@ -29,7 +29,10 @@ class BlaBox {
 	
 	public static function render(g: Graphics): Void {
 		if (pointed == null || text == null) return;
-		if (font == null) font = Loader.the.loadFont("Liberation Sans", new FontStyle(false, false, false), 20);
+		if (font == null) {
+			font = Assets.fonts.LiberationSans_Regular;
+			fontSize = 20;
+		}
 		
 		var sx = pointed.x + pointed.width / 2 - Scene.the.screenOffsetX;
 		
@@ -55,6 +58,7 @@ class BlaBox {
 		g.drawLine(sx - 5, 400 - 5, sx, 420, 4);
 		g.drawLine(sx + 5, 400 - 5, sx, 420, 4);
 		g.font = font;
+		g.fontSize = fontSize;
 		
 		var tx: Float = x + 10;
 		var ty: Float = 300 + 10;
@@ -64,13 +68,13 @@ class BlaBox {
 		while (t < text.length + 1) {
 			if (text.length == t || text.charAt(t) == " ") {
 				var txnext: Float = 0;
-				if (first) txnext = tx + font.stringWidth(word);
-				txnext = tx + font.stringWidth(" ") + font.stringWidth(word);
+				if (first) txnext = tx + font.width(fontSize, word);
+				txnext = tx + font.width(fontSize, " ") + font.width(fontSize, word);
 				if (txnext > x + 380) {
 					tx = x + 10;
-					ty += font.getHeight();
+					ty += font.height(fontSize);
 					g.drawString(word, tx, ty);
-					tx = tx + font.stringWidth(word);
+					tx = tx + font.width(fontSize, word);
 				}
 				else {
 					if (first) g.drawString(word, tx, ty);

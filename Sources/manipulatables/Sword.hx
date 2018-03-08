@@ -1,9 +1,9 @@
 package manipulatables;
+
+import kha.Assets;
 import dialogue.Bla;
 import manipulatables.UseableSprite;
-
 import kha.Image;
-import kha.Loader;
 import manipulatables.ManipulatableSprite.OrderType;
 
 // Schwert
@@ -11,7 +11,7 @@ class Sword extends UseableSprite
 {
 	public function new( px : Int, py : Int) 
 	{
-		super("Sword", Loader.the.getImage("sword"), px, py);
+		super("Sword", Assets.images.sword, px, py);
 		z = 3;
 	}
 	

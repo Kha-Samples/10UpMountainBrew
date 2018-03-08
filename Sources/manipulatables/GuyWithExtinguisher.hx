@@ -1,19 +1,18 @@
 package manipulatables;
 
 import dialogue.Bla;
-import kha.Animation;
-import kha.Direction;
+import kha.Assets;
+import kha2d.Animation;
+import kha2d.Direction;
 import kha.graphics2.Graphics;
-import kha.Loader;
-import kha.math.Matrix3;
+import kha.math.FastMatrix3;
 import kha.math.Vector2;
-import kha.Rectangle;
+import kha2d.Rectangle;
 import kha.Rotation;
-import kha.Scene;
+import kha2d.Scene;
 import manipulatables.UseableSprite;
-
 import kha.Image;
-import kha.Sprite;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 
 // Typ mit Feuerlöscher
@@ -47,7 +46,7 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	{
 		the = this;
 		if (image == null) {
-			image = Loader.the.getImage("mechanic");
+			image = Assets.images.mechanic;
 		}
 		super(image, Std.int(410 / 10) * 2, Std.int(455 / 7) * 2);
 		x = px;
@@ -59,7 +58,7 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 			this.name = name;
 		}
 		
-		zzzzz = Loader.the.getImage("zzzzz");
+		zzzzz = Assets.images.zzzzz;
 		
 		if (this.image == image) {
 			collider = new Rectangle(20, 30, 41 * 2 - 40, (65 - 1) * 2 - 30);
@@ -238,7 +237,7 @@ class GuyWithExtinguisher extends Sprite implements ManipulatableSprite
 	{
 		if (isSleeping()) {
 			//painter.drawImage2(image, 0, 0, width, height, x, y, width, height, rotation);
-			if (angle != 0) g.pushTransformation(g.transformation * Matrix3.translation(x + originX, y + originY) * Matrix3.rotation(angle) * Matrix3.translation(-x - originX, -y - originY));
+			if (angle != 0) g.pushTransformation(g.transformation.multmat(FastMatrix3.translation(x + originX, y + originY)).multmat(FastMatrix3.rotation(angle)).multmat(FastMatrix3.translation(-x - originX, -y - originY)));
 			g.drawScaledSubImage(image, 0, 0, width, height, x - collider.x, y - collider.y, width, height);
 			if (angle != 0) g.popTransformation();
 			g.drawScaledSubImage(zzzzz, (Std.int(zzzzzIndex / 8) % 3) * zzzzz.width / 3, 0, zzzzz.width / 3, zzzzz.height, x + zzzzzXDif(), y - 15 - collider.height, zzzzz.width / 3, zzzzz.height);

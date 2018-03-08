@@ -1,12 +1,9 @@
 package manipulatables;
 
-import kha.Loader;
+import kha.Assets;
 
-// Pizza
-class Pizza extends UseableSprite
-{
+class Pizza extends UseableSprite {
 	public function new(px : Int, py : Int) {
-		super("Pizza", Loader.the.getImage("pizza_pixel"), px, py);
+		super("Pizza", Assets.images.pizza_pixel, px, py);
 	}
-	
 }

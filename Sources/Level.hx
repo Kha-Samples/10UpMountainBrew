@@ -1,17 +1,14 @@
 package;
 
 import BrewingOfTenUp;
+import kha.Assets;
 import dialogue.Action;
 import dialogue.ActionWithBla;
 import dialogue.Bla;
 import kha.Color;
-import kha.Configuration;
-import kha.Game;
-import kha.Loader;
-import kha.LoadingScreen;
-import kha.Scene;
-import kha.Tile;
-import kha.Tilemap;
+import kha2d.Scene;
+import kha2d.Tile;
+import kha2d.Tilemap;
 import manipulatables.BoneSaw;
 import manipulatables.Director;
 import manipulatables.Door;
@@ -33,13 +30,12 @@ class Level {
 	public static function load(levelName: String, done: Void -> Void): Void {
 		Level.levelName = levelName;
 		Level.done = done;
-		Configuration.setScreen(new LoadingScreen());
-		Loader.the.loadRoom(levelName, initLevel);
+		initLevel();
 	}
 	
 	private static function initLevel(): Void {
 		BrewingOfTenUp.getInstance().mode = Mode.Game;
-		Localization.init("text.xml");
+		Localization.init("text_xml");
 		var jmpMan = Jumpman.getInstance();
 		if (jmpMan == null) jmpMan = new Jumpman();
 
@@ -47,15 +43,15 @@ class Level {
 		for (i in 0...400) {
 			tileColissions.push(new Tile(i, isCollidable(i)));
 		}
-		var blob = Loader.the.getBlob(levelName + ".map");
-		blob.reset();
-		var levelWidth: Int = blob.readS32BE();
-		var levelHeight: Int = blob.readS32BE();
+		var blob = Assets.blobs.get(levelName + "_map");
+		var fileIndex = 0;
+		var levelWidth: Int = blob.readS32BE(fileIndex); fileIndex += 4;
+		var levelHeight: Int = blob.readS32BE(fileIndex); fileIndex += 4;
 		var originalmap = new Array<Array<Int>>();
 		for (x in 0...levelWidth) {
 			originalmap.push(new Array<Int>());
 			for (y in 0...levelHeight) {
-				originalmap[x].push(blob.readS32BE());
+				originalmap[x].push(blob.readS32BE(fileIndex)); fileIndex += 4;
 			}
 		}
 		var map = new Array<Array<Int>>();
@@ -65,12 +61,12 @@ class Level {
 				map[x].push(0);
 			}
 		}
-		var spriteCount = blob.readS32BE();
+		var spriteCount = blob.readS32BE(fileIndex); fileIndex += 4;
 		var sprites = new Array<Int>();
 		for (i in 0...spriteCount) {
-			sprites.push(blob.readS32BE());
-			sprites.push(blob.readS32BE());
-			sprites.push(blob.readS32BE());
+			sprites.push(blob.readS32BE(fileIndex)); fileIndex += 4;
+			sprites.push(blob.readS32BE(fileIndex)); fileIndex += 4;
+			sprites.push(blob.readS32BE(fileIndex)); fileIndex += 4;
 		}
 		
 		Scene.the.clear();
@@ -84,7 +80,7 @@ class Level {
 			else tileset = "tileset2";
 		}
 		
-		var tilemap : Tilemap = new Tilemap(tileset, 32, 32, map, tileColissions);
+		var tilemap : Tilemap = new Tilemap(Assets.images.get(tileset), 32, 32, map, tileColissions);
 		Scene.the.setColissionMap(tilemap);
 		Scene.the.addBackgroundTilemap(tilemap, 1);
 		var TILE_WIDTH : Int = 32;
@@ -98,7 +94,7 @@ class Level {
 			}
 		}
 		for (i in 0...spriteCount) {
-			var sprite: kha.Sprite;
+			var sprite: kha2d.Sprite;
 			sprites[i * 3 + 1] *= 2;
 			sprites[i * 3 + 2] *= 2;
 			switch (sprites[i * 3]) {
@@ -162,7 +158,6 @@ class Level {
 			
 		}
 		
-		Configuration.setScreen(BrewingOfTenUp.getInstance());
 		done();
 	}
 	

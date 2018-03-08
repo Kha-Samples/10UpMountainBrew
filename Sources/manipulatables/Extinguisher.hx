@@ -1,14 +1,10 @@
 package manipulatables;
 
-import kha.Image;
-import kha.Loader;
+import kha.Assets;
 
-// Feuerlöscher
-class Extinguisher extends UseableSprite
-{
-	public function new(px : Int, py : Int) {
-		super("Extinguisher", Loader.the.getImage("extinguisher"), px, py);
+class Extinguisher extends UseableSprite {
+	public function new(px: Int, py: Int) {
+		super("Extinguisher", Assets.images.extinguisher, px, py);
 		z = 3;
 	}
-	
 }

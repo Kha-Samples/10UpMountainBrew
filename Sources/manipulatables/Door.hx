@@ -1,13 +1,13 @@
 package manipulatables;
 
 import dialogue.Bla;
-import kha.Animation;
-import kha.Direction;
+import kha.Assets;
+import kha2d.Animation;
+import kha2d.Direction;
 import kha.graphics2.Graphics;
 import kha.Image;
-import kha.Loader;
-import kha.Scene;
-import kha.Sprite;
+import kha2d.Scene;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite;
 
 // Tür
@@ -15,7 +15,7 @@ class Door extends Sprite implements ManipulatableSprite {
 	private static var currentLevel: String = null;
 	
 	public function new(x: Int, y: Int) {
-		super(Loader.the.getImage("door"));
+		super(Assets.images.door);
 		this.x = x;
 		this.y = y;
 		accy = 0;

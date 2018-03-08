@@ -2,8 +2,8 @@ package manipulatables;
 
 import kha.graphics2.Graphics;
 import kha.Image;
-import kha.Scene;
-import kha.Sprite;
+import kha2d.Scene;
+import kha2d.Sprite;
 import manipulatables.ManipulatableSprite.OrderType;
 
 class UseableSprite extends Sprite implements ManipulatableSprite

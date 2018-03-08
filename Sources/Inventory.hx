@@ -1,10 +1,8 @@
 package;
 
-import kha.Animation;
+import kha2d.Animation;
 import kha.Color;
-import kha.Game;
 import kha.graphics2.Graphics;
-import kha.Loader;
 import kha.math.Vector2;
 import manipulatables.UseableSprite;
 
@@ -20,7 +18,7 @@ class Inventory {
 	public static function init() {
 		items = new Array();
 		selected = -1;
-		y = Game.the.height - itemHeight - 2 * spacing;
+		y = BrewingOfTenUp.height - itemHeight - 2 * spacing;
 	}
 	
 	public static function isEmpty() : Bool {
@@ -73,7 +71,7 @@ class Inventory {
 		var itemX = spacing;
 		var itemY = y + spacing;
 		g.color = Color.Black;
-		g.fillRect(0, y, Game.the.width, itemHeight + 2 * spacing);
+		g.fillRect(0, y, BrewingOfTenUp.width, itemHeight + 2 * spacing);
 		for (i in offset...items.length) {
 			items[i].renderForInventory(g, itemX, itemY, itemWidth, itemHeight);
 			if (i == selected) {
